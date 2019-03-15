@@ -103,8 +103,6 @@ var getMedian=function(array){
 
 
 
-
-
   dataset.then(function(d){
     var finalArray=getFinalArray(d)
     var finalAverage=getAverage(finalArray)
