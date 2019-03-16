@@ -100,6 +100,36 @@ var getMedian=function(array){
 
 
 
+// index
+
+// timeline
+
+var drawTimeline= function(){
+  var screen={width:500,height:320};
+  var margin = {top: 50, right: 30, bottom: 30, left: 70};
+  var w = screen.width - margin.left - margin.right;
+  var h = screen.height - margin.top - margin.bottom;
+
+
+  var svg=d3.select(".index").append("svg")
+            .attr('id', 'timelinesvg')
+            .attr('width', screen.width)
+            .attr('height', screen.height)
+
+  var line=d3.select("#timelinesvg")
+      .append('line')
+      .attr('x1', )
+      .attr('y1', )
+      .attr('x2', )
+      .attr('y2', )
+      .style('stroke', '#111');
+
+
+
+}
+
+
+
 
 
 
@@ -119,4 +149,6 @@ var getMedian=function(array){
     var quizeArray=getQuizeArray(d)
     var quizeAverage=getAverage(quizeArray)
     var quizeMedian=getMedian(quizeArray)
+
+    drawTimeline()
   })
