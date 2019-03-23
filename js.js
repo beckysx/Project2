@@ -17,7 +17,7 @@ var getFinalArray=function(d){
 
 
 // get homework grad2 array 437
-var getPersonalHwArray=function(d,array){
+var getPersonalArray=function(d,array){
   for(var i=0;i<d.length;i++){
     var grade=parseInt(d[i].grade)
     array.push(grade)
@@ -27,7 +27,7 @@ var getHwArray=function(d){
   var array=[]
   for(var i=0;i<d.length;i++){
     var data=d[i].homework
-    var personData=getPersonalHwArray(data,array)
+    var personData=getPersonalArray(data,array)
   }
   array.sort(sortNumber)
   return array
@@ -58,17 +58,11 @@ var getTest2Array=function(d){
 }
 
 // get quize grade array 874
-var getPersonalQuizeArray=function(d,array){
-  for(var i=0;i<d.length;i++){
-    var grade=parseInt(d[i].grade)
-    array.push(grade)
-  }
-}
 var getQuizeArray=function(d){
   var array=[]
   for(var i=0;i<d.length;i++){
     var data=d[i].quizes
-    var personData=getPersonalQuizeArray(data,array)
+    var personData=getPersonalArray(data,array)
   }
   array.sort(sortNumber)
   return array
