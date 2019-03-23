@@ -74,39 +74,14 @@ var getQuizeArray=function(d){
   return array
 }
 
-// average
-var getAverage=function(array){
-  var sum=array.reduce(function(pre, curr){
-    return pre+curr
-  })
-  var length=array.length
-  return Math.round(sum/length)
-}
-// Median
-var getMedian=function(array){
-  var length=array.length
-  var half=Math.ceil(length/2)
 
-  if (length%2==0){
-    var median=(array[half]+array[half-1])/2
-  }
-  else {
-    var median=array[half-1]
-
-  }
-  return Math.round(median)
-
-}
-
-
-
-// index
+// index Page
 
 // timeline
 
 var drawTimeline= function(){
-  var screen={width:500,height:320};
-  var margin = {top: 50, right: 30, bottom: 30, left: 70};
+  var screen={width:1400,height:320};
+  var margin = {top: 50, right: 30, bottom: 30, left: 30};
   var w = screen.width - margin.left - margin.right;
   var h = screen.height - margin.top - margin.bottom;
 
@@ -118,11 +93,84 @@ var drawTimeline= function(){
 
   var line=d3.select("#timelinesvg")
       .append('line')
-      .attr('x1', )
-      .attr('y1', )
-      .attr('x2', )
-      .attr('y2', )
+      .attr('x1', margin.right-5)
+      .attr('y1', margin.top)
+      .attr('x2', margin.right+w)
+      .attr('y2',margin.top )
+      .attr('stroke-width', 3)
       .style('stroke', '#111');
+
+  var exam=[15,30,41]
+  var quize=d3.range(42)
+  delete quize[15]
+  delete quize[30]
+  delete quize[41]
+
+
+
+  var scale=d3.scaleLinear()
+      .domain([1,40])
+      .range([30, w]);
+
+  var examcircle=d3.select("#timelinesvg").selectAll('circle')
+      .data(exam)
+      .enter()
+      .append('circle')
+      .attr('cx', function(d){
+        return scale(d)
+      })
+      .attr('cy', margin.top)
+      .attr('r', 10)
+      .style('stroke', 'pink')
+      .attr('stroke-width', 5)
+      .style('fill', 'orange')
+      .attr('id',function(d){
+        return "day"+d
+      });
+
+
+  var quizeLine=d3.select("#timelinesvg").append("g").attr('id', 'quizeLine')
+  quizeLine.selectAll("line")
+      .data(quize)
+      .enter().append('line')
+      .attr('x1', function(d){
+        return scale(d)
+      })
+      .attr('y1', margin.top-15)
+      .attr('x2', function(d){
+        return scale(d)
+      })
+      .attr('y2', margin.top-1)
+      .style('stroke', '#499FB7')
+      .attr('stroke-width', 5)
+      .attr('id',function(d){
+        return "day"+d
+      });
+
+  var hw=d3.range(2,40,2)
+  delete hw[14]
+  console.log(hw)
+  var hwLine=d3.select("#timelinesvg").append("g").attr('id', 'hwLine')
+  hwLine.selectAll("line")
+      .data(hw)
+      .enter().append('line')
+      .attr('x1', function(d){
+        return scale(d)
+      })
+      .attr('y1', margin.top+1)
+      .attr('x2', function(d){
+        return scale(d)
+      })
+      .attr('y2', margin.top+15)
+      .style('stroke', '#8F995E')
+      .attr('stroke-width', 5)
+      .attr('id',function(d){
+        return "day"+d
+      });
+
+
+
+
 
 
 
@@ -135,20 +183,20 @@ var drawTimeline= function(){
 
   dataset.then(function(d){
     var finalArray=getFinalArray(d)
-    var finalAverage=getAverage(finalArray)
-    var finalMedian=getMedian(finalArray)
+    var finalAverage=Math.round(d3.mean(finalArray))
+    var finalMedian=d3.quantile(finalArray,0.5)
     var hwArray=getHwArray(d)
-    var hwAverage=getAverage(hwArray)
-    var hwMedian=getMedian(hwArray)
+    var hwAverage=Math.round(d3.mean(hwArray))
+    var hwMedian=d3.quantile(hwArray,0.5)
     var test1Array=getTest1Array(d)
-    var test1Average=getAverage(test1Array)
-    var test1Median=getMedian(test1Array)
+    var test1Average=Math.round(d3.mean(test1Array))
+    var test1Median=d3.quantile(test1Array,0.5)
     var test2Array=getTest2Array(d)
-    var test2Average=getAverage(test2Array)
-    var test2Median=getMedian(test2Array)
+    var test2Average=Math.round(d3.mean(test2Array))
+    var test2Median=d3.quantile(test2Array,0.5)
     var quizeArray=getQuizeArray(d)
-    var quizeAverage=getAverage(quizeArray)
-    var quizeMedian=getMedian(quizeArray)
+    var quizeAverage=Math.round(d3.mean(quizeArray))
+    var quizeMedian=d3.quantile(quizeArray,0.5)
 
     drawTimeline()
   })
