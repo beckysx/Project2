@@ -2,12 +2,46 @@
   display: block;
   border: solid
 }
-#timelinesvg{
-  display: block;
-  border: solid;
-  border-color:red;
-}
-svg#piechart{
+#piechart{
   position: relative;
 left: 70px;
+display: block;
+}
+
+#datesvg{
+  font-size: 50px;
+  display: block;
+  position: absolute;
+  top: 220px;
+  left: 850px;
+  text-decoration: underline;
+}
+
+#previousbutton{
+  height: 40px;
+border-bottom-left-radius: 30px;
+width: 130;
+border-top-left-radius: 30px;
+background: #E6E8E6;
+cursor:pointer;
+position: absolute;
+top: 385px;
+left: 785px;
+}
+
+#nextbutton{
+  height: 40px;
+border-bottom-right-radius: 30px;
+width: 130;
+border-top-right-radius: 30px;
+background: #E6E8E6;
+cursor:pointer;
+position: absolute;
+top: 385px;
+left: 1170px;
+}
+
+
+#nextbutton:hover,#previousbutton:hover{
+  background-color: #B9BAB8;
 }
