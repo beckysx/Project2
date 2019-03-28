@@ -80,7 +80,7 @@ var drawTimeline= function(){
   var h = screen.height - margin.top - margin.bottom;
 
 
-  var svg=d3.select(".index").append("svg")
+  var timelinesvg=d3.select(".index").append("svg")
             .attr('id', 'timelinesvg')
             .attr('width', screen.width)
             .attr('height', screen.height)
@@ -99,8 +99,6 @@ var drawTimeline= function(){
   delete quize[15]
   delete quize[30]
   delete quize[41]
-
-
 
   var scale=d3.scaleLinear()
       .domain([1,40])
@@ -143,7 +141,7 @@ var drawTimeline= function(){
 
   var hw=d3.range(2,40,2)
   delete hw[14]
-  console.log(hw)
+
   var hwLine=d3.select("#timelinesvg").append("g").attr('id', 'hwLine')
   hwLine.selectAll("line")
       .data(hw)
@@ -164,6 +162,149 @@ var drawTimeline= function(){
 
 
 
+// explain box
+    //quizes box
+    var quizebox=timelinesvg.append("g").attr('id', 'quizebox')
+    quizebox.append('circle')
+            .attr('cx', 164.35)
+            .attr('cy', 160)
+            .attr('r', 5)
+            .style('fill', '#111');
+
+    quizebox.append("line")
+        .attr('x1', 164.36)
+        .attr('y1',50 )
+        .attr('x2', 164.36)
+        .attr('y2', 165)
+        .style('stroke', '#111');
+
+    quizebox.append("text")
+    .attr('text-anchor', 'middle')
+    .attr('x', 164.36)
+    .attr('y', 200)
+    .text("Quize")
+
+    quizebox.append("text")
+    .attr('text-anchor', 'middle')
+    .attr('x', 164.36)
+    .attr('y', 230)
+    .text("Everyday")
+
+    //test1 box
+    var test1box=timelinesvg.append("g").attr('id', 'test1box')
+    test1box.append('circle')
+            .attr('cx', 500)
+            .attr('cy', 160)
+            .attr('r', 5)
+            .style('fill', '#111');
+
+    test1box.append("line")
+        .attr('x1', 500)
+        .attr('y1',61 )
+        .attr('x2', 500)
+        .attr('y2', 160)
+        .style('stroke', '#111');
+
+    test1box.append("text")
+    .attr('text-anchor', 'middle')
+    .attr('x', 500)
+    .attr('y', 195)
+    .text("Test1")
+
+    test1box.append("text")
+    .attr('text-anchor', 'middle')
+    .attr('x', 500)
+    .attr('y', 230)
+    .text("on Day15")
+
+    //hw box
+    var hwbox=timelinesvg.append("g").attr('id', 'hwbox')
+    hwbox.append('circle')
+            .attr('cx', 735.4)
+            .attr('cy', 160)
+            .attr('r', 5)
+            .style('fill', '#111');
+
+    hwbox.append("line")
+        .attr('x1', 735.4)
+        .attr('y1',65 )
+        .attr('x2', 735.4)
+        .attr('y2', 160)
+        .style('stroke', '#111');
+
+    hwbox.append("text")
+    .attr('text-anchor', 'middle')
+    .attr('x', 735.4)
+    .attr('y', 195)
+    .text("Homework")
+
+    hwbox.append("text")
+    .attr('text-anchor', 'middle')
+    .attr('x', 735.4)
+    .attr('y', 230)
+    .text("Every 2 Day")
+
+    //test2 box
+    var test2box=timelinesvg.append("g").attr('id', 'test2box')
+    test2box.append('circle')
+            .attr('cx', 1004)
+            .attr('cy', 160)
+            .attr('r', 5)
+            .style('fill', '#111');
+
+    test2box.append("line")
+        .attr('x1', 1004)
+        .attr('y1',62 )
+        .attr('x2', 1004)
+        .attr('y2', 160)
+        .style('stroke', '#111');
+
+    test2box.append("text")
+    .attr('text-anchor', 'middle')
+    .attr('x', 1004)
+    .attr('y', 195)
+    .text("Test 2")
+
+    test2box.append("text")
+    .attr('text-anchor', 'middle')
+    .attr('x', 1004)
+    .attr('y', 230)
+    .text("on Day30")
+
+    //final box
+    var finalbox=timelinesvg.append("g").attr('id', 'finalbox')
+
+    finalbox.append('circle')
+            .attr('cx', 1271)
+            .attr('cy', 160)
+            .attr('r', 5)
+            .style('fill', '#111');
+
+    finalbox.append("line")
+        .attr('x1', 1373.6)
+        .attr('y1',62 )
+        .attr('x2', 1271)
+        .attr('y2', 130)
+        .style('stroke', '#111');
+
+    finalbox.append("line")
+        .attr('x1', 1271)
+        .attr('y1',130 )
+        .attr('x2', 1271)
+        .attr('y2', 160)
+        .style('stroke', '#111');
+
+    finalbox.append("text")
+    .attr('text-anchor', 'middle')
+    .attr('x', 1271)
+    .attr('y', 195)
+    .text("Final")
+
+    finalbox.append("text")
+    .attr('text-anchor', 'middle')
+    .attr('x', 1271)
+    .attr('y', 230)
+    .text("on Day41")
 
 
 
