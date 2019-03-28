@@ -170,6 +170,21 @@ var drawTimeline= function(){
 
 }
 
+var piechart=function(){
+  var chart=d3.select("body").append("svg")
+  .attr('width', 400)
+  .attr('height', 300)
+  .attr('id', 'piechart')
+
+  chart.append("svg:image")
+  .attr('xlink:href', function(){return "piechart.png"})
+  .attr('x', 0)
+  .attr('y', 0)
+  .attr('width', 400)
+  .attr('class', 'piechartImage')
+
+}
+
 
 
 
@@ -193,4 +208,5 @@ var drawTimeline= function(){
     var quizeMedian=d3.quantile(quizeArray,0.5)
 
     drawTimeline()
+    piechart()
   })

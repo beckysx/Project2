@@ -7,3 +7,7 @@
   border: solid;
   border-color:red;
 }
+svg#piechart{
+  position: relative;
+left: 70px;
+}
