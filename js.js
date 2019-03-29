@@ -360,21 +360,19 @@ var drawEverything=function(d){
     .attr('width', 1400)
     .attr('height', 4000)
 
-    var groupnumber=d3.range(3)
+    // group1
+    for(i=0;i<3;i++){
+      allstudentsvg.append("g")
+      .attr('class', 'group1')
+      .attr('transform', function(){
+        return 'translate(' + (i*screen.width) + ',' + 0+ ')'
+      })
+      .append("svg")
+      .attr('class', 'studentsvg')
+      .attr('id', function(){return "student"+(i+1)})
+    }
 
-    allstudentsvg.selectAll("g")
-    .data(groupnumber)
-    .enter()
-    .append("g")
-    .attr('class', 'group1')
-    .attr('transform', function(d,i){
-      return 'translate(' + (i*screen.width) + ',' + 0 + ')'
-    })
-    .append("svg")
-    .attr('class', 'studentsvg')
-    .attr('id', function(d){return "student"+(d+1)})
-
-
+    //group2
     for(i=0;i<3;i++){
       allstudentsvg.append("g")
       .attr('class', 'group2')
@@ -387,61 +385,83 @@ var drawEverything=function(d){
     }
 
 
+    //group3
+    for(i=0;i<3;i++){
+      allstudentsvg.append("g")
+      .attr('class', 'group3')
+      .attr('transform', function(){
+        return 'translate(' + (i*screen.width) + ',' + (2*screen.height) + ')'
+      })
+      .append("svg")
+      .attr('class', 'studentsvg')
+      .attr('id', function(){return "student"+(i+7)})
+    }
 
 
-    var group3=allstudentsvg.append("g")
-    .attr('id', 'group3')
-    group3.selectAll("svg")
-    .data(groupnumber)
-    .enter()
-    .append("svg")
-    .attr('id', function(d){return "student"+(d+7)})
-    .attr('class', 'studentsvg')
+    //group4
+    for(i=0;i<3;i++){
+      allstudentsvg.append("g")
+      .attr('class', 'group4')
+      .attr('transform', function(){
+        return 'translate(' + (i*screen.width) + ',' + (3*screen.height) + ')'
+      })
+      .append("svg")
+      .attr('class', 'studentsvg')
+      .attr('id', function(){return "student"+(i+10)})
+    }
 
-    var group4=allstudentsvg.append("g")
-    .attr('id', 'group4')
-    group4.selectAll("svg")
-    .data(groupnumber)
-    .enter()
-    .append("svg")
-    .attr('id', function(d){return "student"+(d+10)})
-    .attr('class', 'studentsvg')
 
-    var group5=allstudentsvg.append("g")
-    .attr('id', 'group5')
-    group5.selectAll("svg")
-    .data(groupnumber)
-    .enter()
-    .append("svg")
-    .attr('id', function(d){return "student"+(d+13)})
-    .attr('class', 'studentsvg')
+    //group5
+    for(i=0;i<3;i++){
+      allstudentsvg.append("g")
+      .attr('class', 'group5')
+      .attr('transform', function(){
+        return 'translate(' + (i*screen.width) + ',' + (4*screen.height) + ')'
+      })
+      .append("svg")
+      .attr('class', 'studentsvg')
+      .attr('id', function(){return "student"+(i+13)})
+    }
 
-    var group6=allstudentsvg.append("g")
-    .attr('id', 'group6')
-    group6.selectAll("svg")
-    .data(groupnumber)
-    .enter()
-    .append("svg")
-    .attr('id', function(d){return "student"+(d+16)})
-    .attr('class', 'studentsvg')
 
-    var group7=allstudentsvg.append("g")
-    .attr('id', 'group7')
-    group7.selectAll("svg")
-    .data(groupnumber)
-    .enter()
-    .append("svg")
-    .attr('id', function(d){return "student"+(d+19)})
-    .attr('class', 'studentsvg')
+    //group6
+    for(i=0;i<3;i++){
+      allstudentsvg.append("g")
+      .attr('class', 'group6')
+      .attr('transform', function(){
+        return 'translate(' + (i*screen.width) + ',' + (5*screen.height) + ')'
+      })
+      .append("svg")
+      .attr('class', 'studentsvg')
+      .attr('id', function(){return "student"+(i+16)})
+    }
 
-    var group8=allstudentsvg.append("g")
-    .attr('id', 'group8')
-    group8.selectAll("svg")
-    .data(groupnumber)
-    .enter()
-    .append("svg")
-    .attr('id', function(d){return "student"+(d+22)})
-    .attr('class', 'studentsvg')
+
+    //group7
+    for(i=0;i<3;i++){
+      allstudentsvg.append("g")
+      .attr('class', 'group7')
+      .attr('transform', function(){
+        return 'translate(' + (i*screen.width) + ',' + (6*screen.height) + ')'
+      })
+      .append("svg")
+      .attr('class', 'studentsvg')
+      .attr('id', function(){return "student"+(i+19)})
+    }
+
+
+    //group8
+    for(i=0;i<2;i++){
+      allstudentsvg.append("g")
+      .attr('class', 'group8')
+      .attr('transform', function(){
+        return 'translate(' + (i*screen.width) + ',' + (7*screen.height) + ')'
+      })
+      .append("svg")
+      .attr('class', 'studentsvg')
+      .attr('id', function(){return "student"+(i+22)})
+    }
+
 
     d3.selectAll(".studentsvg").attr('width', screen.width)
     .attr('height', screen.height)
@@ -466,7 +486,7 @@ var drawEverything=function(d){
 
 
 
-    for (i=0;i<6;i++){
+    for (i=0;i<23;i++){
       var currentid="#student"+(i+1)
       var currentsvg=d3.select(currentid)
       currentsvg.append('circle')
