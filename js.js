@@ -378,11 +378,120 @@ var drawFirstPart=function(){
             .attr('y', 140)
             .text('Homework Score Point')
 
+    // Student situation
+    var screen={width:1400/3,height:100};
+    var margin = {top: 70, right: 10, bottom: 10, left: 70};
+    var w = screen.width - margin.left - margin.right;
+    var h = screen.height - margin.top - margin.bottom;
+
+      var allstudentsvg=d3.select("#index").append("svg")
+      .attr('id', 'allstudentsvg')
+      .attr('width', 1400)
+      .attr('height', 880)
+
+      // group1
+      for(i=0;i<3;i++){
+        allstudentsvg.append("g")
+        .attr('class', 'group1')
+        .attr('transform', function(){
+          return 'translate(' + (i*screen.width) + ',' + 30+ ')'
+        })
+        .append("svg")
+        .attr('class', 'studentsvg')
+        .attr('id', function(){return "student"+(i+1)})
+      }
+      //group2
+      for(i=0;i<3;i++){
+        allstudentsvg.append("g")
+        .attr('class', 'group2')
+        .attr('transform', function(){
+          return 'translate(' + (i*screen.width) + ',' + (screen.height+30) + ')'
+        })
+        .append("svg")
+        .attr('class', 'studentsvg')
+        .attr('id', function(){return "student"+(i+4)})
+      }
+      //group3
+      for(i=0;i<3;i++){
+        allstudentsvg.append("g")
+        .attr('class', 'group3')
+        .attr('transform', function(){
+          return 'translate(' + (i*screen.width) + ',' + (2*screen.height+30) + ')'
+        })
+        .append("svg")
+        .attr('class', 'studentsvg')
+        .attr('id', function(){return "student"+(i+7)})
+      }
+      //group4
+      for(i=0;i<3;i++){
+        allstudentsvg.append("g")
+        .attr('class', 'group4')
+        .attr('transform', function(){
+          return 'translate(' + (i*screen.width) + ',' + (3*screen.height+30) + ')'
+        })
+        .append("svg")
+        .attr('class', 'studentsvg')
+        .attr('id', function(){return "student"+(i+10)})
+      }
+      //group5
+      for(i=0;i<3;i++){
+        allstudentsvg.append("g")
+        .attr('class', 'group5')
+        .attr('transform', function(){
+          return 'translate(' + (i*screen.width) + ',' + (4*screen.height+30) + ')'
+        })
+        .append("svg")
+        .attr('class', 'studentsvg')
+        .attr('id', function(){return "student"+(i+13)})
+      }
+      //group6
+      for(i=0;i<3;i++){
+        allstudentsvg.append("g")
+        .attr('class', 'group6')
+        .attr('transform', function(){
+          return 'translate(' + (i*screen.width) + ',' + (5*screen.height+30) + ')'
+        })
+        .append("svg")
+        .attr('class', 'studentsvg')
+        .attr('id', function(){return "student"+(i+16)})
+      }
+      //group7
+      for(i=0;i<3;i++){
+        allstudentsvg.append("g")
+        .attr('class', 'group7')
+        .attr('transform', function(){
+          return 'translate(' + (i*screen.width) + ',' + (6*screen.height+30) + ')'
+        })
+        .append("svg")
+        .attr('class', 'studentsvg')
+        .attr('id', function(){return "student"+(i+19)})
+      }
+      //group8
+      for(i=0;i<2;i++){
+        allstudentsvg.append("g")
+        .attr('class', 'group8')
+        .attr('transform', function(){
+          return 'translate(' + (i*screen.width) + ',' + (7*screen.height+30) + ')'
+        })
+        .append("svg")
+        .attr('class', 'studentsvg')
+        .attr('id', function(){return "student"+(i+22)})
+      }
+
+
+      d3.selectAll(".studentsvg").attr('width', screen.width)
+      .attr('height', screen.height)
+
 }
 
-var drawMainChart=function(d){
+var drawChangingPart=function(d){
 
   var date=1
+
+  var screen={width:1400/3,height:100};
+  var margin = {top: 70, right: 10, bottom: 10, left: 70};
+  var w = screen.width - margin.left - margin.right;
+  var h = screen.height - margin.top - margin.bottom;
 
   // Date indication
     var datesvg=d3.select("#index").append("svg")
@@ -396,113 +505,6 @@ var drawMainChart=function(d){
     .attr('text-anchor', 'middle')
     .text(function(){return "Day"+" "+date})
     .attr('id', 'datetext')
-
-
-
-  // Student situation
-  var screen={width:1400/3,height:100};
-  var margin = {top: 70, right: 10, bottom: 10, left: 70};
-  var w = screen.width - margin.left - margin.right;
-  var h = screen.height - margin.top - margin.bottom;
-
-    var allstudentsvg=d3.select("#index").append("svg")
-    .attr('id', 'allstudentsvg')
-    .attr('width', 1400)
-    .attr('height', 880)
-
-    // group1
-    for(i=0;i<3;i++){
-      allstudentsvg.append("g")
-      .attr('class', 'group1')
-      .attr('transform', function(){
-        return 'translate(' + (i*screen.width) + ',' + 30+ ')'
-      })
-      .append("svg")
-      .attr('class', 'studentsvg')
-      .attr('id', function(){return "student"+(i+1)})
-    }
-    //group2
-    for(i=0;i<3;i++){
-      allstudentsvg.append("g")
-      .attr('class', 'group2')
-      .attr('transform', function(){
-        return 'translate(' + (i*screen.width) + ',' + (screen.height+30) + ')'
-      })
-      .append("svg")
-      .attr('class', 'studentsvg')
-      .attr('id', function(){return "student"+(i+4)})
-    }
-    //group3
-    for(i=0;i<3;i++){
-      allstudentsvg.append("g")
-      .attr('class', 'group3')
-      .attr('transform', function(){
-        return 'translate(' + (i*screen.width) + ',' + (2*screen.height+30) + ')'
-      })
-      .append("svg")
-      .attr('class', 'studentsvg')
-      .attr('id', function(){return "student"+(i+7)})
-    }
-    //group4
-    for(i=0;i<3;i++){
-      allstudentsvg.append("g")
-      .attr('class', 'group4')
-      .attr('transform', function(){
-        return 'translate(' + (i*screen.width) + ',' + (3*screen.height+30) + ')'
-      })
-      .append("svg")
-      .attr('class', 'studentsvg')
-      .attr('id', function(){return "student"+(i+10)})
-    }
-    //group5
-    for(i=0;i<3;i++){
-      allstudentsvg.append("g")
-      .attr('class', 'group5')
-      .attr('transform', function(){
-        return 'translate(' + (i*screen.width) + ',' + (4*screen.height+30) + ')'
-      })
-      .append("svg")
-      .attr('class', 'studentsvg')
-      .attr('id', function(){return "student"+(i+13)})
-    }
-    //group6
-    for(i=0;i<3;i++){
-      allstudentsvg.append("g")
-      .attr('class', 'group6')
-      .attr('transform', function(){
-        return 'translate(' + (i*screen.width) + ',' + (5*screen.height+30) + ')'
-      })
-      .append("svg")
-      .attr('class', 'studentsvg')
-      .attr('id', function(){return "student"+(i+16)})
-    }
-    //group7
-    for(i=0;i<3;i++){
-      allstudentsvg.append("g")
-      .attr('class', 'group7')
-      .attr('transform', function(){
-        return 'translate(' + (i*screen.width) + ',' + (6*screen.height+30) + ')'
-      })
-      .append("svg")
-      .attr('class', 'studentsvg')
-      .attr('id', function(){return "student"+(i+19)})
-    }
-    //group8
-    for(i=0;i<2;i++){
-      allstudentsvg.append("g")
-      .attr('class', 'group8')
-      .attr('transform', function(){
-        return 'translate(' + (i*screen.width) + ',' + (7*screen.height+30) + ')'
-      })
-      .append("svg")
-      .attr('class', 'studentsvg')
-      .attr('id', function(){return "student"+(i+22)})
-    }
-
-
-    d3.selectAll(".studentsvg").attr('width', screen.width)
-    .attr('height', screen.height)
-
 
     // scale
     var qyScale=d3.scaleLinear()
@@ -684,5 +686,5 @@ var drawMainChart=function(d){
     var quizeMedian=d3.quantile(quizeArray,0.5)
 
     drawFirstPart()
-    drawMainChart(d)
+    drawChangingPart(d)
   })
