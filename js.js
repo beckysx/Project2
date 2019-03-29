@@ -321,7 +321,6 @@ var drawEverything=function(d){
     .attr('width', 400)
     .attr('class', 'piechartImage')
 
-
   // Date indication
     var datesvg=d3.select("#index").append("svg")
     .attr('id', 'datesvg')
@@ -351,7 +350,7 @@ var drawEverything=function(d){
 
   // Student situation
   var screen={width:1400/3,height:100};
-  var margin = {top: 50, right: 10, bottom: 10, left: 50};
+  var margin = {top: 70, right: 10, bottom: 10, left: 70};
   var w = screen.width - margin.left - margin.right;
   var h = screen.height - margin.top - margin.bottom;
 
@@ -479,21 +478,72 @@ var drawEverything=function(d){
         .range([margin.left,margin.left+w]);
 
 
-
-    var newQuizeArray=d.map(function(d){
+    // new Quize data
+    var newQArray=d.map(function(d){
       return d.quizes[date-1].grade
     })
 
+    var sortQArray=newQArray.sort(sortNumber)
+
+    var dayQM=d3.quantile(sortQArray,0.5)
+
+    // new Homework data
+    var newHArray=d.map(function(d){
+      return d.quizes[date-1].grade
+    })
+
+    var sortHArray=newHArray.sort(sortNumber)
+
+    var dayHM=d3.quantile(sortHArray,0.5)
+
+    // data note
+      var dataNote=d3.select("#index").append("svg")
+      .attr('id', 'dataNote')
+      .attr('width', 400)
+      .attr('height', 200)
+
+      dataNote.append("text")
+      .attr('x', '20')
+      .attr('y', '70')
+      .attr('text-anchor', 'left')
+      .text(function(d){return "Quize Median:"+" "+dayQM})
+      .attr('id', 'dayQMtext')
+      .attr('class', 'dataNote')
+
+      dataNote.append("text")
+      .attr('x', '20')
+      .attr('y', '170')
+      .attr('text-anchor', 'left')
+      .text(function(d){return "Homework Median: "+" "})
+      .attr('id', 'dayHMtext')
+      .attr('class', 'dataNote')
 
 
+    // draw on each studentsvg
     for (i=0;i<23;i++){
       var currentid="#student"+(i+1)
       var currentsvg=d3.select(currentid)
-      currentsvg.append('circle')
-          .attr('cx', xScale(date))
-          .attr('cy', qyScale(newQuizeArray[i]))
-          .attr('r', 3)
-          .style('fill', '#111');
+      var dayqscore=newQArray[i]
+
+
+      // Quize part
+
+          // quize Median line
+          currentsvg.append('line')
+              .attr('x1', margin.left)
+              .attr('y1', qyScale(dayQM))
+              .attr('x2', margin.left+w)
+              .attr('y2', qyScale(dayQM))
+              .style('stroke', '#4A969E')
+              .attr('stroke-width', 3)
+              .attr('stroke-opacity', 0.5);
+          // quize circle
+          currentsvg.append('circle')
+              .attr('cx', xScale(date))
+              .attr('cy', qyScale(dayqscore))
+              .attr('r', 4)
+              .style('fill', '#D87A5B')
+              .attr('stroke-opacity', 0.5);
 
     }
 
