@@ -394,7 +394,7 @@ var drawMainChart=function(d){
     .attr('x', '200')
     .attr('y', '200')
     .attr('text-anchor', 'middle')
-    .text(function(d){return "Day"+" "+date})
+    .text(function(){return "Day"+" "+date})
     .attr('id', 'datetext')
 
 
@@ -506,7 +506,7 @@ var drawMainChart=function(d){
 
     // scale
     var qyScale=d3.scaleLinear()
-        .domain([0,5 ])
+        .domain([0,5])
         .range([margin.top+h,margin.top]);
     var hyScale=d3.scaleLinear()
         .domain([0, 50])
@@ -596,12 +596,65 @@ var drawMainChart=function(d){
       .attr('id', 'nextbutton')
       .text("Next Day")
       .on('click', function(){
+        if (date==41){date=date}
+        else{
+          date=date+1
+          if(date==15 || date==30 || date==41){
+            // Date indication
+              d3.select("#datesvg").select("#datetext")
+              .text(function(){return "Day"+" "+date})
 
-      })
+            // data note
+              d3.select("#dayQMtext")
+              .text("Quize Median: No Quize Today")
+
+              d3.select("#dayHMtext")
+              .text("Homework Median: No Homework Today")
+
+          }
+          else{
+            // Date indication
+              d3.select("#datesvg").select("#datetext")
+              .text(function(){return "Day"+" "+date})
+
+            // xScale
+            var xScale=d3.scaleLinear()
+                .domain([1,date])
+                .range([margin.left,margin.left+w]);
+
+          }
+
+
+
+
+      }})
 
       d3.select("#index").append("button")
       .attr('id', 'previousbutton')
       .text("Previous Day")
+      .on('click',function(){
+        if (date==1){date=date}
+        else{
+          date=date-1
+          if(date==15 || date==30 || date==41){
+            // Date indication
+              d3.select("#datesvg").select("#datetext")
+              .text(function(){return "Day"+" "+date})
+
+            // data note
+              d3.select("#dayQMtext")
+              .text("Quize Median: No Quize Today")
+
+              d3.select("#dayHMtext")
+              .text("Homework Median: No Homework Today")}
+          else{
+
+          }
+
+
+
+
+        }})
 
 
 
@@ -631,6 +684,5 @@ var drawMainChart=function(d){
     var quizeMedian=d3.quantile(quizeArray,0.5)
 
     drawFirstPart()
-
     drawMainChart(d)
   })
