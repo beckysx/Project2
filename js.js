@@ -336,10 +336,10 @@ var drawEverything=function(d){
 
   // color legend
     var datesvg=d3.select("#index").append("svg")
-    .attr('id', 'color legend')
+    .attr('id', 'colorlegend')
     .attr('width', 400)
     .attr('height', 300)
-    
+
 
   // change button
 

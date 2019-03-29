@@ -56,3 +56,8 @@ left: 820px;
   top: 430px;
   left: 450px;
 }
+
+#colorlegend{
+  border:solid;
+  border-color:black;
+}
