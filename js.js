@@ -69,11 +69,8 @@ var getQuizeArray=function(d){
 
 
 // index Page
-
-var drawEverything=function(d){
-
-  var date=1
-
+  // timeline & pie chart
+var drawFirstPart=function(){
   // timeline
     var timescreen={width:1400,height:270};
     var timemargin = {top: 50, right: 30, bottom: 30, left: 30};
@@ -321,19 +318,6 @@ var drawEverything=function(d){
     .attr('width', 400)
     .attr('class', 'piechartImage')
 
-  // Date indication
-    var datesvg=d3.select("#index").append("svg")
-    .attr('id', 'datesvg')
-    .attr('width', 400)
-    .attr('height', 300)
-
-    datesvg.append("text")
-    .attr('x', '200')
-    .attr('y', '200')
-    .attr('text-anchor', 'middle')
-    .text(function(d){return "Day"+" "+date})
-    .attr('id', 'datetext')
-
   // color legend
     var colorlegend=d3.select("#index").append("svg")
     .attr('id', 'colorlegend')
@@ -394,16 +378,24 @@ var drawEverything=function(d){
             .attr('y', 140)
             .text('Homework Score Point')
 
+}
 
-  // change button
+var drawMainChart=function(d){
 
-    d3.select("#index").append("button")
-    .attr('id', 'previousbutton')
-    .text("Previous Day")
+  var date=1
 
-    d3.select("#index").append("button")
-    .attr('id', 'nextbutton')
-    .text("Next Day")
+  // Date indication
+    var datesvg=d3.select("#index").append("svg")
+    .attr('id', 'datesvg')
+    .attr('width', 400)
+    .attr('height', 300)
+
+    datesvg.append("text")
+    .attr('x', '200')
+    .attr('y', '200')
+    .attr('text-anchor', 'middle')
+    .text(function(d){return "Day"+" "+date})
+    .attr('id', 'datetext')
 
 
 
@@ -429,7 +421,6 @@ var drawEverything=function(d){
       .attr('class', 'studentsvg')
       .attr('id', function(){return "student"+(i+1)})
     }
-
     //group2
     for(i=0;i<3;i++){
       allstudentsvg.append("g")
@@ -441,8 +432,6 @@ var drawEverything=function(d){
       .attr('class', 'studentsvg')
       .attr('id', function(){return "student"+(i+4)})
     }
-
-
     //group3
     for(i=0;i<3;i++){
       allstudentsvg.append("g")
@@ -454,8 +443,6 @@ var drawEverything=function(d){
       .attr('class', 'studentsvg')
       .attr('id', function(){return "student"+(i+7)})
     }
-
-
     //group4
     for(i=0;i<3;i++){
       allstudentsvg.append("g")
@@ -467,8 +454,6 @@ var drawEverything=function(d){
       .attr('class', 'studentsvg')
       .attr('id', function(){return "student"+(i+10)})
     }
-
-
     //group5
     for(i=0;i<3;i++){
       allstudentsvg.append("g")
@@ -480,8 +465,6 @@ var drawEverything=function(d){
       .attr('class', 'studentsvg')
       .attr('id', function(){return "student"+(i+13)})
     }
-
-
     //group6
     for(i=0;i<3;i++){
       allstudentsvg.append("g")
@@ -493,8 +476,6 @@ var drawEverything=function(d){
       .attr('class', 'studentsvg')
       .attr('id', function(){return "student"+(i+16)})
     }
-
-
     //group7
     for(i=0;i<3;i++){
       allstudentsvg.append("g")
@@ -506,8 +487,6 @@ var drawEverything=function(d){
       .attr('class', 'studentsvg')
       .attr('id', function(){return "student"+(i+19)})
     }
-
-
     //group8
     for(i=0;i<2;i++){
       allstudentsvg.append("g")
@@ -593,10 +572,7 @@ var drawEverything=function(d){
       var currentid="#student"+(i+1)
       var currentsvg=d3.select(currentid)
       var dayqscore=newQArray[i]
-
-
       // Quize part
-
           // quize Median line
           currentsvg.append('line')
               .attr('x1', margin.left)
@@ -612,19 +588,27 @@ var drawEverything=function(d){
               .attr('cy', qyScale(dayqscore))
               .attr('r', 4)
               .style('fill', '#D87A5B')
-              .attr('stroke-opacity', 0.5);
+              .attr('stroke-opacity', 0.5);}
 
-    }
+    // change button
+
+      d3.select("#index").append("button")
+      .attr('id', 'nextbutton')
+      .text("Next Day")
+      .on('click', function(){
+
+      })
+
+      d3.select("#index").append("button")
+      .attr('id', 'previousbutton')
+      .text("Previous Day")
+
+
+
+
 
 
 }
-
-
-
-
-
-
-
 
 
 
@@ -646,5 +630,7 @@ var drawEverything=function(d){
     var quizeAverage=Math.round(d3.mean(quizeArray))
     var quizeMedian=d3.quantile(quizeArray,0.5)
 
-    drawEverything(d)
+    drawFirstPart()
+
+    drawMainChart(d)
   })
