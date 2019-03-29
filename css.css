@@ -45,3 +45,8 @@ left: 1170px;
 #nextbutton:hover,#previousbutton:hover{
   background-color: #B9BAB8;
 }
+
+#allstudentsvg{
+  border: solid;
+  border-color: red;
+}
