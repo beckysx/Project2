@@ -350,15 +350,15 @@ var drawEverything=function(d){
 
 
   // Student situation
-  var screen={width:1400/3,height:200};
-  var margin = {top: 100, right: 20, bottom: 20, left: 100};
+  var screen={width:1400/3,height:100};
+  var margin = {top: 50, right: 10, bottom: 10, left: 50};
   var w = screen.width - margin.left - margin.right;
   var h = screen.height - margin.top - margin.bottom;
 
     var allstudentsvg=d3.select("#index").append("svg")
     .attr('id', 'allstudentsvg')
     .attr('width', 1400)
-    .attr('height', 4000)
+    .attr('height', 1000)
 
     // group1
     for(i=0;i<3;i++){
