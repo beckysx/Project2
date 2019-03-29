@@ -358,30 +358,36 @@ var drawEverything=function(d){
     var allstudentsvg=d3.select("#index").append("svg")
     .attr('id', 'allstudentsvg')
     .attr('width', 1400)
+    .attr('height', 4000)
 
     var groupnumber=d3.range(3)
 
-    var group1=allstudentsvg.append("g")
-    .attr('id', 'group1')
-    group1.selectAll("svg")
+    allstudentsvg.selectAll("g")
     .data(groupnumber)
     .enter()
-    .append("svg")
-    .attr('class', 'studentsvg')
-    .attr('id', function(d){return "student"+(d+1)})
+    .append("g")
+    .attr('class', 'group1')
     .attr('transform', function(d,i){
       return 'translate(' + (i*screen.width) + ',' + 0 + ')'
     })
-
-
-    var group2=allstudentsvg.append("g")
-    .attr('id', 'group2')
-    group2.selectAll("svg")
-    .data(groupnumber)
-    .enter()
     .append("svg")
-    .attr('id', function(d){return "student"+(d+4)})
     .attr('class', 'studentsvg')
+    .attr('id', function(d){return "student"+(d+1)})
+
+
+    for(i=0;i<3;i++){
+      allstudentsvg.append("g")
+      .attr('class', 'group2')
+      .attr('transform', function(){
+        return 'translate(' + (i*screen.width) + ',' + screen.height + ')'
+      })
+      .append("svg")
+      .attr('class', 'studentsvg')
+      .attr('id', function(){return "student"+(i+4)})
+    }
+
+
+
 
     var group3=allstudentsvg.append("g")
     .attr('id', 'group3')
@@ -440,22 +446,27 @@ var drawEverything=function(d){
     d3.selectAll(".studentsvg").attr('width', screen.width)
     .attr('height', screen.height)
 
+
+    // scale
     var qyScale=d3.scaleLinear()
         .domain([0,5 ])
         .range([margin.top+h,margin.top]);
     var hyScale=d3.scaleLinear()
         .domain([0, 50])
-        .range([h, 0]);
+        .range([margin.top+h,margin.top]);
     var xScale=d3.scaleLinear()
-        .domain([1,41 ])
-        .range([0,w ]);
+        .domain([1,date])
+        .range([margin.left,margin.left+w]);
+
+
+
     var newQuizeArray=d.map(function(d){
       return d.quizes[date-1].grade
     })
 
-    console.log(newQuizeArray)
 
-    for (i=0;i<23;i++){
+
+    for (i=0;i<6;i++){
       var currentid="#student"+(i+1)
       var currentsvg=d3.select(currentid)
       currentsvg.append('circle')
@@ -463,8 +474,6 @@ var drawEverything=function(d){
           .attr('cy', qyScale(newQuizeArray[i]))
           .attr('r', 3)
           .style('fill', '#111');
-
-
 
     }
 
