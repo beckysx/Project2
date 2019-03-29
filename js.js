@@ -70,7 +70,7 @@ var getQuizeArray=function(d){
 
 // index Page
 
-var drawEverything=function(){
+var drawEverything=function(d){
 
   var date=1
 
@@ -368,6 +368,10 @@ var drawEverything=function(){
     .enter()
     .append("svg")
     .attr('class', 'studentsvg')
+    .attr('id', function(d){return "student"+(d+1)})
+    .attr('transform', function(d,i){
+      return 'translate(' + (i*screen.width) + ',' + 0 + ')'
+    })
 
 
     var group2=allstudentsvg.append("g")
@@ -376,6 +380,7 @@ var drawEverything=function(){
     .data(groupnumber)
     .enter()
     .append("svg")
+    .attr('id', function(d){return "student"+(d+4)})
     .attr('class', 'studentsvg')
 
     var group3=allstudentsvg.append("g")
@@ -384,6 +389,7 @@ var drawEverything=function(){
     .data(groupnumber)
     .enter()
     .append("svg")
+    .attr('id', function(d){return "student"+(d+7)})
     .attr('class', 'studentsvg')
 
     var group4=allstudentsvg.append("g")
@@ -392,6 +398,7 @@ var drawEverything=function(){
     .data(groupnumber)
     .enter()
     .append("svg")
+    .attr('id', function(d){return "student"+(d+10)})
     .attr('class', 'studentsvg')
 
     var group5=allstudentsvg.append("g")
@@ -400,6 +407,7 @@ var drawEverything=function(){
     .data(groupnumber)
     .enter()
     .append("svg")
+    .attr('id', function(d){return "student"+(d+13)})
     .attr('class', 'studentsvg')
 
     var group6=allstudentsvg.append("g")
@@ -408,6 +416,7 @@ var drawEverything=function(){
     .data(groupnumber)
     .enter()
     .append("svg")
+    .attr('id', function(d){return "student"+(d+16)})
     .attr('class', 'studentsvg')
 
     var group7=allstudentsvg.append("g")
@@ -416,6 +425,7 @@ var drawEverything=function(){
     .data(groupnumber)
     .enter()
     .append("svg")
+    .attr('id', function(d){return "student"+(d+19)})
     .attr('class', 'studentsvg')
 
     var group8=allstudentsvg.append("g")
@@ -424,10 +434,39 @@ var drawEverything=function(){
     .data(groupnumber)
     .enter()
     .append("svg")
+    .attr('id', function(d){return "student"+(d+22)})
     .attr('class', 'studentsvg')
 
     d3.selectAll(".studentsvg").attr('width', screen.width)
     .attr('height', screen.height)
+
+    var qyScale=d3.scaleLinear()
+        .domain([0,5 ])
+        .range([margin.top+h,margin.top]);
+    var hyScale=d3.scaleLinear()
+        .domain([0, 50])
+        .range([h, 0]);
+    var xScale=d3.scaleLinear()
+        .domain([1,41 ])
+        .range([0,w ]);
+    var newQuizeArray=d.map(function(d){
+      return d.quizes[date-1].grade
+    })
+
+    console.log(newQuizeArray)
+
+    for (i=0;i<23;i++){
+      var currentid="#student"+(i+1)
+      var currentsvg=d3.select(currentid)
+      currentsvg.append('circle')
+          .attr('cx', xScale(date))
+          .attr('cy', qyScale(newQuizeArray[i]))
+          .attr('r', 3)
+          .style('fill', '#111');
+
+
+
+    }
 
 
 }
@@ -459,5 +498,5 @@ var drawEverything=function(){
     var quizeAverage=Math.round(d3.mean(quizeArray))
     var quizeMedian=d3.quantile(quizeArray,0.5)
 
-    drawEverything()
+    drawEverything(d)
   })
