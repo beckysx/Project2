@@ -12,7 +12,7 @@ display: block;
   font-size: 50px;
   display: block;
   position: absolute;
-  top: 220px;
+  top: 170px;
   left: 500px;
   text-decoration: underline;
 }
@@ -25,7 +25,7 @@ border-top-left-radius: 30px;
 background: #E6E8E6;
 cursor:pointer;
 position: absolute;
-top: 385px;
+top: 335px;
 left: 445px;
 }
 
@@ -37,7 +37,7 @@ border-top-right-radius: 30px;
 background: #E6E8E6;
 cursor:pointer;
 position: absolute;
-top: 385px;
+top: 335px;
 left: 820px;
 }
 
@@ -47,17 +47,24 @@ left: 820px;
 }
 
 #allstudentsvg{
-  border: solid;
-  border-color: red;
+  border-top: solid;
+  border-color: black;
+  border-top-width: 2px;
+  border-bottom: solid;
+  border-bottom-width: 2px;
+
 }
 
 #dataNote{
   position: absolute;
   top: 430px;
   left: 450px;
+  font-size: 20px;
 }
 
 #colorlegend{
-  border:solid;
-  border-color:black;
+  display: block;
+    position: absolute;
+    top: 420px;
+    left: 1050px;
 }

@@ -335,10 +335,64 @@ var drawEverything=function(d){
     .attr('id', 'datetext')
 
   // color legend
-    var datesvg=d3.select("#index").append("svg")
+    var colorlegend=d3.select("#index").append("svg")
     .attr('id', 'colorlegend')
-    .attr('width', 400)
-    .attr('height', 300)
+    .attr('width', 270)
+    .attr('height', 150)
+
+        //quize average line
+        colorlegend.append("g").attr('id', 'qALlegend')
+        d3.select("#qALlegend").append('line')
+            .attr('x1', 10)
+            .attr('y1', 30)
+            .attr('x2', 50)
+            .attr('y2', 30)
+            .style('stroke', '#4A969E')
+            .attr('stroke-width', 3)
+            .attr('stroke-opacity', 0.5);
+        d3.select("#qALlegend").append('text')
+            .attr('x', 70)
+            .attr('y', 35)
+            .text('Quize Average Line')
+        //quize point
+        colorlegend.append("g").attr('id', 'qSPlegend')
+        d3.select("#qSPlegend").append('circle')
+            .attr('cx', 30)
+            .attr('cy', 65)
+            .attr('r', 5)
+            .attr('fill', '#D87A5B')
+
+        d3.select("#qSPlegend").append('text')
+            .attr('x', 70)
+            .attr('y', 70)
+            .text('Quize Score Point')
+
+        //homework average line
+        colorlegend.append("g").attr('id', 'hALlegend')
+        d3.select("#qALlegend").append('line')
+            .attr('x1', 10)
+            .attr('y1', 100)
+            .attr('x2', 50)
+            .attr('y2', 100)
+            .style('stroke', '#700353')
+            .attr('stroke-width', 3)
+            .attr('stroke-opacity', 0.5);
+        d3.select("#qALlegend").append('text')
+            .attr('x', 70)
+            .attr('y', 105)
+            .text('Homework Average Line')
+        //homework point
+        colorlegend.append("g").attr('id', 'hSPlegend')
+        d3.select("#qSPlegend").append('circle')
+            .attr('cx', 30)
+            .attr('cy', 135)
+            .attr('r', 5)
+            .attr('fill', '#FFCA1E')
+
+        d3.select("#qSPlegend").append('text')
+            .attr('x', 70)
+            .attr('y', 140)
+            .text('Homework Score Point')
 
 
   // change button
@@ -362,14 +416,14 @@ var drawEverything=function(d){
     var allstudentsvg=d3.select("#index").append("svg")
     .attr('id', 'allstudentsvg')
     .attr('width', 1400)
-    .attr('height', 1000)
+    .attr('height', 880)
 
     // group1
     for(i=0;i<3;i++){
       allstudentsvg.append("g")
       .attr('class', 'group1')
       .attr('transform', function(){
-        return 'translate(' + (i*screen.width) + ',' + 0+ ')'
+        return 'translate(' + (i*screen.width) + ',' + 30+ ')'
       })
       .append("svg")
       .attr('class', 'studentsvg')
@@ -381,7 +435,7 @@ var drawEverything=function(d){
       allstudentsvg.append("g")
       .attr('class', 'group2')
       .attr('transform', function(){
-        return 'translate(' + (i*screen.width) + ',' + screen.height + ')'
+        return 'translate(' + (i*screen.width) + ',' + (screen.height+30) + ')'
       })
       .append("svg")
       .attr('class', 'studentsvg')
@@ -394,7 +448,7 @@ var drawEverything=function(d){
       allstudentsvg.append("g")
       .attr('class', 'group3')
       .attr('transform', function(){
-        return 'translate(' + (i*screen.width) + ',' + (2*screen.height) + ')'
+        return 'translate(' + (i*screen.width) + ',' + (2*screen.height+30) + ')'
       })
       .append("svg")
       .attr('class', 'studentsvg')
@@ -407,7 +461,7 @@ var drawEverything=function(d){
       allstudentsvg.append("g")
       .attr('class', 'group4')
       .attr('transform', function(){
-        return 'translate(' + (i*screen.width) + ',' + (3*screen.height) + ')'
+        return 'translate(' + (i*screen.width) + ',' + (3*screen.height+30) + ')'
       })
       .append("svg")
       .attr('class', 'studentsvg')
@@ -420,7 +474,7 @@ var drawEverything=function(d){
       allstudentsvg.append("g")
       .attr('class', 'group5')
       .attr('transform', function(){
-        return 'translate(' + (i*screen.width) + ',' + (4*screen.height) + ')'
+        return 'translate(' + (i*screen.width) + ',' + (4*screen.height+30) + ')'
       })
       .append("svg")
       .attr('class', 'studentsvg')
@@ -433,7 +487,7 @@ var drawEverything=function(d){
       allstudentsvg.append("g")
       .attr('class', 'group6')
       .attr('transform', function(){
-        return 'translate(' + (i*screen.width) + ',' + (5*screen.height) + ')'
+        return 'translate(' + (i*screen.width) + ',' + (5*screen.height+30) + ')'
       })
       .append("svg")
       .attr('class', 'studentsvg')
@@ -446,7 +500,7 @@ var drawEverything=function(d){
       allstudentsvg.append("g")
       .attr('class', 'group7')
       .attr('transform', function(){
-        return 'translate(' + (i*screen.width) + ',' + (6*screen.height) + ')'
+        return 'translate(' + (i*screen.width) + ',' + (6*screen.height+30) + ')'
       })
       .append("svg")
       .attr('class', 'studentsvg')
@@ -459,7 +513,7 @@ var drawEverything=function(d){
       allstudentsvg.append("g")
       .attr('class', 'group8')
       .attr('transform', function(){
-        return 'translate(' + (i*screen.width) + ',' + (7*screen.height) + ')'
+        return 'translate(' + (i*screen.width) + ',' + (7*screen.height+30) + ')'
       })
       .append("svg")
       .attr('class', 'studentsvg')
@@ -487,29 +541,25 @@ var drawEverything=function(d){
     var newQArray=d.map(function(d){
       return d.quizes[date-1].grade
     })
-
     var sortQArray=newQArray.sort(sortNumber)
-
     var dayQM=d3.quantile(sortQArray,0.5)
 
     // new Homework data
     var newHArray=d.map(function(d){
       return d.quizes[date-1].grade
     })
-
     var sortHArray=newHArray.sort(sortNumber)
-
     var dayHM=d3.quantile(sortHArray,0.5)
 
     // data note
       var dataNote=d3.select("#index").append("svg")
       .attr('id', 'dataNote')
-      .attr('width', 400)
+      .attr('width', 450)
       .attr('height', 140)
 
       dataNote.append("text")
       .attr('x', '20')
-      .attr('y', '70')
+      .attr('y', '40')
       .attr('text-anchor', 'left')
       .text(function(){
         if(date==15||date==30||date==41){
@@ -524,7 +574,7 @@ var drawEverything=function(d){
 
       dataNote.append("text")
       .attr('x', '20')
-      .attr('y', '120')
+      .attr('y', '100')
       .attr('text-anchor', 'left')
       .text(function(){
         if(date==15||date==30||date==41||(date%2!=0)){
@@ -554,7 +604,7 @@ var drawEverything=function(d){
               .attr('x2', margin.left+w)
               .attr('y2', qyScale(dayQM))
               .style('stroke', '#4A969E')
-              .attr('stroke-width', 3)
+              .attr('stroke-width', 2)
               .attr('stroke-opacity', 0.5);
           // quize circle
           currentsvg.append('circle')
