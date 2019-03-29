@@ -13,7 +13,7 @@ display: block;
   display: block;
   position: absolute;
   top: 220px;
-  left: 900px;
+  left: 500px;
   text-decoration: underline;
 }
 
@@ -26,7 +26,7 @@ background: #E6E8E6;
 cursor:pointer;
 position: absolute;
 top: 385px;
-left: 835px;
+left: 445px;
 }
 
 #nextbutton{
@@ -38,7 +38,7 @@ background: #E6E8E6;
 cursor:pointer;
 position: absolute;
 top: 385px;
-left: 1220px;
+left: 820px;
 }
 
 
@@ -49,4 +49,10 @@ left: 1220px;
 #allstudentsvg{
   border: solid;
   border-color: red;
+}
+
+#dataNote{
+  position: absolute;
+  top: 430px;
+  left: 450px;
 }

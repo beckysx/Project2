@@ -334,8 +334,14 @@ var drawEverything=function(d){
     .text(function(d){return "Day"+" "+date})
     .attr('id', 'datetext')
 
-  // change button
+  // color legend
+    var datesvg=d3.select("#index").append("svg")
+    .attr('id', 'color legend')
+    .attr('width', 400)
+    .attr('height', 300)
+    
 
+  // change button
 
     d3.select("#index").append("button")
     .attr('id', 'previousbutton')
@@ -344,7 +350,6 @@ var drawEverything=function(d){
     d3.select("#index").append("button")
     .attr('id', 'nextbutton')
     .text("Next Day")
-
 
 
 
@@ -500,21 +505,35 @@ var drawEverything=function(d){
       var dataNote=d3.select("#index").append("svg")
       .attr('id', 'dataNote')
       .attr('width', 400)
-      .attr('height', 200)
+      .attr('height', 140)
 
       dataNote.append("text")
       .attr('x', '20')
       .attr('y', '70')
       .attr('text-anchor', 'left')
-      .text(function(d){return "Quize Median:"+" "+dayQM})
+      .text(function(){
+        if(date==15||date==30||date==41){
+          return "Quize Median: No Quize Today"
+        }
+        else{
+          return "Quize Median:"+" "+dayQM
+        }
+      })
       .attr('id', 'dayQMtext')
       .attr('class', 'dataNote')
 
       dataNote.append("text")
       .attr('x', '20')
-      .attr('y', '170')
+      .attr('y', '120')
       .attr('text-anchor', 'left')
-      .text(function(d){return "Homework Median: "+" "})
+      .text(function(){
+        if(date==15||date==30||date==41||(date%2!=0)){
+          return "Homework Median: No Homework Today"
+        }
+        else{
+          return "Homework Median:"+" "+dayHM
+        }
+      })
       .attr('id', 'dayHMtext')
       .attr('class', 'dataNote')
 
