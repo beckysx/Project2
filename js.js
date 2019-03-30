@@ -378,7 +378,7 @@ var getQuizeArray=function(d){
   // main chart fixed part
     var drawMainChart=function(d){
           // Student situation
-          var screen={width:1400/4,height:410};
+          var screen={width:1400/4,height:260};
           var margin = {top: 4, right: 10, bottom: 10, left: 100};
           var w = screen.width - margin.left - margin.right;
           var h = screen.height - margin.top - margin.bottom;
@@ -406,7 +406,7 @@ var getQuizeArray=function(d){
             var allstudentsvg=d3.select("#index").append("svg")
             .attr('id', 'allstudentsvg')
             .attr('width', 1400)
-            .attr('height', 5000)
+            .attr('height', 1770)
             .style('background', '#56554C')
 
             // group1
@@ -437,10 +437,10 @@ var getQuizeArray=function(d){
               svg.append("svg:image")
               .attr('xlink:href', function(){return "/penguins/"+d[index].picture})
               .attr('x', 10)
-              .attr('y', screen.height/2)
+              .attr('y', 0)
               .attr('width', 60)
               .attr('height', 60)
-              .attr('class', 'Image')
+              .attr('class', 'image')
             }
             //group2
             for(i=0;i<4;i++){
@@ -464,13 +464,23 @@ var getQuizeArray=function(d){
               svg.append("g").attr('class', 'hyaxis')
               .call(hyAxis)
               .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
+
+              // student picture
+              var index=i+4
+              svg.append("svg:image")
+              .attr('xlink:href', function(){return "/penguins/"+d[index].picture})
+              .attr('x', 10)
+              .attr('y', 0)
+              .attr('width', 60)
+              .attr('height', 60)
+              .attr('class', 'image')
             }
             //group3
             for(i=0;i<4;i++){
               allstudentsvg.append("g")
               .attr('class', 'group3')
               .attr('transform', function(){
-                return 'translate(' + (i*screen.width) + ',' + (2*screen.height+60) + ')'
+                return 'translate(' + (i*screen.width) + ',' + (2*screen.height+90) + ')'
               })
               .append("svg")
               .attr('class', 'studentsvg')
@@ -487,13 +497,23 @@ var getQuizeArray=function(d){
               svg.append("g").attr('class', 'hyaxis')
               .call(hyAxis)
               .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
+
+              // student picture
+              var index=i+8
+              svg.append("svg:image")
+              .attr('xlink:href', function(){return "/penguins/"+d[index].picture})
+              .attr('x', 10)
+              .attr('y', 0)
+              .attr('width', 60)
+              .attr('height', 60)
+              .attr('class', 'image')
             }
             //group4
             for(i=0;i<4;i++){
               allstudentsvg.append("g")
               .attr('class', 'group4')
               .attr('transform', function(){
-                return 'translate(' + (i*screen.width) + ',' + (3*screen.height+60) + ')'
+                return 'translate(' + (i*screen.width) + ',' + (3*screen.height+120) + ')'
               })
               .append("svg")
               .attr('class', 'studentsvg')
@@ -510,13 +530,23 @@ var getQuizeArray=function(d){
               svg.append("g").attr('class', 'hyaxis')
               .call(hyAxis)
               .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
+
+              // student picture
+              var index=i+12
+              svg.append("svg:image")
+              .attr('xlink:href', function(){return "/penguins/"+d[index].picture})
+              .attr('x', 10)
+              .attr('y', 0)
+              .attr('width', 60)
+              .attr('height', 60)
+              .attr('class', 'image')
             }
             //group5
             for(i=0;i<4;i++){
               allstudentsvg.append("g")
               .attr('class', 'group5')
               .attr('transform', function(){
-                return 'translate(' + (i*screen.width) + ',' + (4*screen.height+60) + ')'
+                return 'translate(' + (i*screen.width) + ',' + (4*screen.height+150) + ')'
               })
               .append("svg")
               .attr('class', 'studentsvg')
@@ -533,13 +563,23 @@ var getQuizeArray=function(d){
               svg.append("g").attr('class', 'hyaxis')
               .call(hyAxis)
               .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
+
+              // student picture
+              var index=i+16
+              svg.append("svg:image")
+              .attr('xlink:href', function(){return "/penguins/"+d[index].picture})
+              .attr('x', 10)
+              .attr('y', 0)
+              .attr('width', 60)
+              .attr('height', 60)
+              .attr('class', 'image')
             }
             //group6
             for(i=0;i<3;i++){
               allstudentsvg.append("g")
               .attr('class', 'group6')
               .attr('transform', function(){
-                return 'translate(' + (i*screen.width) + ',' + (5*screen.height+60) + ')'
+                return 'translate(' + (i*screen.width) + ',' + (5*screen.height+180) + ')'
               })
               .append("svg")
               .attr('class', 'studentsvg')
@@ -556,6 +596,16 @@ var getQuizeArray=function(d){
               svg.append("g").attr('class', 'hyaxis')
               .call(hyAxis)
               .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
+
+              // student picture
+              var index=i+20
+              svg.append("svg:image")
+              .attr('xlink:href', function(){return "/penguins/"+d[index].picture})
+              .attr('x', 10)
+              .attr('y', 0)
+              .attr('width', 60)
+              .attr('height', 60)
+              .attr('class', 'image')
             }
 
 
@@ -571,7 +621,7 @@ var getQuizeArray=function(d){
 
         var date=1
 
-        var screen={width:1400/4,height:410};
+        var screen={width:1400/4,height:260};
         var margin = {top: 4, right: 10, bottom: 10, left: 100};
         var w = screen.width - margin.left - margin.right;
         var h = screen.height - margin.top - margin.bottom;
@@ -683,7 +733,7 @@ var getQuizeArray=function(d){
                 currentsvg.append('circle')
                     .attr('cx', xScale(date))
                     .attr('cy', qyScale(dayqscore))
-                    .attr('r', 7)
+                    .attr('r', 5)
                     .style('fill', '#D87A5B')
                     .attr('id', 'qSP');
 
@@ -702,7 +752,7 @@ var getQuizeArray=function(d){
                 currentsvg.append('circle')
                     .attr('cx', 0)
                     .attr('cy', 0)
-                    .attr('r', 7)
+                    .attr('r', 5)
                     .style('fill', '#61BF71')
                     .attr('fill-opacity', 0)
                     .attr('id', 'hSP');

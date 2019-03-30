@@ -71,3 +71,7 @@ left: 820px;
     top: 420px;
     left: 1050px;
 }
+
+.image{
+  cursor:pointer;
+}
