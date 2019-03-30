@@ -532,6 +532,15 @@ var getQuizeArray=function(d){
           var sortQArray=newQArray.sort(sortNumber)
           var dayQM=d3.quantile(sortQArray,0.5)
 
+          // path
+            // path function
+            var drawPath=d3.line()
+              .x(function(d) { return d.x; })
+              .y(function(d) { return d.y; })
+              .curve(d3.curveBasis)
+
+
+
           // data note
             var dataNote=d3.select("#index").append("svg")
             .attr('id', 'dataNote')
@@ -684,11 +693,17 @@ var getQuizeArray=function(d){
                       var currentsvg=d3.select(currentid)
                       var dayqscore=newQArray[i]
                       var dayhscore=newHArray[i]
-                      var pcxq=parseInt(currentsvg.select('#qSP').attr('cx'))
-                      var pcyq=parseInt(currentsvg.select('#qSP').attr('cy'))
-                      var pcxh=parseInt(currentsvg.select('#hSP').attr('cx'))
-                      var pcyh=parseInt(currentsvg.select('#hSP').attr('cy'))
-                      console.log(d3.select("#student1").select('#hSP').attr('cy'))
+
+                     // points dataset
+                     var pcxq=parseInt(currentsvg.select('#qSP').attr('cx'))
+                     var pcyq=parseInt(currentsvg.select('#qSP').attr('cy'))
+                     var pcxh=parseInt(currentsvg.select('#hSP').attr('cx'))
+                     var pcyh=parseInt(currentsvg.select('#hSP').attr('cy'))
+                     console.log(d3.select("#student1").select('#hSP').attr('cy'))
+
+                      var qpoints=[{"x":pcxq,"y":pcyq},{"x":xScale(date),"y":qyScale(dayqscore)}]
+                      var hpoints=[{"x":pcxh,"y":pcyh},{"x":xScale(date),"y":hyScale(dayhscore)}]
+
                       // Quize part
                           // quize Median line
                           currentsvg.select('#qML')
@@ -705,14 +720,10 @@ var getQuizeArray=function(d){
                               .attr('cy', qyScale(dayqscore))
 
                           // quize line
-                          currentsvg.append('line')
-                              .attr('x1', pcxq)
-                              .attr('y1', pcyq)
-                              .attr('x2', xScale(date))
-                              .attr('y2', qyScale(dayqscore))
-                              .style('stroke', '#D87A5B')
-                              .attr('stroke-width', 2)
-
+                          currentsvg.append("path")
+                            .attr('d', drawPath(qpoints))
+                            .style('stroke', '#D87A5B')
+                            .attr('stroke-width', 1)
 
                       // Homework part
                           // Homework Median line
@@ -731,21 +742,11 @@ var getQuizeArray=function(d){
                               .attr('fill-opacity', 1)
                           // homework line
                           if(date>3){
-                            currentsvg.append('line')
-                                .attr('x1', pcxh)
-                                .attr('y1', pcyh)
-                                .attr('x2', xScale(date))
-                                .attr('y2', hyScale(dayhscore))
+                                currentsvg.append("path")
+                                .attr('d', drawPath(hpoints))
                                 .style('stroke', '#D87A5B')
-                                .attr('stroke-width', 1)}
-
-
-                            }
-
-
-                  }
-
-
+                                .attr('stroke-width', 1)}}
+                          }
                   //单数天 只有quiz 向后
                   else{
                     // Date indication
@@ -778,6 +779,12 @@ var getQuizeArray=function(d){
                       var currentid="#student"+(i+1)
                       var currentsvg=d3.select(currentid)
                       var dayqscore=newQArray[i]
+
+                      // points dataset
+                      var pcxq=parseInt(currentsvg.select('#qSP').attr('cx'))
+                      var pcyq=parseInt(currentsvg.select('#qSP').attr('cy'))
+                      var qpoints=[{"x":pcxq,"y":pcyq},{"x":xScale(date),"y":qyScale(dayqscore)}]
+
                       // Quize part
                           // quize Median line
                           currentsvg.select('#qML')
@@ -793,15 +800,15 @@ var getQuizeArray=function(d){
                               .transition()
                               .duration(500)
                               .attr('cx', xScale(date))
-                              .attr('cy', qyScale(dayqscore))}
+                              .attr('cy', qyScale(dayqscore))
 
-                  }
-
-
-
-
-
-                }}})
+                          // quize line
+                          currentsvg.append("path")
+                            .attr('d', drawPath(qpoints))
+                            .style('stroke', '#D87A5B')
+                            .attr('stroke-width', 1)
+                          }}}
+                        }})
 
             d3.select("#index").append("button")
             .attr('id', 'previousbutton')
@@ -861,6 +868,43 @@ var getQuizeArray=function(d){
 
                           d3.select("#dayHMtext")
                           .text("Homework Median:"+" "+dayHM)
+                        // draw on each studentsvg
+                        for (i=0;i<23;i++){
+                          var currentid="#student"+(i+1)
+                          var currentsvg=d3.select(currentid)
+                          var dayqscore=newQArray[i]
+                          var dayhscore=newHArray[i]
+
+                          // Quize part
+                              // quize Median line
+                              currentsvg.select('#qML')
+                                  .transition()
+                                  .duration(500)
+                                  .attr('y1', qyScale(dayQM))
+                                  .attr('y2', qyScale(dayQM))
+
+                              // quize circle
+                              currentsvg.select('#qSP')
+                                  .transition()
+                                  .duration(500)
+                                  .attr('cx', xScale(date))
+                                  .attr('cy', qyScale(dayqscore))
+
+                          // Homework part
+                              // Homework Median line
+                              currentsvg.select('#hML')
+                                  .transition()
+                                  .duration(500)
+                                  .attr('y1', hyScale(dayHM))
+                                  .attr('y2', hyScale(dayHM))
+                                  .attr('stroke-opacity', 0.5)
+                              // Homework circle
+                              currentsvg.select('#hSP')
+                                  .transition()
+                                  .duration(500)
+                                  .attr('cx', xScale(date))
+                                  .attr('cy', hyScale(dayhscore))
+                                  .attr('fill-opacity', 1)}
 
                   }
 
@@ -891,6 +935,28 @@ var getQuizeArray=function(d){
 
                       d3.select("#dayHMtext")
                       .text("Homework Median: No Homework Today")
+
+                      // draw on each studentsvg
+                      for (i=0;i<23;i++){
+                        var currentid="#student"+(i+1)
+                        var currentsvg=d3.select(currentid)
+                        var dayqscore=newQArray[i]
+                        var dayhscore=newHArray[i]
+
+                        // Quize part
+                            // quize Median line
+                            currentsvg.select('#qML')
+                                .transition()
+                                .duration(500)
+                                .attr('y1', qyScale(dayQM))
+                                .attr('y2', qyScale(dayQM))
+
+                            // quize circle
+                            currentsvg.select('#qSP')
+                                .transition()
+                                .duration(500)
+                                .attr('cx', xScale(date))
+                                .attr('cy', qyScale(dayqscore))}
 
                   }
 
