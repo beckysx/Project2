@@ -376,15 +376,15 @@ var getQuizeArray=function(d){
                   .text('Homework Score Point')
 
           // Student situation
-          var screen={width:1400/3,height:100};
-          var margin = {top: 70, right: 10, bottom: 10, left: 70};
+          var screen={width:1400/3,height:120};
+          var margin = {top: 4, right: 10, bottom: 4, left: 70};
           var w = screen.width - margin.left - margin.right;
           var h = screen.height - margin.top - margin.bottom;
 
             var allstudentsvg=d3.select("#index").append("svg")
             .attr('id', 'allstudentsvg')
             .attr('width', 1400)
-            .attr('height', 880)
+            .attr('height', 1000)
 
             // group1
             for(i=0;i<3;i++){
@@ -486,8 +486,8 @@ var getQuizeArray=function(d){
 
         var date=1
 
-        var screen={width:1400/3,height:100};
-        var margin = {top: 70, right: 10, bottom: 10, left: 70};
+        var screen={width:1400/3,height:120};
+        var margin = {top: 4, right: 10, bottom: 4, left: 70};
         var w = screen.width - margin.left - margin.right;
         var h = screen.height - margin.top - margin.bottom;
 
@@ -506,7 +506,7 @@ var getQuizeArray=function(d){
 
           // scale
           var qyScale=d3.scaleLinear()
-              .domain([0,5])
+              .domain([0,10])
               .range([margin.top+h,margin.top]);
           var hyScale=d3.scaleLinear()
               .domain([0, 50])
@@ -684,6 +684,11 @@ var getQuizeArray=function(d){
                       var currentsvg=d3.select(currentid)
                       var dayqscore=newQArray[i]
                       var dayhscore=newHArray[i]
+                      var pcxq=parseInt(currentsvg.select('#qSP').attr('cx'))
+                      var pcyq=parseInt(currentsvg.select('#qSP').attr('cy'))
+                      var pcxh=parseInt(currentsvg.select('#hSP').attr('cx'))
+                      var pcyh=parseInt(currentsvg.select('#hSP').attr('cy'))
+                      console.log(d3.select("#student1").select('#hSP').attr('cy'))
                       // Quize part
                           // quize Median line
                           currentsvg.select('#qML')
@@ -698,6 +703,16 @@ var getQuizeArray=function(d){
                               .duration(500)
                               .attr('cx', xScale(date))
                               .attr('cy', qyScale(dayqscore))
+
+                          // quize line
+                          currentsvg.append('line')
+                              .attr('x1', pcxq)
+                              .attr('y1', pcyq)
+                              .attr('x2', xScale(date))
+                              .attr('y2', qyScale(dayqscore))
+                              .style('stroke', '#D87A5B')
+                              .attr('stroke-width', 2)
+
 
                       // Homework part
                           // Homework Median line
@@ -714,6 +729,16 @@ var getQuizeArray=function(d){
                               .attr('cx', xScale(date))
                               .attr('cy', hyScale(dayhscore))
                               .attr('fill-opacity', 1)
+                          // homework line
+                          if(date>3){
+                            currentsvg.append('line')
+                                .attr('x1', pcxh)
+                                .attr('y1', pcyh)
+                                .attr('x2', xScale(date))
+                                .attr('y2', hyScale(dayhscore))
+                                .style('stroke', '#D87A5B')
+                                .attr('stroke-width', 1)}
+
 
                             }
 
