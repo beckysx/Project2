@@ -441,6 +441,12 @@ var getQuizeArray=function(d){
               .attr('width', 60)
               .attr('height', 60)
               .attr('class', 'image')
+              .on('click', function(){
+                window.open("student.html")
+              })
+              .attr('id', function(){
+                return "pstudent"+index
+              })
             }
             //group2
             for(i=0;i<4;i++){
@@ -474,6 +480,12 @@ var getQuizeArray=function(d){
               .attr('width', 60)
               .attr('height', 60)
               .attr('class', 'image')
+              .on('click', function(){
+                window.open("student.html")
+              })
+              .attr('id', function(){
+                return "pstudent"+index
+              })
             }
             //group3
             for(i=0;i<4;i++){
@@ -507,6 +519,12 @@ var getQuizeArray=function(d){
               .attr('width', 60)
               .attr('height', 60)
               .attr('class', 'image')
+              .on('click', function(){
+                window.open("student.html")
+              })
+              .attr('id', function(){
+                return "pstudent"+index
+              })
             }
             //group4
             for(i=0;i<4;i++){
@@ -540,6 +558,12 @@ var getQuizeArray=function(d){
               .attr('width', 60)
               .attr('height', 60)
               .attr('class', 'image')
+              .on('click', function(){
+                window.open("student.html")
+              })
+              .attr('id', function(){
+                return "pstudent"+index
+              })
             }
             //group5
             for(i=0;i<4;i++){
@@ -573,6 +597,12 @@ var getQuizeArray=function(d){
               .attr('width', 60)
               .attr('height', 60)
               .attr('class', 'image')
+              .on('click', function(){
+                window.open("student.html")
+              })
+              .attr('id', function(){
+                return "pstudent"+index
+              })
             }
             //group6
             for(i=0;i<3;i++){
@@ -606,14 +636,17 @@ var getQuizeArray=function(d){
               .attr('width', 60)
               .attr('height', 60)
               .attr('class', 'image')
+              .on('click', function(){
+                window.open("student.html")
+              })
+              .attr('id', function(){
+                return "pstudent"+index
+              })
             }
 
 
             d3.selectAll(".studentsvg").attr('width', screen.width)
             .attr('height', screen.height)
-
-
-
       }
 
   // Click button will change this part
