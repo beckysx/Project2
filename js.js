@@ -441,12 +441,14 @@ var getQuizeArray=function(d){
               .attr('width', 60)
               .attr('height', 60)
               .attr('class', 'image')
-              .on('click', function(){
-                window.open("student.html")
-              })
               .attr('id', function(){
                 return "pstudent"+index
               })
+              .on('click',function(){
+                var studentindex=parseInt(d3.select(this).attr("id").replace(/[^0-9]/ig,""))
+                draw(d,studentindex)
+              })
+
             }
             //group2
             for(i=0;i<4;i++){
@@ -480,12 +482,10 @@ var getQuizeArray=function(d){
               .attr('width', 60)
               .attr('height', 60)
               .attr('class', 'image')
-              .on('click', function(){
-                window.open("student.html")
-              })
               .attr('id', function(){
                 return "pstudent"+index
               })
+
             }
             //group3
             for(i=0;i<4;i++){
@@ -519,9 +519,6 @@ var getQuizeArray=function(d){
               .attr('width', 60)
               .attr('height', 60)
               .attr('class', 'image')
-              .on('click', function(){
-                window.open("student.html")
-              })
               .attr('id', function(){
                 return "pstudent"+index
               })
@@ -558,9 +555,6 @@ var getQuizeArray=function(d){
               .attr('width', 60)
               .attr('height', 60)
               .attr('class', 'image')
-              .on('click', function(){
-                window.open("student.html")
-              })
               .attr('id', function(){
                 return "pstudent"+index
               })
@@ -597,9 +591,6 @@ var getQuizeArray=function(d){
               .attr('width', 60)
               .attr('height', 60)
               .attr('class', 'image')
-              .on('click', function(){
-                window.open("student.html")
-              })
               .attr('id', function(){
                 return "pstudent"+index
               })
@@ -636,9 +627,6 @@ var getQuizeArray=function(d){
               .attr('width', 60)
               .attr('height', 60)
               .attr('class', 'image')
-              .on('click', function(){
-                window.open("student.html")
-              })
               .attr('id', function(){
                 return "pstudent"+index
               })
@@ -1128,6 +1116,14 @@ var getQuizeArray=function(d){
 
                 }}})}
 
+// student Page
+
+    var draw=function(d,index){
+      d3.select(".student").append("p")
+      .text(index)
+
+    }
+
 
 
   dataset.then(function(d){
@@ -1147,7 +1143,10 @@ var getQuizeArray=function(d){
     var quizeArray=getQuizeArray(d)
     var quizeAverage=Math.round(d3.mean(quizeArray))
     var quizeMedian=d3.quantile(quizeArray,0.5)
+
+    // index page
     drawFixedPart()
     drawMainChart(d)
     drawChangingPart(d)
+
   })
