@@ -518,17 +518,19 @@ var getQuizeArray=function(d){
 
           // new Quize data
           var newQArray=d.map(function(d){
-            return d.quizes[date-1].grade
+            if(date<15){
+              var i=date-1
+              return d.quizes[i].grade}
+            else if (date>15 && date<30) {
+              var i=date-2
+              return d.quizes[i].grade}
+            else if (date>30) {
+              var i=date-3
+              return d.quizes[i].grade}
+
           })
           var sortQArray=newQArray.sort(sortNumber)
           var dayQM=d3.quantile(sortQArray,0.5)
-
-          // new Homework data
-          var newHArray=d.map(function(d){
-            return d.quizes[date-1].grade
-          })
-          var sortHArray=newHArray.sort(sortNumber)
-          var dayHM=d3.quantile(sortHArray,0.5)
 
           // data note
             var dataNote=d3.select("#index").append("svg")
@@ -644,15 +646,28 @@ var getQuizeArray=function(d){
 
                     // new Quize data
                     var newQArray=d.map(function(d){
-                      return d.quizes[date-1].grade
-                    })
+                      if(date<15){
+                        var i=date-1
+                        return d.quizes[i].grade}
+                      else if (date>15 && date<30) {
+                        var i=date-2
+                        return d.quizes[i].grade}
+                      else if (date>30) {
+                        var i=date-3
+                        return d.quizes[i].grade}})
                     var sortQArray=newQArray.sort(sortNumber)
                     var dayQM=d3.quantile(sortQArray,0.5)
 
                     // new Homework data
                     var newHArray=d.map(function(d){
-                      return d.quizes[date-1].grade
-                    })
+                      if (date<30){
+                        var i=(date-2)/2
+                        return d.homework[i].grade
+                      }
+                      else {
+                        var i=(date-4)/2
+                        return d.homework[i].grade
+                      }})
                     var sortHArray=newHArray.sort(sortNumber)
                     var dayHM=d3.quantile(sortHArray,0.5)
 
@@ -714,8 +729,15 @@ var getQuizeArray=function(d){
 
                     // new Quize data
                     var newQArray=d.map(function(d){
-                      return d.quizes[date-1].grade
-                    })
+                      if(date<15){
+                        var i=date-1
+                        return d.quizes[i].grade}
+                      else if (date>15 && date<30) {
+                        var i=date-2
+                        return d.quizes[i].grade}
+                      else if (date>30) {
+                        var i=date-3
+                        return d.quizes[i].grade}})
                     var sortQArray=newQArray.sort(sortNumber)
                     var dayQM=d3.quantile(sortQArray,0.5)
 
@@ -783,15 +805,28 @@ var getQuizeArray=function(d){
 
                         // new Quize data
                         var newQArray=d.map(function(d){
-                          return d.quizes[date-1].grade
-                        })
+                          if(date<15){
+                            var i=date-1
+                            return d.quizes[i].grade}
+                          else if (date>15 && date<30) {
+                            var i=date-2
+                            return d.quizes[i].grade}
+                          else if (date>30) {
+                            var i=date-3
+                            return d.quizes[i].grade}})
                         var sortQArray=newQArray.sort(sortNumber)
                         var dayQM=d3.quantile(sortQArray,0.5)
 
                         // new Homework data
                         var newHArray=d.map(function(d){
-                          return d.quizes[date-1].grade
-                        })
+                          if (date<30){
+                            var i=(date-2)/2
+                            return d.homework[i].grade
+                          }
+                          else {
+                            var i=(date-4)/2
+                            return d.homework[i].grade
+                          }})
                         var sortHArray=newHArray.sort(sortNumber)
                         var dayHM=d3.quantile(sortHArray,0.5)
 
@@ -813,8 +848,15 @@ var getQuizeArray=function(d){
 
                     // new Quize data
                     var newQArray=d.map(function(d){
-                      return d.quizes[date-1].grade
-                    })
+                      if(date<15){
+                        var i=date-1
+                        return d.quizes[i].grade}
+                      else if (date>15 && date<30) {
+                        var i=date-2
+                        return d.quizes[i].grade}
+                      else if (date>30) {
+                        var i=date-3
+                        return d.quizes[i].grade}})
                     var sortQArray=newQArray.sort(sortNumber)
                     var dayQM=d3.quantile(sortQArray,0.5)
 
