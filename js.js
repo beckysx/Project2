@@ -322,8 +322,8 @@ var getQuizeArray=function(d){
           .attr('height', 150)
 
               //quize average line
-              colorlegend.append("g").attr('id', 'qALlegend')
-              d3.select("#qALlegend").append('line')
+              colorlegend.append("g").attr('id', 'qMLlegend')
+              d3.select("#qMLlegend").append('line')
                   .attr('x1', 10)
                   .attr('y1', 30)
                   .attr('x2', 50)
@@ -331,10 +331,10 @@ var getQuizeArray=function(d){
                   .style('stroke', '#4A969E')
                   .attr('stroke-width', 3)
                   .attr('stroke-opacity', 0.5);
-              d3.select("#qALlegend").append('text')
+              d3.select("#qMLlegend").append('text')
                   .attr('x', 70)
                   .attr('y', 35)
-                  .text('Quize Average Line')
+                  .text('Quize Median Line')
               //quize point
               colorlegend.append("g").attr('id', 'qSPlegend')
               d3.select("#qSPlegend").append('circle')
@@ -349,8 +349,8 @@ var getQuizeArray=function(d){
                   .text('Quize Score Point')
 
               //homework average line
-              colorlegend.append("g").attr('id', 'hALlegend')
-              d3.select("#qALlegend").append('line')
+              colorlegend.append("g").attr('id', 'hMLlegend')
+              d3.select("#hMLlegend").append('line')
                   .attr('x1', 10)
                   .attr('y1', 100)
                   .attr('x2', 50)
@@ -358,19 +358,19 @@ var getQuizeArray=function(d){
                   .style('stroke', '#700353')
                   .attr('stroke-width', 3)
                   .attr('stroke-opacity', 0.5);
-              d3.select("#qALlegend").append('text')
+              d3.select("#hMLlegend").append('text')
                   .attr('x', 70)
                   .attr('y', 105)
-                  .text('Homework Average Line')
+                  .text('Homework Median Line')
               //homework point
               colorlegend.append("g").attr('id', 'hSPlegend')
-              d3.select("#qSPlegend").append('circle')
+              d3.select("#hSPlegend").append('circle')
                   .attr('cx', 30)
                   .attr('cy', 135)
                   .attr('r', 5)
                   .attr('fill', '#FFCA1E')
 
-              d3.select("#qSPlegend").append('text')
+              d3.select("#hSPlegend").append('text')
                   .attr('x', 70)
                   .attr('y', 140)
                   .text('Homework Score Point')
@@ -512,8 +512,8 @@ var getQuizeArray=function(d){
               .domain([0, 50])
               .range([margin.top+h,margin.top]);
           var xScale=d3.scaleLinear()
-              .domain([1,date])
-              .range([margin.left,margin.left+w]);
+              .domain([1,40])
+              .range([margin.left+5,margin.left+w]);
 
 
           // new Quize data
@@ -581,14 +581,37 @@ var getQuizeArray=function(d){
                     .attr('y2', qyScale(dayQM))
                     .style('stroke', '#4A969E')
                     .attr('stroke-width', 2)
-                    .attr('stroke-opacity', 0.5);
+                    .attr('stroke-opacity', 0.5)
+                    .attr('id', 'qML');
                 // quize circle
                 currentsvg.append('circle')
                     .attr('cx', xScale(date))
                     .attr('cy', qyScale(dayqscore))
                     .attr('r', 4)
                     .style('fill', '#D87A5B')
-                    .attr('stroke-opacity', 0.5);}
+                    .attr('id', 'qSP');
+
+            // Homework part
+                // Homework Median line
+                currentsvg.append('line')
+                    .attr('x1', margin.left)
+                    .attr('y1', 0)
+                    .attr('x2', margin.left+w)
+                    .attr('y2', 0)
+                    .style('stroke', '#700353')
+                    .attr('stroke-width', 2)
+                    .attr('stroke-opacity', 0)
+                    .attr('id', 'hML');
+                // Homework circle
+                currentsvg.append('circle')
+                    .attr('cx', 0)
+                    .attr('cy', 0)
+                    .attr('r', 4)
+                    .style('fill', '#FFCA1E')
+                    .attr('fill-opacity', 0)
+                    .attr('id', 'hSP');
+
+                  }
 
           // change button
 
@@ -613,14 +636,120 @@ var getQuizeArray=function(d){
 
                 }
                 else{
-                  // Date indication
-                    d3.select("#datesvg").select("#datetext")
-                    .text(function(){return "Day"+" "+date})
+                  //双数天 两个都有 向后
+                  if (date%2==0) {
+                    // Date indication
+                      d3.select("#datesvg").select("#datetext")
+                      .text(function(){return "Day"+" "+date})
 
-                  // xScale
-                  var xScale=d3.scaleLinear()
-                      .domain([1,date])
-                      .range([margin.left,margin.left+w]);
+                    // new Quize data
+                    var newQArray=d.map(function(d){
+                      return d.quizes[date-1].grade
+                    })
+                    var sortQArray=newQArray.sort(sortNumber)
+                    var dayQM=d3.quantile(sortQArray,0.5)
+
+                    // new Homework data
+                    var newHArray=d.map(function(d){
+                      return d.quizes[date-1].grade
+                    })
+                    var sortHArray=newHArray.sort(sortNumber)
+                    var dayHM=d3.quantile(sortHArray,0.5)
+
+                    // data note
+                      d3.select("#dayQMtext")
+                      .text("Quize Median:"+" "+dayQM)
+
+                      d3.select("#dayHMtext")
+                      .text("Homework Median:"+" "+dayHM)
+
+                    // draw on each studentsvg
+                    for (i=0;i<23;i++){
+                      var currentid="#student"+(i+1)
+                      var currentsvg=d3.select(currentid)
+                      var dayqscore=newQArray[i]
+                      var dayhscore=newHArray[i]
+                      // Quize part
+                          // quize Median line
+                          currentsvg.select('#qML')
+                              .transition()
+                              .duration(500)
+                              .attr('y1', qyScale(dayQM))
+                              .attr('y2', qyScale(dayQM))
+
+                          // quize circle
+                          currentsvg.select('#qSP')
+                              .transition()
+                              .duration(500)
+                              .attr('cx', xScale(date))
+                              .attr('cy', qyScale(dayqscore))
+
+                      // Homework part
+                          // Homework Median line
+                          currentsvg.select('#hML')
+                              .transition()
+                              .duration(500)
+                              .attr('y1', hyScale(dayHM))
+                              .attr('y2', hyScale(dayHM))
+                              .attr('stroke-opacity', 0.5)
+                          // Homework circle
+                          currentsvg.select('#hSP')
+                              .transition()
+                              .duration(500)
+                              .attr('cx', xScale(date))
+                              .attr('cy', hyScale(dayhscore))
+                              .attr('fill-opacity', 1)
+
+                            }
+
+
+                  }
+
+
+                  //单数天 只有quiz 向后
+                  else{
+                    // Date indication
+                      d3.select("#datesvg").select("#datetext")
+                      .text(function(){return "Day"+" "+date})
+
+                    // new Quize data
+                    var newQArray=d.map(function(d){
+                      return d.quizes[date-1].grade
+                    })
+                    var sortQArray=newQArray.sort(sortNumber)
+                    var dayQM=d3.quantile(sortQArray,0.5)
+
+                    // data note
+                      d3.select("#dayQMtext")
+                      .text("Quize Median:"+" "+dayQM)
+
+                      d3.select("#dayHMtext")
+                      .text("Homework Median: No Homework Today")
+
+                    // draw on each studentsvg
+                    for (i=0;i<23;i++){
+                      var currentid="#student"+(i+1)
+                      var currentsvg=d3.select(currentid)
+                      var dayqscore=newQArray[i]
+                      // Quize part
+                          // quize Median line
+                          currentsvg.select('#qML')
+                              .transition()
+                              .duration(500)
+                              .attr('x1', margin.left)
+                              .attr('y1', qyScale(dayQM))
+                              .attr('x2', margin.left+w)
+                              .attr('y2', qyScale(dayQM))
+
+                          // quize circle
+                          currentsvg.select('#qSP')
+                              .transition()
+                              .duration(500)
+                              .attr('cx', xScale(date))
+                              .attr('cy', qyScale(dayqscore))}
+
+                  }
+
 
 
 
@@ -646,15 +775,61 @@ var getQuizeArray=function(d){
                     d3.select("#dayHMtext")
                     .text("Homework Median: No Homework Today")}
                 else{
+                  //双数天 两个都有 向前
+                  if (date%2==0) {
+                    // Date indication
+                      d3.select("#datesvg").select("#datetext")
+                      .text(function(){return "Day"+" "+date})
+
+                        // new Quize data
+                        var newQArray=d.map(function(d){
+                          return d.quizes[date-1].grade
+                        })
+                        var sortQArray=newQArray.sort(sortNumber)
+                        var dayQM=d3.quantile(sortQArray,0.5)
+
+                        // new Homework data
+                        var newHArray=d.map(function(d){
+                          return d.quizes[date-1].grade
+                        })
+                        var sortHArray=newHArray.sort(sortNumber)
+                        var dayHM=d3.quantile(sortHArray,0.5)
+
+                        // data note
+                          d3.select("#dayQMtext")
+                          .text("Quize Median:"+" "+dayQM)
+
+                          d3.select("#dayHMtext")
+                          .text("Homework Median:"+" "+dayHM)
+
+                  }
+
+
+                  //单数天 只有quiz 向前
+                  else{
+                    // Date indication
+                      d3.select("#datesvg").select("#datetext")
+                      .text(function(){return "Day"+" "+date})
+
+                    // new Quize data
+                    var newQArray=d.map(function(d){
+                      return d.quizes[date-1].grade
+                    })
+                    var sortQArray=newQArray.sort(sortNumber)
+                    var dayQM=d3.quantile(sortQArray,0.5)
+
+                    // data note
+                      d3.select("#dayQMtext")
+                      .text("Quize Median:"+" "+dayQM)
+
+                      d3.select("#dayHMtext")
+                      .text("Homework Median: No Homework Today")
+
+                  }
 
 
 
-                }
-
-
-
-
-              }})}
+                }}})}
 
 
 
