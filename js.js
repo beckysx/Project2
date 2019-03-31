@@ -1153,6 +1153,24 @@ var getQuizeArray=function(d){
       var c=b.substring(1)
       var name=first.concat(c)
 
+      // get student Grade
+      var q=d[i].quizes.map(function(d){return d.grade})
+      var qs=q.reduce(function(a,b){return a+b})
+      var qave=(qs/q.length).toFixed(2)
+      var h=d[i].homework.map(function(d){return d.grade})
+      var hs=h.reduce(function(a,b){return a+b})
+      var have=(hs/h.length).toFixed(2)
+      var fa=d[i].final[0].grade
+      var t1a=d[i].test[0].grade
+      var t2a=d[i].test[1].grade
+         // final grade
+           var qb=(qs/380)*15
+           var hb=(hs/950)*15
+           var fb=(fa/100)*30
+           var t1b=(t1a/100)*20
+           var t2b=(t2a/100)*20
+           var final=(qb+hb+fb+t1b+t2b).toFixed(2)
+
       // title
       body.append("svg")
       .attr('id', 'studentpagetitle')
@@ -1169,6 +1187,29 @@ var getQuizeArray=function(d){
           .attr('y', 120)
           .text(name)
           .attr('id', 'nametext')
+      title.append("text")
+          .attr('x', 170)
+          .attr('y', 180)
+          .text("Final Grade: "+final)
+          .attr('id', 'finaltext')
+      title.append("text")
+          .attr('x', 170)
+          .attr('y', 220)
+          .text("Final Exam Grade: "+fa)
+          .attr('id', 'fa')
+          .attr('class', 'otherGrade')
+      title.append("text")
+          .attr('x', 170)
+          .attr('y', 240)
+          .text("Test 1 Grade: "+t1a)
+          .attr('id', 't1a')
+          .attr('class', 'otherGrade')
+      title.append("text")
+          .attr('x', 170)
+          .attr('y', 260)
+          .text("Test 1 Grade: "+t2a)
+          .attr('id', 't2a')
+          .attr('class', 'otherGrade')
 
 
 

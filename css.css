@@ -71,6 +71,10 @@ left: 820px;
   cursor:pointer;
 }
 
+
+
+
+/*student page*/
 #studentpagetitle{
   border:solid;
   border-color: black;
@@ -78,5 +82,10 @@ left: 820px;
 
 #nametext{
   font-size: 35px;
-  text-decoration: underline;;
+  text-decoration: underline;
+}
+
+#finaltext{
+  font-size: 25px;
+  text-decoration: underline;
 }
