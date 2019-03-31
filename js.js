@@ -376,7 +376,7 @@ var getQuizeArray=function(d){
                 .attr('cx', 30)
                 .attr('cy', 135)
                 .attr('r', 5)
-                .attr('fill', '#61BF71')
+                .attr('fill', '#A5D350')
 
             d3.select("#hSPlegend").append('text')
                 .attr('x', 70)
@@ -784,7 +784,7 @@ var getQuizeArray=function(d){
                     .attr('cx', 0)
                     .attr('cy', 0)
                     .attr('r', 5)
-                    .style('fill', '#61BF71')
+                    .style('fill', '#A5D350')
                     .attr('fill-opacity', 0)
                     .attr('id', 'hSP');
 
@@ -909,7 +909,7 @@ var getQuizeArray=function(d){
                           if(date>3){
                                 currentsvg.append("path")
                                 .attr('d', drawPath(hpoints))
-                                .style('stroke', '#61BF71')
+                                .style('stroke', '#A5D350')
                                 .attr('stroke-width', 2)}}
                           }
                   //单数天 只有quiz 向后

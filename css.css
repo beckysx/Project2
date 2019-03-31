@@ -65,11 +65,20 @@ left: 820px;
     position: absolute;
     top: 420px;
     left: 1050px;
+  background-color: #56554C;
 }
 
+#qMLlegend,#qSPlegend,#hMLlegend,#hSPlegend{
+  fill:#E3EAD0;
+}
 .image{
   cursor:pointer;
 }
+
+.qyaxis,.hyaxis{
+  color: #E3EAD0;
+}
+
 
 
 
