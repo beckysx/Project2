@@ -314,6 +314,12 @@ var getQuizeArray=function(d){
         .attr('width', 400)
         .attr('class', 'piechartImage')
 
+        chart.append("text")
+        .attr('x', 145)
+        .attr('y', 135)
+        .attr('text-anchor', 'middle')
+        .text('Final Grade')
+
       // color legend
         var colorlegend=d3.select("#index").append("svg")
         .attr('id', 'colorlegend')
@@ -446,7 +452,7 @@ var getQuizeArray=function(d){
               })
               .on('click',function(){
                 var studentindex=parseInt(d3.select(this).attr("id").replace(/[^0-9]/ig,""))
-                draw(d,studentindex)
+
               })
 
             }
@@ -635,6 +641,7 @@ var getQuizeArray=function(d){
 
             d3.selectAll(".studentsvg").attr('width', screen.width)
             .attr('height', screen.height)
+
       }
 
   // Click button will change this part
@@ -1118,9 +1125,55 @@ var getQuizeArray=function(d){
 
 // student Page
 
-    var draw=function(d,index){
-      d3.select(".student").append("p")
-      .text(index)
+    var draw=function(d,i){
+      // class points
+      var finalArray=getFinalArray(d)
+      var finalAverage=Math.round(d3.mean(finalArray))
+      var finalMedian=d3.quantile(finalArray,0.5)
+      var hwArray=getHwArray(d)
+      var hwAverage=Math.round(d3.mean(hwArray))
+      var hwMedian=d3.quantile(hwArray,0.5)
+      var test1Array=getTest1Array(d)
+      var test1Average=Math.round(d3.mean(test1Array))
+      var test1Median=d3.quantile(test1Array,0.5)
+      var test2Array=getTest2Array(d)
+      var test2Average=Math.round(d3.mean(test2Array))
+      var test2Median=d3.quantile(test2Array,0.5)
+      var quizeArray=getQuizeArray(d)
+      var quizeAverage=Math.round(d3.mean(quizeArray))
+      var quizeMedian=d3.quantile(quizeArray,0.5)
+
+      var body=d3.select("#student")
+
+      // get student name
+      var picture=d[i].picture
+      var a=picture.indexOf("-")
+      var b=picture.substring(0,a)
+      var first=b.charAt(0).toUpperCase()
+      var c=b.substring(1)
+      var name=first.concat(c)
+
+      // title
+      body.append("svg")
+      .attr('id', 'studentpagetitle')
+      .attr('width', 1400)
+      .attr('height', 400)
+      var title=body.select("#studentpagetitle")
+      title.append("svg:image")
+          .attr('xlink:href', function(){return "/penguins/"+picture})
+          .attr('x', 20)
+          .attr('y', 0)
+          .attr('width', 120)
+      title.append("text")
+          .attr('x', 170)
+          .attr('y', 120)
+          .text(name)
+          .attr('id', 'nametext')
+
+
+
+
+
 
     }
 
@@ -1128,25 +1181,10 @@ var getQuizeArray=function(d){
 
   dataset.then(function(d){
 
-    var finalArray=getFinalArray(d)
-    var finalAverage=Math.round(d3.mean(finalArray))
-    var finalMedian=d3.quantile(finalArray,0.5)
-    var hwArray=getHwArray(d)
-    var hwAverage=Math.round(d3.mean(hwArray))
-    var hwMedian=d3.quantile(hwArray,0.5)
-    var test1Array=getTest1Array(d)
-    var test1Average=Math.round(d3.mean(test1Array))
-    var test1Median=d3.quantile(test1Array,0.5)
-    var test2Array=getTest2Array(d)
-    var test2Average=Math.round(d3.mean(test2Array))
-    var test2Median=d3.quantile(test2Array,0.5)
-    var quizeArray=getQuizeArray(d)
-    var quizeAverage=Math.round(d3.mean(quizeArray))
-    var quizeMedian=d3.quantile(quizeArray,0.5)
-
     // index page
     drawFixedPart()
     drawMainChart(d)
     drawChangingPart(d)
+    draw(d,0)
 
   })

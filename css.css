@@ -52,12 +52,7 @@ left: 820px;
   border-top-width: 2px;
   border-bottom: solid;
   border-bottom-width: 2px;
-
-
 }
-
-
-
 #dataNote{
   position: absolute;
   top: 430px;
@@ -74,4 +69,14 @@ left: 820px;
 
 .image{
   cursor:pointer;
+}
+
+#studentpagetitle{
+  border:solid;
+  border-color: black;
+}
+
+#nametext{
+  font-size: 35px;
+  text-decoration: underline;;
 }
