@@ -75,17 +75,21 @@ left: 820px;
 
 
 /*student page*/
-#studentpagetitle{
-  border:solid;
-  border-color: black;
-}
 
-#nametext{
+.nametext{
   font-size: 35px;
   text-decoration: underline;
 }
 
 #finaltext{
   font-size: 25px;
-  text-decoration: underline;
+}
+#colorlegend2{
+  border:solid;
+  border-color: black;
+}
+
+#finalgraph{
+  border:solid;
+  border-color: black;
 }

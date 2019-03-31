@@ -15,8 +15,11 @@ var getFinalArray=function(d){
 // get homework grad2 array 437
 var getPersonalArray=function(d,array){
   for(var i=0;i<d.length;i++){
+    var a=[]
     var grade=parseInt(d[i].grade)
-    array.push(grade)
+    a.push(grade)
+    d3.sum(a)
+    array.push(a)
   }
 }
 var getHwArray=function(d){
@@ -1127,21 +1130,46 @@ var getQuizeArray=function(d){
 
     var draw=function(d,i){
       // class points
-      var finalArray=getFinalArray(d)
-      var finalAverage=Math.round(d3.mean(finalArray))
-      var finalMedian=d3.quantile(finalArray,0.5)
-      var hwArray=getHwArray(d)
-      var hwAverage=Math.round(d3.mean(hwArray))
-      var hwMedian=d3.quantile(hwArray,0.5)
-      var test1Array=getTest1Array(d)
-      var test1Average=Math.round(d3.mean(test1Array))
-      var test1Median=d3.quantile(test1Array,0.5)
-      var test2Array=getTest2Array(d)
-      var test2Average=Math.round(d3.mean(test2Array))
-      var test2Median=d3.quantile(test2Array,0.5)
-      var quizeArray=getQuizeArray(d)
-      var quizeAverage=Math.round(d3.mean(quizeArray))
-      var quizeMedian=d3.quantile(quizeArray,0.5)
+      var fArray=getFinalArray(d)
+      var fAve=d3.mean(fArray).toFixed(2)
+      var fM=d3.quantile(fArray,0.5)
+      var hArray=getHwArray(d)
+      var hAve=d3.mean(hArray).toFixed(2)
+      var hM=d3.quantile(hArray,0.5)
+      var t1Array=getTest1Array(d)
+      var t1Ave=d3.mean(t1Array).toFixed(2)
+      var t1M=d3.quantile(t1Array,0.5)
+      var t2Array=getTest2Array(d)
+      var t2Ave=d3.mean(t2Array).toFixed(2)
+      var t2M=d3.quantile(t2Array,0.5)
+      var qA=getQuizeArray(d)
+      var qAve=d3.mean(qA).toFixed(2)
+      var qM=d3.quantile(qA,0.5)
+      var finalArray=[]
+      var alt=[]
+      for (a=0;a<23;a++){
+        var q=d[a].quizes.map(function(d){return d.grade})
+        var qs=d3.sum(q)
+        var qave=d3.mean(q).toFixed(2)
+        var h=d[a].homework.map(function(d){return d.grade})
+        var hs=d3.sum(h)
+        var have=d3.mean(h).toFixed(2)
+        var fa=d[a].final[0].grade
+        var t1a=d[a].test[0].grade
+        var t2a=d[a].test[1].grade
+           // final grade
+             var qb=(qs/380)*15
+             var hb=(hs/950)*15
+             var fb=(fa/100)*30
+             var t1b=(t1a/100)*20
+             var t2b=(t2a/100)*20
+             var final=(qb+hb+fb+t1b+t2b).toFixed(2)
+        finalArray.push(final)
+        alt.push(final)
+      }
+      var finalAve=d3.mean(finalArray).toFixed(2)
+      var finalM=d3.quantile(alt.sort(sortNumber),0.5)
+
 
       var body=d3.select("#student")
 
@@ -1153,13 +1181,14 @@ var getQuizeArray=function(d){
       var c=b.substring(1)
       var name=first.concat(c)
 
-      // get student Grade
+      // get student own Grade
+
       var q=d[i].quizes.map(function(d){return d.grade})
-      var qs=q.reduce(function(a,b){return a+b})
-      var qave=(qs/q.length).toFixed(2)
+      var qs=d3.sum(q)
+      var qave=d3.mean(q).toFixed(2)
       var h=d[i].homework.map(function(d){return d.grade})
-      var hs=h.reduce(function(a,b){return a+b})
-      var have=(hs/h.length).toFixed(2)
+      var hs=d3.sum(h)
+      var have=d3.mean(h).toFixed(2)
       var fa=d[i].final[0].grade
       var t1a=d[i].test[0].grade
       var t2a=d[i].test[1].grade
@@ -1172,44 +1201,139 @@ var getQuizeArray=function(d){
            var final=(qb+hb+fb+t1b+t2b).toFixed(2)
 
       // title
-      body.append("svg")
-      .attr('id', 'studentpagetitle')
-      .attr('width', 1400)
-      .attr('height', 400)
-      var title=body.select("#studentpagetitle")
-      title.append("svg:image")
-          .attr('xlink:href', function(){return "/penguins/"+picture})
-          .attr('x', 20)
-          .attr('y', 0)
-          .attr('width', 120)
-      title.append("text")
-          .attr('x', 170)
-          .attr('y', 120)
-          .text(name)
-          .attr('id', 'nametext')
-      title.append("text")
-          .attr('x', 170)
-          .attr('y', 180)
-          .text("Final Grade: "+final)
-          .attr('id', 'finaltext')
-      title.append("text")
-          .attr('x', 170)
-          .attr('y', 220)
-          .text("Final Exam Grade: "+fa)
-          .attr('id', 'fa')
-          .attr('class', 'otherGrade')
-      title.append("text")
-          .attr('x', 170)
-          .attr('y', 240)
-          .text("Test 1 Grade: "+t1a)
-          .attr('id', 't1a')
-          .attr('class', 'otherGrade')
-      title.append("text")
-          .attr('x', 170)
-          .attr('y', 260)
-          .text("Test 1 Grade: "+t2a)
-          .attr('id', 't2a')
-          .attr('class', 'otherGrade')
+         // profile
+          body.append("svg")
+          .attr('id', 'profile')
+          .attr('width', 500)
+          .attr('height', 250)
+          var profile=body.select("#profile")
+
+          profile.append("svg:image")
+              .attr('xlink:href', function(){return "/penguins/"+picture})
+              .attr('x', 20)
+              .attr('y', 100)
+              .attr('width', 120)
+          profile.append("text")
+              .attr('x', 170)
+              .attr('y', 220)
+              .text(name)
+              .attr('class', 'nametext')
+
+        // gradeinformation
+        body.append("svg")
+        .attr('id', 'ginfo')
+        .attr('width', 900)
+        .attr('height', 250)
+
+        var ginfo=body.select("#ginfo")
+
+        ginfo.append("text")
+            .attr('x', 0)
+            .attr('y', 60)
+            .text("Grade Information")
+            .attr('class', 'nametext')
+        ginfo.append("text")
+            .attr('x', 0)
+            .attr('y', 120)
+            .text("Final Grade: "+final)
+            .attr('id', 'finaltext')
+        ginfo.append("text")
+            .attr('x', 0)
+            .attr('y', 170)
+            .text("Final Exam Grade: "+fa)
+            .attr('id', 'fa')
+            .attr('class', 'otherGrade')
+        ginfo.append("text")
+            .attr('x', 300)
+            .attr('y', 170)
+            .text("Test 1 Grade: "+t1a)
+            .attr('id', 't1a')
+            .attr('class', 'otherGrade')
+        ginfo.append("text")
+            .attr('x', 600)
+            .attr('y', 170)
+            .text("Test 2 Grade: "+t2a)
+            .attr('id', 't2a')
+            .attr('class', 'otherGrade')
+        ginfo.append("text")
+            .attr('x', 0)
+            .attr('y', 220)
+            .text("Quizes Average: "+qave)
+            .attr('id', 'qave')
+            .attr('class', 'otherGrade')
+        ginfo.append("text")
+            .attr('x', 300)
+            .attr('y', 220)
+            .text("Homework Average: "+have)
+            .attr('id', 'have')
+            .attr('class', 'otherGrade')
+
+        //color legend
+        body.append("svg")
+        .attr('id', 'colorlegend2')
+        .attr('width', 1400)
+        .attr('height', 200)
+
+        var finalgraph=body.select("#colorlegend2")
+
+        // Final grade graph
+            var finals={height:500,width:1400}
+            var finalm= {top: 50, right: 100, bottom: 50, left: 100}
+            var finalw= finals.width - finalm.left - finalm.right
+            var finalh=finals.height - finalm.top-finalm.bottom;
+
+            body.append("svg")
+            .attr('id', 'finalgraph')
+            .attr('height', finals.height)
+            .attr('width', finals.width)
+
+            var finalgraph=body.select("#finalgraph")
+
+            // graph title
+            finalgraph.append("text")
+            .attr('x', 10)
+            .attr('y', 30)
+            .text('Class Final Grade Graph')
+            .style('font-size', 25)
+
+            // scale
+            var finalyScale=d3.scaleLinear()
+                .domain([0, 100])
+                .range([finalh+finalm.top,finalm.top])
+            var finalxScale=d3.scaleBand()
+                .domain(d3.range(23))
+                .rangeRound([finalm.left,finalm.left+finalw])
+                .paddingInner(0.03);
+
+            // axis
+            var finalaxis=d3.axisLeft(finalyScale).tickSize(0)
+            finalgraph.append("g")
+            .call(finalaxis)
+            .attr('transform', 'translate(' + (finalm.left-10) + ',' + 0+ ')')
+
+            // Graph
+            finalgraph.selectAll("rect")
+                .data(finalArray)
+                .enter()
+                .append('rect')
+                .attr('x',function(d,i){return finalxScale(i)})
+                .attr('y', function(d){return finalyScale(d)})
+                .attr('width', finalxScale.bandwidth())
+                .attr('height', function(d){
+                  return finalh+finalm.top-finalyScale(d)})
+                .attr('id', function(d,i){return 'finalrects'+i})
+                .style('fill', '#54576E');
+                //E8DDB5
+                //EDAFB8
+
+            finalgraph.select("#finalrects"+i).style('fill', '#95B8D1')
+
+
+
+
+
+
+
 
 
 
