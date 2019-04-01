@@ -411,6 +411,12 @@ var getQuizeArray=function(d){
               .tickSize(0)
               .ticks(5)
 
+          // path function
+          var drawPath=d3.line()
+            .x(function(d) { return d.x; })
+            .y(function(d) { return d.y; })
+            .curve(d3.curveCardinal)
+
           // big svg
             var allstudentsvg=d3.select("#index").append("svg")
             .attr('id', 'allstudentsvg')
@@ -440,6 +446,37 @@ var getQuizeArray=function(d){
               svg.append("g").attr('class', 'hyaxis')
               .call(hyAxis)
               .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
+
+              // paths
+              var qpoints=[]
+              var dataset=d[i].quizes
+              for (a=0;a<dataset.length;a++){
+                var day=dataset[a].day
+                var grade=dataset[a].grade
+                var point={"x":xScale(day),"y":qyScale(grade)}
+                qpoints.push(point)
+              }
+
+              var hpoints=[]
+              var dataset=d[i].homework
+              for (a=0;a<dataset.length;a++){
+                var day=dataset[a].day
+                var grade=dataset[a].grade
+                var point={"x":xScale(day),"y":hyScale(grade)}
+                hpoints.push(point)
+              }
+
+              svg.append("path")
+                .attr('d', drawPath(qpoints))
+                .style('stroke', '#D87A5B')
+                .attr('stroke-width', 1.5)
+                .attr('class', 'path')
+
+              svg.append("path")
+                .attr('d', drawPath(hpoints))
+                .style('stroke', '#A5D350')
+                .attr('stroke-width', 1.5)
+                .attr('class', 'path')
 
               // student picture
               var index=i
@@ -482,6 +519,37 @@ var getQuizeArray=function(d){
               .call(hyAxis)
               .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
 
+              // paths
+              var qpoints=[]
+              var dataset=d[i+4].quizes
+              for (a=0;a<dataset.length;a++){
+                var day=dataset[a].day
+                var grade=dataset[a].grade
+                var point={"x":xScale(day),"y":qyScale(grade)}
+                qpoints.push(point)
+              }
+
+              var hpoints=[]
+              var dataset=d[i+4].homework
+              for (a=0;a<dataset.length;a++){
+                var day=dataset[a].day
+                var grade=dataset[a].grade
+                var point={"x":xScale(day),"y":hyScale(grade)}
+                hpoints.push(point)
+              }
+
+              svg.append("path")
+                .attr('d', drawPath(qpoints))
+                .style('stroke', '#D87A5B')
+                .attr('stroke-width', 1.5)
+                .attr('class', 'path')
+
+              svg.append("path")
+                .attr('d', drawPath(hpoints))
+                .style('stroke', '#A5D350')
+                .attr('stroke-width', 1.5)
+                .attr('class', 'path')
+
               // student picture
               var index=i+4
               svg.append("svg:image")
@@ -519,6 +587,37 @@ var getQuizeArray=function(d){
               .call(hyAxis)
               .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
 
+              // paths
+              var qpoints=[]
+              var dataset=d[i+8].quizes
+              for (a=0;a<dataset.length;a++){
+                var day=dataset[a].day
+                var grade=dataset[a].grade
+                var point={"x":xScale(day),"y":qyScale(grade)}
+                qpoints.push(point)
+              }
+
+              var hpoints=[]
+              var dataset=d[i+8].homework
+              for (a=0;a<dataset.length;a++){
+                var day=dataset[a].day
+                var grade=dataset[a].grade
+                var point={"x":xScale(day),"y":hyScale(grade)}
+                hpoints.push(point)
+              }
+
+              svg.append("path")
+                .attr('d', drawPath(qpoints))
+                .style('stroke', '#D87A5B')
+                .attr('stroke-width', 1.5)
+                .attr('class', 'path')
+
+              svg.append("path")
+                .attr('d', drawPath(hpoints))
+                .style('stroke', '#A5D350')
+                .attr('stroke-width', 1.5)
+                .attr('class', 'path')
+
               // student picture
               var index=i+8
               svg.append("svg:image")
@@ -554,6 +653,37 @@ var getQuizeArray=function(d){
               svg.append("g").attr('class', 'hyaxis')
               .call(hyAxis)
               .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
+
+              // paths
+              var qpoints=[]
+              var dataset=d[i+12].quizes
+              for (a=0;a<dataset.length;a++){
+                var day=dataset[a].day
+                var grade=dataset[a].grade
+                var point={"x":xScale(day),"y":qyScale(grade)}
+                qpoints.push(point)
+              }
+
+              var hpoints=[]
+              var dataset=d[i+12].homework
+              for (a=0;a<dataset.length;a++){
+                var day=dataset[a].day
+                var grade=dataset[a].grade
+                var point={"x":xScale(day),"y":hyScale(grade)}
+                hpoints.push(point)
+              }
+
+              svg.append("path")
+                .attr('d', drawPath(qpoints))
+                .style('stroke', '#D87A5B')
+                .attr('stroke-width', 1.5)
+                .attr('class', 'path')
+
+              svg.append("path")
+                .attr('d', drawPath(hpoints))
+                .style('stroke', '#A5D350')
+                .attr('stroke-width', 1.5)
+                .attr('class', 'path')
 
               // student picture
               var index=i+12
@@ -591,6 +721,37 @@ var getQuizeArray=function(d){
               .call(hyAxis)
               .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
 
+              // paths
+              var qpoints=[]
+              var dataset=d[i+16].quizes
+              for (a=0;a<dataset.length;a++){
+                var day=dataset[a].day
+                var grade=dataset[a].grade
+                var point={"x":xScale(day),"y":qyScale(grade)}
+                qpoints.push(point)
+              }
+
+              var hpoints=[]
+              var dataset=d[i+16].homework
+              for (a=0;a<dataset.length;a++){
+                var day=dataset[a].day
+                var grade=dataset[a].grade
+                var point={"x":xScale(day),"y":hyScale(grade)}
+                hpoints.push(point)
+              }
+
+              svg.append("path")
+                .attr('d', drawPath(qpoints))
+                .style('stroke', '#D87A5B')
+                .attr('stroke-width', 1.5)
+                .attr('class', 'path')
+
+              svg.append("path")
+                .attr('d', drawPath(hpoints))
+                .style('stroke', '#A5D350')
+                .attr('stroke-width', 1.5)
+                .attr('class', 'path')
+
               // student picture
               var index=i+16
               svg.append("svg:image")
@@ -626,6 +787,37 @@ var getQuizeArray=function(d){
               svg.append("g").attr('class', 'hyaxis')
               .call(hyAxis)
               .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
+
+              // paths
+              var qpoints=[]
+              var dataset=d[i+20].quizes
+              for (a=0;a<dataset.length;a++){
+                var day=dataset[a].day
+                var grade=dataset[a].grade
+                var point={"x":xScale(day),"y":qyScale(grade)}
+                qpoints.push(point)
+              }
+
+              var hpoints=[]
+              var dataset=d[i+20].homework
+              for (a=0;a<dataset.length;a++){
+                var day=dataset[a].day
+                var grade=dataset[a].grade
+                var point={"x":xScale(day),"y":hyScale(grade)}
+                hpoints.push(point)
+              }
+
+              svg.append("path")
+                .attr('d', drawPath(qpoints))
+                .style('stroke', '#D87A5B')
+                .attr('stroke-width', 1.5)
+                .attr('class', 'path')
+
+              svg.append("path")
+                .attr('d', drawPath(hpoints))
+                .style('stroke', '#A5D350')
+                .attr('stroke-width', 1.5)
+                .attr('class', 'path')
 
               // student picture
               var index=i+20
@@ -693,19 +885,20 @@ var getQuizeArray=function(d){
             else if (date>30) {
               var i=date-3
               return d.quizes[i].grade}
-
           })
-          var sortQArray=newQArray.sort(sortNumber)
-          var dayQM=d3.quantile(sortQArray,0.5)
-
-          // path
-            // path function
-            var drawPath=d3.line()
-              .x(function(d) { return d.x; })
-              .y(function(d) { return d.y; })
-              .curve(d3.curveBasis)
-
-
+          var sort=d.map(function(d){
+            if(date<15){
+              var i=date-1
+              return d.quizes[i].grade}
+            else if (date>15 && date<30) {
+              var i=date-2
+              return d.quizes[i].grade}
+            else if (date>30) {
+              var i=date-3
+              return d.quizes[i].grade}
+          })
+          var sortQArray=sort.sort(sortNumber)
+          var dayQM=d3.quantile(sort,0.5)
 
           // data note
             var dataNote=d3.select("#index").append("svg")
@@ -717,14 +910,7 @@ var getQuizeArray=function(d){
             .attr('x', '20')
             .attr('y', '40')
             .attr('text-anchor', 'left')
-            .text(function(){
-              if(date==15||date==30||date==41){
-                return "Quize Median: No Quize Today"
-              }
-              else{
-                return "Quize Median:"+" "+dayQM
-              }
-            })
+            .text("Quize Median:"+" "+dayQM)
             .attr('id', 'dayQMtext')
             .attr('class', 'dataNote')
 
@@ -820,6 +1006,16 @@ var getQuizeArray=function(d){
                       .text(function(){return "Day"+" "+date})
 
                     // new Quize data
+                    var qsort=d.map(function(d){
+                      if(date<15){
+                        var i=date-1
+                        return d.quizes[i].grade}
+                      else if (date>15 && date<30) {
+                        var i=date-2
+                        return d.quizes[i].grade}
+                      else if (date>30) {
+                        var i=date-3
+                        return d.quizes[i].grade}})
                     var newQArray=d.map(function(d){
                       if(date<15){
                         var i=date-1
@@ -830,10 +1026,19 @@ var getQuizeArray=function(d){
                       else if (date>30) {
                         var i=date-3
                         return d.quizes[i].grade}})
-                    var sortQArray=newQArray.sort(sortNumber)
-                    var dayQM=d3.quantile(sortQArray,0.5)
+                    var sortQArray=qsort.sort(sortNumber)
+                    var dayQM=d3.quantile(qsort,0.5)
 
                     // new Homework data
+                    var hsort=d.map(function(d){
+                      if (date<30){
+                        var i=(date-2)/2
+                        return d.homework[i].grade
+                      }
+                      else {
+                        var i=(date-4)/2
+                        return d.homework[i].grade
+                      }})
                     var newHArray=d.map(function(d){
                       if (date<30){
                         var i=(date-2)/2
@@ -843,8 +1048,8 @@ var getQuizeArray=function(d){
                         var i=(date-4)/2
                         return d.homework[i].grade
                       }})
-                    var sortHArray=newHArray.sort(sortNumber)
-                    var dayHM=d3.quantile(sortHArray,0.5)
+                    var sortHArray=hsort.sort(sortNumber)
+                    var dayHM=d3.quantile(hsort,0.5)
 
                     // data note
                       d3.select("#dayQMtext")
@@ -860,15 +1065,6 @@ var getQuizeArray=function(d){
                       var dayqscore=newQArray[i]
                       var dayhscore=newHArray[i]
 
-                     // points dataset
-                     var pcxq=parseInt(currentsvg.select('#qSP').attr('cx'))
-                     var pcyq=parseInt(currentsvg.select('#qSP').attr('cy'))
-                     var pcxh=parseInt(currentsvg.select('#hSP').attr('cx'))
-                     var pcyh=parseInt(currentsvg.select('#hSP').attr('cy'))
-
-                      var qpoints=[{"x":pcxq,"y":pcyq},{"x":xScale(date),"y":qyScale(dayqscore)}]
-                      var hpoints=[{"x":pcxh,"y":pcyh},{"x":xScale(date),"y":hyScale(dayhscore)}]
-
                       // Quize part
                           // quize Median line
                           currentsvg.select('#qML')
@@ -883,12 +1079,6 @@ var getQuizeArray=function(d){
                               .duration(200)
                               .attr('cx', xScale(date))
                               .attr('cy', qyScale(dayqscore))
-
-                          // quize line
-                          currentsvg.append("path")
-                            .attr('d', drawPath(qpoints))
-                            .style('stroke', '#D87A5B')
-                            .attr('stroke-width', 2)
 
                       // Homework part
                           // Homework Median line
@@ -905,13 +1095,7 @@ var getQuizeArray=function(d){
                               .attr('cx', xScale(date))
                               .attr('cy', hyScale(dayhscore))
                               .attr('fill-opacity', 1)
-                          // homework line
-                          if(date>3){
-                                currentsvg.append("path")
-                                .attr('d', drawPath(hpoints))
-                                .style('stroke', '#A5D350')
-                                .attr('stroke-width', 2)}}
-                          }
+                          }}
                   //单数天 只有quiz 向后
                   else{
                     // Date indication
@@ -919,6 +1103,16 @@ var getQuizeArray=function(d){
                       .text(function(){return "Day"+" "+date})
 
                     // new Quize data
+                    var qsort=d.map(function(d){
+                      if(date<15){
+                        var i=date-1
+                        return d.quizes[i].grade}
+                      else if (date>15 && date<30) {
+                        var i=date-2
+                        return d.quizes[i].grade}
+                      else if (date>30) {
+                        var i=date-3
+                        return d.quizes[i].grade}})
                     var newQArray=d.map(function(d){
                       if(date<15){
                         var i=date-1
@@ -929,8 +1123,8 @@ var getQuizeArray=function(d){
                       else if (date>30) {
                         var i=date-3
                         return d.quizes[i].grade}})
-                    var sortQArray=newQArray.sort(sortNumber)
-                    var dayQM=d3.quantile(sortQArray,0.5)
+                    var sortQArray=qsort.sort(sortNumber)
+                    var dayQM=d3.quantile(qsort,0.5)
 
                     // data note
                       d3.select("#dayQMtext")
@@ -944,11 +1138,6 @@ var getQuizeArray=function(d){
                       var currentid="#student"+(i+1)
                       var currentsvg=d3.select(currentid)
                       var dayqscore=newQArray[i]
-
-                      // points dataset
-                      var pcxq=parseInt(currentsvg.select('#qSP').attr('cx'))
-                      var pcyq=parseInt(currentsvg.select('#qSP').attr('cy'))
-                      var qpoints=[{"x":pcxq,"y":pcyq},{"x":xScale(date),"y":qyScale(dayqscore)}]
 
                       // Quize part
                           // quize Median line
@@ -964,12 +1153,6 @@ var getQuizeArray=function(d){
                               .duration(200)
                               .attr('cx', xScale(date))
                               .attr('cy', qyScale(dayqscore))
-
-                          // quize line
-                          currentsvg.append("path")
-                            .attr('d', drawPath(qpoints))
-                            .style('stroke', '#D87A5B')
-                            .attr('stroke-width', 2)
                           }}}
                         }})
 
@@ -999,6 +1182,16 @@ var getQuizeArray=function(d){
                       .text(function(){return "Day"+" "+date})
 
                         // new Quize data
+                        var qsort=d.map(function(d){
+                          if(date<15){
+                            var i=date-1
+                            return d.quizes[i].grade}
+                          else if (date>15 && date<30) {
+                            var i=date-2
+                            return d.quizes[i].grade}
+                          else if (date>30) {
+                            var i=date-3
+                            return d.quizes[i].grade}})
                         var newQArray=d.map(function(d){
                           if(date<15){
                             var i=date-1
@@ -1009,10 +1202,19 @@ var getQuizeArray=function(d){
                           else if (date>30) {
                             var i=date-3
                             return d.quizes[i].grade}})
-                        var sortQArray=newQArray.sort(sortNumber)
-                        var dayQM=d3.quantile(sortQArray,0.5)
+                        var sortQArray=qsort.sort(sortNumber)
+                        var dayQM=d3.quantile(qsort,0.5)
 
                         // new Homework data
+                        var hsort=d.map(function(d){
+                          if (date<30){
+                            var i=(date-2)/2
+                            return d.homework[i].grade
+                          }
+                          else {
+                            var i=(date-4)/2
+                            return d.homework[i].grade
+                          }})
                         var newHArray=d.map(function(d){
                           if (date<30){
                             var i=(date-2)/2
@@ -1022,8 +1224,8 @@ var getQuizeArray=function(d){
                             var i=(date-4)/2
                             return d.homework[i].grade
                           }})
-                        var sortHArray=newHArray.sort(sortNumber)
-                        var dayHM=d3.quantile(sortHArray,0.5)
+                        var sortHArray=hsort.sort(sortNumber)
+                        var dayHM=d3.quantile(hsort,0.5)
 
                         // data note
                           d3.select("#dayQMtext")
@@ -1079,6 +1281,16 @@ var getQuizeArray=function(d){
                       .text(function(){return "Day"+" "+date})
 
                     // new Quize data
+                    var qsort=d.map(function(d){
+                      if(date<15){
+                        var i=date-1
+                        return d.quizes[i].grade}
+                      else if (date>15 && date<30) {
+                        var i=date-2
+                        return d.quizes[i].grade}
+                      else if (date>30) {
+                        var i=date-3
+                        return d.quizes[i].grade}})
                     var newQArray=d.map(function(d){
                       if(date<15){
                         var i=date-1
@@ -1089,8 +1301,8 @@ var getQuizeArray=function(d){
                       else if (date>30) {
                         var i=date-3
                         return d.quizes[i].grade}})
-                    var sortQArray=newQArray.sort(sortNumber)
-                    var dayQM=d3.quantile(sortQArray,0.5)
+                    var sortQArray=qsort.sort(sortNumber)
+                    var dayQM=d3.quantile(qsort,0.5)
 
                     // data note
                       d3.select("#dayQMtext")
