@@ -434,10 +434,29 @@ var getQuizeArray=function(d){
               .append("svg")
               .attr('class', 'studentsvg')
               .attr('id', function(){return "student"+(i+1)})
+              .attr('clip-path', function(){return 'url(#cover'+i+')'})
+
+              allstudentsvg.append("g")
+              .attr('class', 'actual')
+              .attr('transform', function(){
+                return 'translate(' + (i*screen.width) + ',' + 30+ ')'
+              })
+              .append("svg")
+              .attr('class', 'averagelines')
+              .attr('id', function(){return "lines"+(i+1)})
 
               // y axis
               var currentid="#student"+(i+1)
               var svg=d3.select(currentid)
+
+              // clip paths
+              svg.append('clipPath')
+              .attr('id', function(){return "cover"+i})
+              .append("rect")
+              .attr('x', 0)
+              .attr('y', 0)
+              .attr('width', xScale(1))
+              .attr('height', 260)
 
               svg.append("g").attr('class', 'qyaxis')
               .call(qyAxis)
@@ -491,9 +510,8 @@ var getQuizeArray=function(d){
                 return "pstudent"+index
               })
               .on('click',function(){
-                var studentindex=parseInt(d3.select(this).attr("id").replace(/[^0-9]/ig,""))
+                var studentindex=parseInt(d3.select(this).attr("id").replace(/[^0-9]/ig,""))})
 
-              })
 
             }
             //group2
@@ -932,7 +950,7 @@ var getQuizeArray=function(d){
 
           // draw on each studentsvg
           for (i=0;i<23;i++){
-            var currentid="#student"+(i+1)
+            var currentid="#lines"+(i+1)
             var currentsvg=d3.select(currentid)
             var dayqscore=newQArray[i]
             // Quize part
@@ -1060,7 +1078,7 @@ var getQuizeArray=function(d){
 
                     // draw on each studentsvg
                     for (i=0;i<23;i++){
-                      var currentid="#student"+(i+1)
+                      var currentid="#lines"+(i+1)
                       var currentsvg=d3.select(currentid)
                       var dayqscore=newQArray[i]
                       var dayhscore=newHArray[i]
@@ -1135,7 +1153,7 @@ var getQuizeArray=function(d){
 
                     // draw on each studentsvg
                     for (i=0;i<23;i++){
-                      var currentid="#student"+(i+1)
+                      var currentid="#lines"+(i+1)
                       var currentsvg=d3.select(currentid)
                       var dayqscore=newQArray[i]
 
@@ -1235,7 +1253,7 @@ var getQuizeArray=function(d){
                           .text("Homework Median:"+" "+dayHM)
                         // draw on each studentsvg
                         for (i=0;i<23;i++){
-                          var currentid="#student"+(i+1)
+                          var currentid="#lines"+(i+1)
                           var currentsvg=d3.select(currentid)
                           var dayqscore=newQArray[i]
                           var dayhscore=newHArray[i]
@@ -1313,7 +1331,7 @@ var getQuizeArray=function(d){
 
                       // draw on each studentsvg
                       for (i=0;i<23;i++){
-                        var currentid="#student"+(i+1)
+                        var currentid="#lines"+(i+1)
                         var currentsvg=d3.select(currentid)
                         var dayqscore=newQArray[i]
 
