@@ -449,6 +449,14 @@ var getQuizeArray=function(d){
               var currentid="#student"+(i+1)
               var svg=d3.select(currentid)
 
+              svg.append("g").attr('class', 'qyaxis')
+              .call(qyAxis)
+              .attr('transform', 'translate(' + (margin.left-10) + ',' + margin.top + ')')
+
+              svg.append("g").attr('class', 'hyaxis')
+              .call(hyAxis)
+              .attr('transform', 'translate(' + (margin.left-10) + ',' + margin.top + ')')
+
               // clip paths
               svg.append('clipPath')
               .attr('id', function(){return "cover"+i})
@@ -457,14 +465,6 @@ var getQuizeArray=function(d){
               .attr('y', 0)
               .attr('width', xScale(1))
               .attr('height', 260)
-
-              svg.append("g").attr('class', 'qyaxis')
-              .call(qyAxis)
-              .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
-
-              svg.append("g").attr('class', 'hyaxis')
-              .call(hyAxis)
-              .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
 
               // paths
               var qpoints=[]
@@ -524,6 +524,16 @@ var getQuizeArray=function(d){
               .append("svg")
               .attr('class', 'studentsvg')
               .attr('id', function(){return "student"+(i+5)})
+              .attr('clip-path', function(){return 'url(#cover'+(i+4)+')'})
+
+              allstudentsvg.append("g")
+              .attr('class', 'actual')
+              .attr('transform', function(){
+                return 'translate(' + (i*screen.width) + ',' + (screen.height+60)+ ')'
+              })
+              .append("svg")
+              .attr('class', 'averagelines')
+              .attr('id', function(){return "lines"+(i+5)})
 
               // y axis
               var currentid="#student"+(i+5)
@@ -531,11 +541,20 @@ var getQuizeArray=function(d){
 
               svg.append("g").attr('class', 'qyaxis')
               .call(qyAxis)
-              .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
+              .attr('transform', 'translate(' + (margin.left-10) + ',' + margin.top + ')')
 
               svg.append("g").attr('class', 'hyaxis')
               .call(hyAxis)
-              .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
+              .attr('transform', 'translate(' + (margin.left-10) + ',' + margin.top + ')')
+
+              // clip paths
+              svg.append('clipPath')
+              .attr('id', function(){return "cover"+(i+4)})
+              .append("rect")
+              .attr('x', 0)
+              .attr('y', 0)
+              .attr('width', xScale(1))
+              .attr('height', 260)
 
               // paths
               var qpoints=[]
@@ -592,6 +611,16 @@ var getQuizeArray=function(d){
               .append("svg")
               .attr('class', 'studentsvg')
               .attr('id', function(){return "student"+(i+9)})
+              .attr('clip-path', function(){return 'url(#cover'+(i+9)+')'})
+
+              allstudentsvg.append("g")
+              .attr('class', 'actual')
+              .attr('transform', function(){
+                return 'translate(' + (i*screen.width) + ',' + (2*screen.height+90)+ ')'
+              })
+              .append("svg")
+              .attr('class', 'averagelines')
+              .attr('id', function(){return "lines"+(i+9)})
 
               // y axis
               var currentid="#student"+(i+9)
@@ -599,11 +628,20 @@ var getQuizeArray=function(d){
 
               svg.append("g").attr('class', 'qyaxis')
               .call(qyAxis)
-              .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
+              .attr('transform', 'translate(' + (margin.left-10) + ',' + margin.top + ')')
 
               svg.append("g").attr('class', 'hyaxis')
               .call(hyAxis)
-              .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
+              .attr('transform', 'translate(' + (margin.left-10) + ',' + margin.top + ')')
+
+              // clip paths
+              svg.append('clipPath')
+              .attr('id', function(){return "cover"+(i+8)})
+              .append("rect")
+              .attr('x', 0)
+              .attr('y', 0)
+              .attr('width', xScale(1))
+              .attr('height', 260)
 
               // paths
               var qpoints=[]
@@ -659,6 +697,16 @@ var getQuizeArray=function(d){
               .append("svg")
               .attr('class', 'studentsvg')
               .attr('id', function(){return "student"+(i+13)})
+              .attr('clip-path', function(){return 'url(#cover'+(i+13)+')'})
+
+              allstudentsvg.append("g")
+              .attr('class', 'actual')
+              .attr('transform', function(){
+                return 'translate(' + (i*screen.width) + ',' + (3*screen.height+120)+ ')'
+              })
+              .append("svg")
+              .attr('class', 'averagelines')
+              .attr('id', function(){return "lines"+(i+13)})
 
               // y axis
               var currentid="#student"+(i+13)
@@ -666,11 +714,20 @@ var getQuizeArray=function(d){
 
               svg.append("g").attr('class', 'qyaxis')
               .call(qyAxis)
-              .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
+              .attr('transform', 'translate(' + (margin.left-10) + ',' + margin.top + ')')
 
               svg.append("g").attr('class', 'hyaxis')
               .call(hyAxis)
-              .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
+              .attr('transform', 'translate(' + (margin.left-10) + ',' + margin.top + ')')
+
+              // clip paths
+              svg.append('clipPath')
+              .attr('id', function(){return "cover"+(i+12)})
+              .append("rect")
+              .attr('x', 0)
+              .attr('y', 0)
+              .attr('width', xScale(1))
+              .attr('height', 260)
 
               // paths
               var qpoints=[]
@@ -726,6 +783,16 @@ var getQuizeArray=function(d){
               .append("svg")
               .attr('class', 'studentsvg')
               .attr('id', function(){return "student"+(i+17)})
+              .attr('clip-path', function(){return 'url(#cover'+(i+17)+')'})
+
+              allstudentsvg.append("g")
+              .attr('class', 'actual')
+              .attr('transform', function(){
+                return 'translate(' + (i*screen.width) + ',' + (4*screen.height+150)+ ')'
+              })
+              .append("svg")
+              .attr('class', 'averagelines')
+              .attr('id', function(){return "lines"+(i+17)})
 
               // y axis
               var currentid="#student"+(i+17)
@@ -733,11 +800,20 @@ var getQuizeArray=function(d){
 
               svg.append("g").attr('class', 'qyaxis')
               .call(qyAxis)
-              .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
+              .attr('transform', 'translate(' + (margin.left-10) + ',' + margin.top + ')')
 
               svg.append("g").attr('class', 'hyaxis')
               .call(hyAxis)
-              .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
+              .attr('transform', 'translate(' + (margin.left-10) + ',' + margin.top + ')')
+
+              // clip paths
+              svg.append('clipPath')
+              .attr('id', function(){return "cover"+(i+16)})
+              .append("rect")
+              .attr('x', 0)
+              .attr('y', 0)
+              .attr('width', xScale(1))
+              .attr('height', 260)
 
               // paths
               var qpoints=[]
@@ -793,6 +869,16 @@ var getQuizeArray=function(d){
               .append("svg")
               .attr('class', 'studentsvg')
               .attr('id', function(){return "student"+(i+21)})
+              .attr('clip-path', function(){return 'url(#cover'+(i+21)+')'})
+
+              allstudentsvg.append("g")
+              .attr('class', 'actual')
+              .attr('transform', function(){
+                return 'translate(' + (i*screen.width) + ',' + (5*screen.height+180)+ ')'
+              })
+              .append("svg")
+              .attr('class', 'averagelines')
+              .attr('id', function(){return "lines"+(i+21)})
 
               // y axis
               var currentid="#student"+(i+21)
@@ -800,11 +886,20 @@ var getQuizeArray=function(d){
 
               svg.append("g").attr('class', 'qyaxis')
               .call(qyAxis)
-              .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
+              .attr('transform', 'translate(' + (margin.left-10) + ',' + margin.top + ')')
 
               svg.append("g").attr('class', 'hyaxis')
               .call(hyAxis)
-              .attr('transform', 'translate(' + (margin.left-5) + ',' + margin.top + ')')
+              .attr('transform', 'translate(' + (margin.left-10) + ',' + margin.top + ')')
+
+              // clip paths
+              svg.append('clipPath')
+              .attr('id', function(){return "cover"+(i+21)})
+              .append("rect")
+              .attr('x', 0)
+              .attr('y', 0)
+              .attr('width', xScale(1))
+              .attr('height', 260)
 
               // paths
               var qpoints=[]
@@ -956,7 +1051,7 @@ var getQuizeArray=function(d){
             // Quize part
                 // quize Median line
                 currentsvg.append('line')
-                    .attr('x1', margin.left-5)
+                    .attr('x1', margin.left-10)
                     .attr('y1', qyScale(dayQM))
                     .attr('x2', margin.left+w)
                     .attr('y2', qyScale(dayQM))
@@ -975,7 +1070,7 @@ var getQuizeArray=function(d){
             // Homework part
                 // Homework Median line
                 currentsvg.append('line')
-                    .attr('x1', margin.left-5)
+                    .attr('x1', margin.left-10)
                     .attr('y1', 0)
                     .attr('x2', margin.left+w)
                     .attr('y2', 0)
