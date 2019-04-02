@@ -1473,225 +1473,232 @@ var getQuizeArray=function(d){
 
                 }}})
 
-                d3.select("#index").append("button")
-                .attr('id', 'mid')
-                .text("Day 20")
-                .on("click",function(){
-                  date=20
-                  // Date indication
-                    d3.select("#datesvg").select("#datetext")
-                    .text(function(){return "Day"+" "+date})
+            d3.select("#index").append("button")
+            .attr('id', 'mid')
+            .text("Day 20")
+            .on("click",function(){
+              date=20
+              // Date indication
+                d3.select("#datesvg").select("#datetext")
+                .text(function(){return "Day"+" "+date})
 
-                      // new Quize data
-                      var qsort=d.map(function(d){
-                        var i=date-2
-                        return d.quizes[i].grade})
-                      var newQArray=d.map(function(d){
-                        var i=date-2
-                        return d.quizes[i].grade})
-                      var sortQArray=qsort.sort(sortNumber)
-                      var dayQM=d3.quantile(qsort,0.5)
+                  // new Quize data
+                  var qsort=d.map(function(d){
+                    var i=date-2
+                    return d.quizes[i].grade})
+                  var newQArray=d.map(function(d){
+                    var i=date-2
+                    return d.quizes[i].grade})
+                  var sortQArray=qsort.sort(sortNumber)
+                  var dayQM=d3.quantile(qsort,0.5)
 
-                      // new Homework data
-                      var hsort=d.map(function(d){
-                        var i=(date-2)/2
-                        return d.homework[i].grade})
-                      var newHArray=d.map(function(d){
-                        var i=(date-2)/2
-                        return d.homework[i].grade})
-                      var sortHArray=hsort.sort(sortNumber)
-                      var dayHM=d3.quantile(hsort,0.5)
+                  // new Homework data
+                  var hsort=d.map(function(d){
+                    var i=(date-2)/2
+                    return d.homework[i].grade})
+                  var newHArray=d.map(function(d){
+                    var i=(date-2)/2
+                    return d.homework[i].grade})
+                  var sortHArray=hsort.sort(sortNumber)
+                  var dayHM=d3.quantile(hsort,0.5)
 
-                      // data note
-                        d3.select("#dayQMtext")
-                        .text("Quize Median:"+" "+dayQM)
+                  // data note
+                    d3.select("#dayQMtext")
+                    .text("Quize Median:"+" "+dayQM)
 
-                        d3.select("#dayHMtext")
-                        .text("Homework Median:"+" "+dayHM)
-                      // draw on each studentsvg
-                      for (i=0;i<23;i++){
-                        var currentid="#lines"+(i+1)
-                        var currentsvg=d3.select(currentid)
-                        var dayqscore=newQArray[i]
-                        var dayhscore=newHArray[i]
+                    d3.select("#dayHMtext")
+                    .text("Homework Median:"+" "+dayHM)
+                  // draw on each studentsvg
+                  for (i=0;i<23;i++){
+                    var currentid="#lines"+(i+1)
+                    var currentsvg=d3.select(currentid)
+                    var dayqscore=newQArray[i]
+                    var dayhscore=newHArray[i]
 
-                        // clipPath
-                        var coverid="#cover"+(i+1)
-                        var cover=d3.select(coverid).select("rect")
-                        cover.attr('width', xScale(date))
+                    // clipPath
+                    var coverid="#cover"+(i+1)
+                    var cover=d3.select(coverid).select("rect")
+                    cover.attr('width', xScale(date))
 
-                        // Quize part
-                            // quize Median line
-                            currentsvg.select('#qML')
-                                .transition()
-                                .duration(200)
-                                .attr('y1', qyScale(dayQM))
-                                .attr('y2', qyScale(dayQM))
+                    // Quize part
+                        // quize Median line
+                        currentsvg.select('#qML')
+                            .transition()
+                            .duration(200)
+                            .attr('y1', qyScale(dayQM))
+                            .attr('y2', qyScale(dayQM))
 
-                            // quize circle
-                            currentsvg.select('#qSP')
-                                .transition()
-                                .duration(200)
-                                .attr('cx', xScale(date))
-                                .attr('cy', qyScale(dayqscore))
+                        // quize circle
+                        currentsvg.select('#qSP')
+                            .transition()
+                            .duration(200)
+                            .attr('cx', xScale(date))
+                            .attr('cy', qyScale(dayqscore))
 
-                        // Homework part
-                            // Homework Median line
-                            currentsvg.select('#hML')
-                                .transition()
-                                .duration(200)
-                                .attr('y1', hyScale(dayHM))
-                                .attr('y2', hyScale(dayHM))
-                                .attr('stroke-opacity', 0.5)
-                            // Homework circle
-                            currentsvg.select('#hSP')
-                                .transition()
-                                .duration(200)
-                                .attr('cx', xScale(date))
-                                .attr('cy', hyScale(dayhscore))
-                                .attr('fill-opacity', 1)}})
+                    // Homework part
+                        // Homework Median line
+                        currentsvg.select('#hML')
+                            .transition()
+                            .duration(200)
+                            .attr('y1', hyScale(dayHM))
+                            .attr('y2', hyScale(dayHM))
+                            .attr('stroke-opacity', 0.5)
+                        // Homework circle
+                        currentsvg.select('#hSP')
+                            .transition()
+                            .duration(200)
+                            .attr('cx', xScale(date))
+                            .attr('cy', hyScale(dayhscore))
+                            .attr('fill-opacity', 1)}})
 
-                d3.select("#index").append("button")
-                .attr('id', 'end')
-                .text("Day 40")
-                .on("click",function(){
-                  date=40
-                  // Date indication
-                    d3.select("#datesvg").select("#datetext")
-                    .text(function(){return "Day"+" "+date})
+            d3.select("#index").append("button")
+            .attr('id', 'end')
+            .text("Day 40")
+            .on("click",function(){
+              date=40
+              // Date indication
+                d3.select("#datesvg").select("#datetext")
+                .text(function(){return "Day"+" "+date})
 
-                      // new Quize data
-                      var qsort=d.map(function(d){
-                          var i=date-3
-                          return d.quizes[i].grade})
-                      var newQArray=d.map(function(d){
-                          var i=date-3
-                          return d.quizes[i].grade})
-                      var sortQArray=qsort.sort(sortNumber)
-                      var dayQM=d3.quantile(qsort,0.5)
+                  // new Quize data
+                  var qsort=d.map(function(d){
+                      var i=date-3
+                      return d.quizes[i].grade})
+                  var newQArray=d.map(function(d){
+                      var i=date-3
+                      return d.quizes[i].grade})
+                  var sortQArray=qsort.sort(sortNumber)
+                  var dayQM=d3.quantile(qsort,0.5)
 
-                      // new Homework data
-                      var hsort=d.map(function(d){
-                          var i=(date-4)/2
-                          return d.homework[i].grade
-                        })
-                      var newHArray=d.map(function(d){
-                        var i=(date-4)/2
-                        return d.homework[i].grade
-                        })
-                      var sortHArray=hsort.sort(sortNumber)
-                      var dayHM=d3.quantile(hsort,0.5)
+                  // new Homework data
+                  var hsort=d.map(function(d){
+                      var i=(date-4)/2
+                      return d.homework[i].grade
+                    })
+                  var newHArray=d.map(function(d){
+                    var i=(date-4)/2
+                    return d.homework[i].grade
+                    })
+                  var sortHArray=hsort.sort(sortNumber)
+                  var dayHM=d3.quantile(hsort,0.5)
 
-                      // data note
-                        d3.select("#dayQMtext")
-                        .text("Quize Median:"+" "+dayQM)
+                  // data note
+                    d3.select("#dayQMtext")
+                    .text("Quize Median:"+" "+dayQM)
 
-                        d3.select("#dayHMtext")
-                        .text("Homework Median:"+" "+dayHM)
-                      // draw on each studentsvg
-                      for (i=0;i<23;i++){
-                        var currentid="#lines"+(i+1)
-                        var currentsvg=d3.select(currentid)
-                        var dayqscore=newQArray[i]
-                        var dayhscore=newHArray[i]
+                    d3.select("#dayHMtext")
+                    .text("Homework Median:"+" "+dayHM)
+                  // draw on each studentsvg
+                  for (i=0;i<23;i++){
+                    var currentid="#lines"+(i+1)
+                    var currentsvg=d3.select(currentid)
+                    var dayqscore=newQArray[i]
+                    var dayhscore=newHArray[i]
 
-                        // clipPath
-                        var coverid="#cover"+(i+1)
-                        var cover=d3.select(coverid).select("rect")
-                        cover.attr('width', xScale(date))
+                    // clipPath
+                    var coverid="#cover"+(i+1)
+                    var cover=d3.select(coverid).select("rect")
+                    cover.attr('width', xScale(date))
 
-                        // Quize part
-                            // quize Median line
-                            currentsvg.select('#qML')
-                                .transition()
-                                .duration(200)
-                                .attr('y1', qyScale(dayQM))
-                                .attr('y2', qyScale(dayQM))
+                    // Quize part
+                        // quize Median line
+                        currentsvg.select('#qML')
+                            .transition()
+                            .duration(200)
+                            .attr('y1', qyScale(dayQM))
+                            .attr('y2', qyScale(dayQM))
 
-                            // quize circle
-                            currentsvg.select('#qSP')
-                                .transition()
-                                .duration(200)
-                                .attr('cx', xScale(date))
-                                .attr('cy', qyScale(dayqscore))
+                        // quize circle
+                        currentsvg.select('#qSP')
+                            .transition()
+                            .duration(200)
+                            .attr('cx', xScale(date))
+                            .attr('cy', qyScale(dayqscore))
 
-                        // Homework part
-                            // Homework Median line
-                            currentsvg.select('#hML')
-                                .transition()
-                                .duration(200)
-                                .attr('y1', hyScale(dayHM))
-                                .attr('y2', hyScale(dayHM))
-                                .attr('stroke-opacity', 0.5)
-                            // Homework circle
-                            currentsvg.select('#hSP')
-                                .transition()
-                                .duration(200)
-                                .attr('cx', xScale(date))
-                                .attr('cy', hyScale(dayhscore))
-                                .attr('fill-opacity', 1)}})
+                    // Homework part
+                        // Homework Median line
+                        currentsvg.select('#hML')
+                            .transition()
+                            .duration(200)
+                            .attr('y1', hyScale(dayHM))
+                            .attr('y2', hyScale(dayHM))
+                            .attr('stroke-opacity', 0.5)
+                        // Homework circle
+                        currentsvg.select('#hSP')
+                            .transition()
+                            .duration(200)
+                            .attr('cx', xScale(date))
+                            .attr('cy', hyScale(dayhscore))
+                            .attr('fill-opacity', 1)}})
 
-                d3.select("#index").append("button")
-                .attr('id', 'reset')
-                .text("Reset")
-                .on("click",function(){
-                  date=1
-                  // Date indication
-                    d3.select("#datesvg").select("#datetext")
-                    .text(function(){return "Day"+" "+date})
+            d3.select("#index").append("button")
+            .attr('id', 'reset')
+            .text("Reset")
+            .on("click",function(){
+              date=1
+              // Date indication
+                d3.select("#datesvg").select("#datetext")
+                .text(function(){return "Day"+" "+date})
 
-                      // new Quize data
-                      var qsort=d.map(function(d){
-                        var i=date-1
-                        return d.quizes[i].grade})
-                      var newQArray=d.map(function(d){
-                        var i=date-1
-                        return d.quizes[i].grade})
-                      var sortQArray=qsort.sort(sortNumber)
-                      var dayQM=d3.quantile(qsort,0.5)
+                  // new Quize data
+                  var qsort=d.map(function(d){
+                    var i=date-1
+                    return d.quizes[i].grade})
+                  var newQArray=d.map(function(d){
+                    var i=date-1
+                    return d.quizes[i].grade})
+                  var sortQArray=qsort.sort(sortNumber)
+                  var dayQM=d3.quantile(qsort,0.5)
 
-                      // data note
-                        d3.select("#dayQMtext")
-                        .text("Quize Median:"+" "+dayQM)
+                  // data note
+                    d3.select("#dayQMtext")
+                    .text("Quize Median:"+" "+dayQM)
 
-                        d3.select("#dayHMtext")
-                        .text("Homework Median: No Homework Today")
-                      // draw on each studentsvg
-                      for (i=0;i<23;i++){
-                        var currentid="#lines"+(i+1)
-                        var currentsvg=d3.select(currentid)
-                        var dayqscore=newQArray[i]
+                    d3.select("#dayHMtext")
+                    .text("Homework Median: No Homework Today")
+                  // draw on each studentsvg
+                  for (i=0;i<23;i++){
+                    var currentid="#lines"+(i+1)
+                    var currentsvg=d3.select(currentid)
+                    var dayqscore=newQArray[i]
 
-                        // clipPath
-                        var coverid="#cover"+(i+1)
-                        var cover=d3.select(coverid).select("rect")
-                        cover.attr('width', xScale(date))
+                    // clipPath
+                    var coverid="#cover"+(i+1)
+                    var cover=d3.select(coverid).select("rect")
+                    cover.attr('width', xScale(date))
 
-                        // Quize part
-                            // quize Median line
-                            currentsvg.select('#qML')
-                                .transition()
-                                .duration(200)
-                                .attr('y1', qyScale(dayQM))
-                                .attr('y2', qyScale(dayQM))
+                    // Quize part
+                        // quize Median line
+                        currentsvg.select('#qML')
+                            .transition()
+                            .duration(200)
+                            .attr('y1', qyScale(dayQM))
+                            .attr('y2', qyScale(dayQM))
 
-                            // quize circle
-                            currentsvg.select('#qSP')
-                                .transition()
-                                .duration(200)
-                                .attr('cx', xScale(date))
-                                .attr('cy', qyScale(dayqscore))
+                        // quize circle
+                        currentsvg.select('#qSP')
+                            .transition()
+                            .duration(200)
+                            .attr('cx', xScale(date))
+                            .attr('cy', qyScale(dayqscore))
 
-                        // Homework part
-                        var a=d3.select("#lines"+(i+1))
-                            // Homework Median line
-                            a.select('#hML')
-                                .attr('stroke-opacity', 0)
+                    // Homework part
+                    var a=d3.select("#lines"+(i+1))
+                        // Homework Median line
+                        a.select('#hML')
+                            .attr('stroke-opacity', 0)
 
-                            // Homework circle
-                            a.select('#hSP')
-                                .attr('fill-opacity', 0)
+                        // Homework circle
+                        a.select('#hSP')
+                            .attr('fill-opacity', 0)
 }})
+
+            d3.select("#index").append("button")
+            .attr('id', 'goStudentpage')
+            .text("Go to Student Page")
+            .on("click",function(){
+              window.open("student.html")
+            })
               }
 
 
@@ -1699,7 +1706,7 @@ var getQuizeArray=function(d){
 // student Page
 
     var studentpage=function(d){
-      i=1
+      i=0
 
       var body=d3.select("#student")
 
@@ -1868,24 +1875,16 @@ var getQuizeArray=function(d){
             .attr('y', 30)
             .text("Current Students")
 
-
-
         // finalgraph part
         studentFinalGrade(d,i)
-
         // test1 graph
         test1Graph(d,i)
-
         // test2 graph
         test2Graph(d,i)
-
         // quizegraph
         quizeGraph(d,i)
-
         // homeworkgraph
         homeworkGraph(d,i)
-
-
 
       }
     var studentFinalGrade=function(d,i){

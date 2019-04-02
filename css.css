@@ -71,9 +71,21 @@ position: absolute;
 top: 560px;
 left: 800px;
 }
+#goStudentpage{
+  height: 40px;
+  width: 150px;
+border-radius: 30px;
+length:150px;
+background: #E6E8E6;
+cursor:pointer;
+position: absolute;
+top: 335px;
+left: 1100px;
+
+}
 
 
-#next:hover,#previous:hover,#mid:hover,#end:hover,#reset:hover{
+#next:hover,#previous:hover,#mid:hover,#end:hover,#reset:hover,#ggoStudentpage{
   background-color: #B9BAB8;
 }
 
