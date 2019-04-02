@@ -14,15 +14,13 @@ var h=screen.height - margin.top-margin.bottom;
       .range([margin.left,margin.left+w])
 
 // data
-var pathpoints=[]
 var data=[]
 var dataset=d[i].quizes
 for (i=0;i<dataset.length;i++){
   var day=dataset[i].day
   var grade=dataset[i].grade
   var point={"x":xScale(day),"y":yScale(grade)}
-  pathpoints.push(point)
-  data.push(grade)
+  data.push(point)
 }
 
 var drawPath=d3.line()
@@ -41,7 +39,7 @@ var drawPath=d3.line()
     graph.append("text")
     .attr('x', 10)
     .attr('y', 30)
-    .text('Class Test 2 Grade Graph')
+    .text('Quize Grade Graph')
     .style('font-size', 20)
 
     // axis
@@ -55,15 +53,15 @@ var drawPath=d3.line()
             .data(data)
             .enter()
             .append('circle')
-            .attr('cx',function(d,i){return xScale(i+1)})
-            .attr('cy', function(d){return yScale(d)})
+            .attr('cx',function(d){
+              return xScale(d.x)})
+            .attr('cy',function(d){return yScale(d.y)})
             .attr('r',3)
-            .attr('id', function(d,i){return 'quizerects'+i})
             .style('fill', '#54576E');
 
         // paths
         graph.append("path")
-          .attr('d', drawPath(pathpoints))
+          .attr('d', drawPath(data))
           .style('stroke', '#54576E')
           .attr('stroke-width', 1.5)
           .attr('class', 'path')

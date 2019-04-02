@@ -117,10 +117,6 @@ left: 800px;
   fill-opacity:0;
 }
 
-
-
-
-
 /*student page*/
 
 .nametext{
@@ -149,6 +145,16 @@ text-decoration: underline;
 top: 50px;
 }
 #test2graph{
+  position: relative;
+top: 50px;
+}
+
+#homeworkgraph{
+  position: relative;
+top: 50px;
+}
+
+#quizegraph{
   position: relative;
 top: 50px;
 }

@@ -391,7 +391,7 @@ var getQuizeArray=function(d){
   // main chart fixed part
     var drawMainChart=function(d){
           // Student situation
-          var screen={width:1400/4,height:260};
+          var screen={width:1400/4,height:100};
           var margin = {top: 4, right: 10, bottom: 10, left: 100};
           var w = screen.width - margin.left - margin.right;
           var h = screen.height - margin.top - margin.bottom;
@@ -425,7 +425,7 @@ var getQuizeArray=function(d){
             var allstudentsvg=d3.select("#index").append("svg")
             .attr('id', 'allstudentsvg')
             .attr('width', 1400)
-            .attr('height', 1770)
+            .attr('height', 800)
             .style('background', '#56554C')
 
             // group1
@@ -963,7 +963,7 @@ var getQuizeArray=function(d){
 
         var date=1
 
-        var screen={width:1400/4,height:260};
+        var screen={width:1400/4,height:100};
         var margin = {top: 4, right: 10, bottom: 10, left: 100};
         var w = screen.width - margin.left - margin.right;
         var h = screen.height - margin.top - margin.bottom;
@@ -1069,7 +1069,7 @@ var getQuizeArray=function(d){
                 currentsvg.append('circle')
                     .attr('cx', xScale(date))
                     .attr('cy', qyScale(dayqscore))
-                    .attr('r', 5)
+                    .attr('r', 3)
                     .style('fill', '#D87A5B')
                     .attr('id', 'qSP');
 
@@ -1088,7 +1088,7 @@ var getQuizeArray=function(d){
                 currentsvg.append('circle')
                     .attr('cx', 0)
                     .attr('cy', 0)
-                    .attr('r', 5)
+                    .attr('r', 3)
                     .style('fill', '#A5D350')
                     .attr('fill-opacity', 0)
                     .attr('id', 'hSP');
@@ -1884,6 +1884,9 @@ var getQuizeArray=function(d){
         // quizegraph
         quizeGraph(d,i)
 
+        // homeworkgraph
+        homeworkGraph(d,i)
+
 
 
       }
@@ -1911,7 +1914,7 @@ var getQuizeArray=function(d){
         alt.push(final)
       }
       var average=d3.mean(array).toFixed(2)
-      var midian=d3.quantile(alt.sort(sortNumber),0.5)
+      var median=d3.quantile(alt.sort(sortNumber),0.5)
 
       var body=d3.select("#student")
 
@@ -1934,6 +1937,18 @@ var getQuizeArray=function(d){
           .attr('y', 30)
           .text('Class Final Grade Graph')
           .style('font-size', 25)
+          .attr('id', 'finalgraphtitle')
+
+          graph.append("text")
+          .attr('x', 350)
+          .attr('y', 30)
+          .text('Average: '+ average)
+
+          graph.append("text")
+          .attr('x', 500)
+          .attr('y', 30)
+          .text('Median: '+ median)
+
 
           // scale
           var yScale=d3.scaleLinear()
@@ -2173,7 +2188,6 @@ var getQuizeArray=function(d){
       var drawPath=d3.line()
         .x(function(d) { return d.x; })
         .y(function(d) { return d.y; })
-        .curve(d3.curveCardinal)
 
           body.append("svg")
           .attr('id', 'quizegraph')
@@ -2186,7 +2200,7 @@ var getQuizeArray=function(d){
           graph.append("text")
           .attr('x', 10)
           .attr('y', 30)
-          .text('Class Test 2 Grade Graph')
+          .text('Quize Grade Graph')
           .style('font-size', 20)
 
           // axis
@@ -2200,8 +2214,80 @@ var getQuizeArray=function(d){
                   .data(data)
                   .enter()
                   .append('circle')
-                  .attr('cx',xScale(d.x))
-                  .attr('cy',yScale(d.y))
+                  .attr('cx',function(d){
+                    return xScale(d.x)})
+                  .attr('cy',function(d){return yScale(d.y)})
+                  .attr('r',3)
+                  .style('fill', '#54576E');
+
+              // paths
+              graph.append("path")
+                .attr('d', drawPath(data))
+                .style('stroke', '#54576E')
+                .attr('stroke-width', 1.5)
+                .attr('id', 'quizepath')
+                .attr('class', 'path')
+
+
+    }
+    var homeworkGraph=function(d,i){
+      var body=d3.select("#student")
+
+      var screen={height:400,width:700}
+      var margin= {top: 50, right: 50, bottom: 50, left: 50}
+      var w= screen.width - margin.left - margin.right
+      var h=screen.height - margin.top-margin.bottom;
+
+        // scale
+        var yScale=d3.scaleLinear()
+            .domain([0, 50])
+            .range([h+margin.top,margin.top])
+        var xScale=d3.scaleLinear()
+            .domain([1,40])
+            .range([margin.left,margin.left+w])
+
+      // data
+      var data=[]
+      var dataset=d[i].homework
+      for (i=0;i<dataset.length;i++){
+        var day=dataset[i].day
+        var grade=dataset[i].grade
+        var point={"x":xScale(day),"y":yScale(grade)}
+        data.push(point)
+      }
+
+      var drawPath=d3.line()
+        .x(function(d) { return d.x; })
+        .y(function(d) { return d.y; })
+
+          body.append("svg")
+          .attr('id', 'homeworkgraph')
+          .attr('height', screen.height)
+          .attr('width', screen.width)
+
+          var graph=body.select("#homeworkgraph")
+
+          // graph title
+          graph.append("text")
+          .attr('x', 10)
+          .attr('y', 30)
+          .text('Homework Grade Graph')
+          .style('font-size', 20)
+
+          // axis
+          var axis=d3.axisLeft(yScale).tickSize(0)
+          graph.append("g")
+          .call(axis)
+          .attr('transform', 'translate(' + (margin.left-10) + ',' + 0+ ')')
+
+          // Graph
+              graph.selectAll("circle")
+                  .data(data)
+                  .enter()
+                  .append('circle')
+                  .attr('cx',function(d){
+                    return xScale(d.x)})
+                  .attr('cy',function(d){return yScale(d.y)})
                   .attr('r',3)
                   .style('fill', '#54576E');
 
@@ -2211,8 +2297,6 @@ var getQuizeArray=function(d){
                 .style('stroke', '#54576E')
                 .attr('stroke-width', 1.5)
                 .attr('class', 'path')
-
-
     }
 
     dataset.then(function(d){
