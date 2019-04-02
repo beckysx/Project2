@@ -34,23 +34,27 @@ var getHwArray=function(d){
 // get test 1 grade array 23
 var getTest1Array=function(d){
   var array=[]
+  var sort=[]
   for(var i=0;i<d.length;i++){
     var grade=parseInt(d[i].test[0].grade)
     array.push(grade)
+    sort.push(grade)
   }
-  array.sort(sortNumber)
-  return array
+  sort.sort(sortNumber)
+  return [array,sort]
 
 }
 // get test 2 grade array 23
 var getTest2Array=function(d){
   var array=[]
+  var sort=[]
   for(var i=0;i<d.length;i++){
     var grade=parseInt(d[i].test[1].grade)
     array.push(grade)
+    sort.push(grade)
   }
-  array.sort(sortNumber)
-  return array
+  sort.sort(sortNumber)
+  return [array,sort]
 
 }
 // get quize grade array 874
@@ -434,7 +438,7 @@ var getQuizeArray=function(d){
               .append("svg")
               .attr('class', 'studentsvg')
               .attr('id', function(){return "student"+(i+1)})
-              .attr('clip-path', function(){return 'url(#cover'+i+')'})
+              .attr('clip-path', function(){return 'url(#cover'+(i+1)+')'})
 
               allstudentsvg.append("g")
               .attr('class', 'actual')
@@ -459,7 +463,7 @@ var getQuizeArray=function(d){
 
               // clip paths
               svg.append('clipPath')
-              .attr('id', function(){return "cover"+i})
+              .attr('id', function(){return "cover"+(i+1)})
               .append("rect")
               .attr('x', 0)
               .attr('y', 0)
@@ -524,7 +528,7 @@ var getQuizeArray=function(d){
               .append("svg")
               .attr('class', 'studentsvg')
               .attr('id', function(){return "student"+(i+5)})
-              .attr('clip-path', function(){return 'url(#cover'+(i+4)+')'})
+              .attr('clip-path', function(){return 'url(#cover'+(i+5)+')'})
 
               allstudentsvg.append("g")
               .attr('class', 'actual')
@@ -549,7 +553,7 @@ var getQuizeArray=function(d){
 
               // clip paths
               svg.append('clipPath')
-              .attr('id', function(){return "cover"+(i+4)})
+              .attr('id', function(){return "cover"+(i+5)})
               .append("rect")
               .attr('x', 0)
               .attr('y', 0)
@@ -636,7 +640,7 @@ var getQuizeArray=function(d){
 
               // clip paths
               svg.append('clipPath')
-              .attr('id', function(){return "cover"+(i+8)})
+              .attr('id', function(){return "cover"+(i+9)})
               .append("rect")
               .attr('x', 0)
               .attr('y', 0)
@@ -722,7 +726,7 @@ var getQuizeArray=function(d){
 
               // clip paths
               svg.append('clipPath')
-              .attr('id', function(){return "cover"+(i+12)})
+              .attr('id', function(){return "cover"+(i+13)})
               .append("rect")
               .attr('x', 0)
               .attr('y', 0)
@@ -785,6 +789,7 @@ var getQuizeArray=function(d){
               .attr('id', function(){return "student"+(i+17)})
               .attr('clip-path', function(){return 'url(#cover'+(i+17)+')'})
 
+
               allstudentsvg.append("g")
               .attr('class', 'actual')
               .attr('transform', function(){
@@ -793,6 +798,7 @@ var getQuizeArray=function(d){
               .append("svg")
               .attr('class', 'averagelines')
               .attr('id', function(){return "lines"+(i+17)})
+
 
               // y axis
               var currentid="#student"+(i+17)
@@ -808,7 +814,7 @@ var getQuizeArray=function(d){
 
               // clip paths
               svg.append('clipPath')
-              .attr('id', function(){return "cover"+(i+16)})
+              .attr('id', function(){return "cover"+(i+17)})
               .append("rect")
               .attr('x', 0)
               .attr('y', 0)
@@ -1092,7 +1098,7 @@ var getQuizeArray=function(d){
           // change button
 
             d3.select("#index").append("button")
-            .attr('id', 'nextbutton')
+            .attr('id', 'next')
             .text("Next Day")
             .on('click', function(){
               if (date==41){date=date}
@@ -1178,6 +1184,11 @@ var getQuizeArray=function(d){
                       var dayqscore=newQArray[i]
                       var dayhscore=newHArray[i]
 
+                      // clipPath
+                      var coverid="#cover"+(i+1)
+                      var cover=d3.select(coverid).select("rect")
+                      cover.attr('width', xScale(date))
+
                       // Quize part
                           // quize Median line
                           currentsvg.select('#qML')
@@ -1252,6 +1263,11 @@ var getQuizeArray=function(d){
                       var currentsvg=d3.select(currentid)
                       var dayqscore=newQArray[i]
 
+                      // clipPath
+                      var coverid="#cover"+(i+1)
+                      var cover=d3.select(coverid).select("rect")
+                      cover.attr('width', xScale(date))
+
                       // Quize part
                           // quize Median line
                           currentsvg.select('#qML')
@@ -1270,7 +1286,7 @@ var getQuizeArray=function(d){
                         }})
 
             d3.select("#index").append("button")
-            .attr('id', 'previousbutton')
+            .attr('id', 'previous')
             .text("Previous Day")
             .on('click',function(){
               if (date==1){date=date}
@@ -1353,6 +1369,11 @@ var getQuizeArray=function(d){
                           var dayqscore=newQArray[i]
                           var dayhscore=newHArray[i]
 
+                          // clipPath
+                          var coverid="#cover"+(i+1)
+                          var cover=d3.select(coverid).select("rect")
+                          cover.attr('width', xScale(date))
+
                           // Quize part
                               // quize Median line
                               currentsvg.select('#qML')
@@ -1430,6 +1451,11 @@ var getQuizeArray=function(d){
                         var currentsvg=d3.select(currentid)
                         var dayqscore=newQArray[i]
 
+                        // clipPath
+                        var coverid="#cover"+(i+1)
+                        var cover=d3.select(coverid).select("rect")
+                        cover.attr('width', xScale(date))
+
                         // Quize part
                             // quize Median line
                             currentsvg.select('#qML')
@@ -1449,53 +1475,234 @@ var getQuizeArray=function(d){
 
 
 
-                }}})}
+                }}})
+
+                d3.select("#index").append("button")
+                .attr('id', 'mid')
+                .text("Day 20")
+                .on("click",function(){
+                  date=20
+                  // Date indication
+                    d3.select("#datesvg").select("#datetext")
+                    .text(function(){return "Day"+" "+date})
+
+                      // new Quize data
+                      var qsort=d.map(function(d){
+                        var i=date-2
+                        return d.quizes[i].grade})
+                      var newQArray=d.map(function(d){
+                        var i=date-2
+                        return d.quizes[i].grade})
+                      var sortQArray=qsort.sort(sortNumber)
+                      var dayQM=d3.quantile(qsort,0.5)
+
+                      // new Homework data
+                      var hsort=d.map(function(d){
+                        var i=(date-2)/2
+                        return d.homework[i].grade})
+                      var newHArray=d.map(function(d){
+                        var i=(date-2)/2
+                        return d.homework[i].grade})
+                      var sortHArray=hsort.sort(sortNumber)
+                      var dayHM=d3.quantile(hsort,0.5)
+
+                      // data note
+                        d3.select("#dayQMtext")
+                        .text("Quize Median:"+" "+dayQM)
+
+                        d3.select("#dayHMtext")
+                        .text("Homework Median:"+" "+dayHM)
+                      // draw on each studentsvg
+                      for (i=0;i<23;i++){
+                        var currentid="#lines"+(i+1)
+                        var currentsvg=d3.select(currentid)
+                        var dayqscore=newQArray[i]
+                        var dayhscore=newHArray[i]
+
+                        // clipPath
+                        var coverid="#cover"+(i+1)
+                        var cover=d3.select(coverid).select("rect")
+                        cover.attr('width', xScale(date))
+
+                        // Quize part
+                            // quize Median line
+                            currentsvg.select('#qML')
+                                .transition()
+                                .duration(200)
+                                .attr('y1', qyScale(dayQM))
+                                .attr('y2', qyScale(dayQM))
+
+                            // quize circle
+                            currentsvg.select('#qSP')
+                                .transition()
+                                .duration(200)
+                                .attr('cx', xScale(date))
+                                .attr('cy', qyScale(dayqscore))
+
+                        // Homework part
+                            // Homework Median line
+                            currentsvg.select('#hML')
+                                .transition()
+                                .duration(200)
+                                .attr('y1', hyScale(dayHM))
+                                .attr('y2', hyScale(dayHM))
+                                .attr('stroke-opacity', 0.5)
+                            // Homework circle
+                            currentsvg.select('#hSP')
+                                .transition()
+                                .duration(200)
+                                .attr('cx', xScale(date))
+                                .attr('cy', hyScale(dayhscore))
+                                .attr('fill-opacity', 1)}})
+
+                d3.select("#index").append("button")
+                .attr('id', 'end')
+                .text("Day 40")
+                .on("click",function(){
+                  date=40
+                  // Date indication
+                    d3.select("#datesvg").select("#datetext")
+                    .text(function(){return "Day"+" "+date})
+
+                      // new Quize data
+                      var qsort=d.map(function(d){
+                          var i=date-3
+                          return d.quizes[i].grade})
+                      var newQArray=d.map(function(d){
+                          var i=date-3
+                          return d.quizes[i].grade})
+                      var sortQArray=qsort.sort(sortNumber)
+                      var dayQM=d3.quantile(qsort,0.5)
+
+                      // new Homework data
+                      var hsort=d.map(function(d){
+                          var i=(date-4)/2
+                          return d.homework[i].grade
+                        })
+                      var newHArray=d.map(function(d){
+                        var i=(date-4)/2
+                        return d.homework[i].grade
+                        })
+                      var sortHArray=hsort.sort(sortNumber)
+                      var dayHM=d3.quantile(hsort,0.5)
+
+                      // data note
+                        d3.select("#dayQMtext")
+                        .text("Quize Median:"+" "+dayQM)
+
+                        d3.select("#dayHMtext")
+                        .text("Homework Median:"+" "+dayHM)
+                      // draw on each studentsvg
+                      for (i=0;i<23;i++){
+                        var currentid="#lines"+(i+1)
+                        var currentsvg=d3.select(currentid)
+                        var dayqscore=newQArray[i]
+                        var dayhscore=newHArray[i]
+
+                        // clipPath
+                        var coverid="#cover"+(i+1)
+                        var cover=d3.select(coverid).select("rect")
+                        cover.attr('width', xScale(date))
+
+                        // Quize part
+                            // quize Median line
+                            currentsvg.select('#qML')
+                                .transition()
+                                .duration(200)
+                                .attr('y1', qyScale(dayQM))
+                                .attr('y2', qyScale(dayQM))
+
+                            // quize circle
+                            currentsvg.select('#qSP')
+                                .transition()
+                                .duration(200)
+                                .attr('cx', xScale(date))
+                                .attr('cy', qyScale(dayqscore))
+
+                        // Homework part
+                            // Homework Median line
+                            currentsvg.select('#hML')
+                                .transition()
+                                .duration(200)
+                                .attr('y1', hyScale(dayHM))
+                                .attr('y2', hyScale(dayHM))
+                                .attr('stroke-opacity', 0.5)
+                            // Homework circle
+                            currentsvg.select('#hSP')
+                                .transition()
+                                .duration(200)
+                                .attr('cx', xScale(date))
+                                .attr('cy', hyScale(dayhscore))
+                                .attr('fill-opacity', 1)}})
+
+                d3.select("#index").append("button")
+                .attr('id', 'reset')
+                .text("Reset")
+                .on("click",function(){
+                  date=1
+                  // Date indication
+                    d3.select("#datesvg").select("#datetext")
+                    .text(function(){return "Day"+" "+date})
+
+                      // new Quize data
+                      var qsort=d.map(function(d){
+                        var i=date-1
+                        return d.quizes[i].grade})
+                      var newQArray=d.map(function(d){
+                        var i=date-1
+                        return d.quizes[i].grade})
+                      var sortQArray=qsort.sort(sortNumber)
+                      var dayQM=d3.quantile(qsort,0.5)
+
+                      // data note
+                        d3.select("#dayQMtext")
+                        .text("Quize Median:"+" "+dayQM)
+
+                        d3.select("#dayHMtext")
+                        .text("Homework Median: No Homework Today")
+                      // draw on each studentsvg
+                      for (i=0;i<23;i++){
+                        var currentid="#lines"+(i+1)
+                        var currentsvg=d3.select(currentid)
+                        var dayqscore=newQArray[i]
+
+                        // clipPath
+                        var coverid="#cover"+(i+1)
+                        var cover=d3.select(coverid).select("rect")
+                        cover.attr('width', xScale(date))
+
+                        // Quize part
+                            // quize Median line
+                            currentsvg.select('#qML')
+                                .transition()
+                                .duration(200)
+                                .attr('y1', qyScale(dayQM))
+                                .attr('y2', qyScale(dayQM))
+
+                            // quize circle
+                            currentsvg.select('#qSP')
+                                .transition()
+                                .duration(200)
+                                .attr('cx', xScale(date))
+                                .attr('cy', qyScale(dayqscore))
+
+                        // Homework part
+                        var a=d3.select("#lines"+(i+1))
+                            // Homework Median line
+                            a.select('#hML')
+                                .attr('stroke-opacity', 0)
+
+                            // Homework circle
+                            a.select('#hSP')
+                                .attr('fill-opacity', 0)
+}})
+              }
+
+
 
 // student Page
 
-    var draw=function(d,i){
-      // class points
-      var fArray=getFinalArray(d)
-      var fAve=d3.mean(fArray).toFixed(2)
-      var fM=d3.quantile(fArray,0.5)
-      var hArray=getHwArray(d)
-      var hAve=d3.mean(hArray).toFixed(2)
-      var hM=d3.quantile(hArray,0.5)
-      var t1Array=getTest1Array(d)
-      var t1Ave=d3.mean(t1Array).toFixed(2)
-      var t1M=d3.quantile(t1Array,0.5)
-      var t2Array=getTest2Array(d)
-      var t2Ave=d3.mean(t2Array).toFixed(2)
-      var t2M=d3.quantile(t2Array,0.5)
-      var qA=getQuizeArray(d)
-      var qAve=d3.mean(qA).toFixed(2)
-      var qM=d3.quantile(qA,0.5)
-      var finalArray=[]
-      var alt=[]
-      for (a=0;a<23;a++){
-        var q=d[a].quizes.map(function(d){return d.grade})
-        var qs=d3.sum(q)
-        var qave=d3.mean(q).toFixed(2)
-        var h=d[a].homework.map(function(d){return d.grade})
-        var hs=d3.sum(h)
-        var have=d3.mean(h).toFixed(2)
-        var fa=d[a].final[0].grade
-        var t1a=d[a].test[0].grade
-        var t2a=d[a].test[1].grade
-           // final grade
-             var qb=(qs/380)*15
-             var hb=(hs/950)*15
-             var fb=(fa/100)*30
-             var t1b=(t1a/100)*20
-             var t2b=(t2a/100)*20
-             var final=(qb+hb+fb+t1b+t2b).toFixed(2)
-        finalArray.push(final)
-        alt.push(final)
-      }
-      var finalAve=d3.mean(finalArray).toFixed(2)
-      var finalM=d3.quantile(alt.sort(sortNumber),0.5)
-
-
+    var studentFirstpart=function(d,i){
       var body=d3.select("#student")
 
       // get student name
@@ -1594,87 +1801,426 @@ var getQuizeArray=function(d){
             .attr('class', 'otherGrade')
 
         //color legend
-        body.append("svg")
-        .attr('id', 'colorlegend2')
-        .attr('width', 1400)
-        .attr('height', 200)
-
-        var finalgraph=body.select("#colorlegend2")
-
-        // Final grade graph
-            var finals={height:500,width:1400}
-            var finalm= {top: 50, right: 100, bottom: 50, left: 100}
-            var finalw= finals.width - finalm.left - finalm.right
-            var finalh=finals.height - finalm.top-finalm.bottom;
-
             body.append("svg")
-            .attr('id', 'finalgraph')
-            .attr('height', finals.height)
-            .attr('width', finals.width)
+            .attr('id', 'colorlegend2')
+            .attr('width', 1000)
+            .attr('height', 50)
 
-            var finalgraph=body.select("#finalgraph")
+            var colorlegend=body.select("#colorlegend2")
 
-            // graph title
-            finalgraph.append("text")
-            .attr('x', 10)
+            colorlegend.append("g").attr('id', 'average').attr('transform', 'translate(' + 0 + ',' + 0 + ')')
+
+            colorlegend.append("g").attr('id', 'median')
+            .attr('transform', 'translate(' + 250 + ',' + 0 + ')')
+
+            colorlegend.append("g").attr('id', 'otherstudents')
+            .attr('transform', 'translate(' + 500 + ',' + 0 + ')')
+
+            colorlegend.append("g").attr('id', 'cstudent')
+            .attr('transform', 'translate(' + 750 + ',' + 0 + ')')
+
+            var average=body.select("#average")
+            var median=body.select("#median")
+            var otherstudents=body.select("#otherstudents")
+            var cstudent=body.select("#cstudent")
+
+            average.append("line")
+                .attr('x1',20 )
+                .attr('y1', 25)
+                .attr('x2', 70)
+                .attr('y2', 25)
+                .attr('stroke-width', 3)
+                .style('stroke', '#EFA00B');
+            average.append("text")
+            .attr('x', 90)
             .attr('y', 30)
-            .text('Class Final Grade Graph')
-            .style('font-size', 25)
+            .text("Class Average")
 
-            // scale
-            var finalyScale=d3.scaleLinear()
-                .domain([0, 100])
-                .range([finalh+finalm.top,finalm.top])
-            var finalxScale=d3.scaleBand()
-                .domain(d3.range(23))
-                .rangeRound([finalm.left,finalm.left+finalw])
-                .paddingInner(0.03);
+            median.append("line")
+                .attr('x1',20 )
+                .attr('y1', 25)
+                .attr('x2', 70)
+                .attr('y2', 25)
+                .attr('stroke-width', 3)
+                .style('stroke', '#83B692');
+            median.append("text")
+            .attr('x', 90)
+            .attr('y', 30)
+            .text("Class Median")
 
-            // axis
-            var finalaxis=d3.axisLeft(finalyScale).tickSize(0)
-            finalgraph.append("g")
-            .call(finalaxis)
-            .attr('transform', 'translate(' + (finalm.left-10) + ',' + 0+ ')')
-
-            // Graph
-            finalgraph.selectAll("rect")
-                .data(finalArray)
-                .enter()
-                .append('rect')
-                .attr('x',function(d,i){return finalxScale(i)})
-                .attr('y', function(d){return finalyScale(d)})
-                .attr('width', finalxScale.bandwidth())
-                .attr('height', function(d){
-                  return finalh+finalm.top-finalyScale(d)})
-                .attr('id', function(d,i){return 'finalrects'+i})
+            otherstudents.append("rect")
+                .attr('x', 20)
+                .attr('y', 17)
+                .attr('width', 15)
+                .attr('height', 15)
                 .style('fill', '#54576E');
-                //E8DDB5
-                //EDAFB8
+            otherstudents.append("text")
+            .attr('x', 50)
+            .attr('y', 30)
+            .text("Other Students")
 
-            finalgraph.select("#finalrects"+i).style('fill', '#95B8D1')
+            cstudent.append("rect")
+                .attr('x', 20)
+                .attr('y', 17)
+                .attr('width', 15)
+                .attr('height', 15)
+                .style('fill', '#95B8D1');
+            cstudent.append("text")
+            .attr('x', 50)
+            .attr('y', 30)
+            .text("Current Students")
 
 
 
+        // finalgraph part
+        studentFinalGrade(d,i)
+
+        // test1 graph
+        test1Graph(d,i)
+
+        // test2 graph
+        test2Graph(d,i)
+
+        // quizegraph
+        quizeGraph(d,i)
 
 
 
+      }
+    var studentFinalGrade=function(d,i){
+      var array=[]
+      var alt=[]
+      for (a=0;a<23;a++){
+        var q=d[a].quizes.map(function(d){return d.grade})
+        var qs=d3.sum(q)
+        var qave=d3.mean(q).toFixed(2)
+        var h=d[a].homework.map(function(d){return d.grade})
+        var hs=d3.sum(h)
+        var have=d3.mean(h).toFixed(2)
+        var fa=d[a].final[0].grade
+        var t1a=d[a].test[0].grade
+        var t2a=d[a].test[1].grade
+           // final grade
+             var qb=(qs/380)*15
+             var hb=(hs/950)*15
+             var fb=(fa/100)*30
+             var t1b=(t1a/100)*20
+             var t2b=(t2a/100)*20
+             var final=(qb+hb+fb+t1b+t2b).toFixed(2)
+        array.push(final)
+        alt.push(final)
+      }
+      var average=d3.mean(array).toFixed(2)
+      var midian=d3.quantile(alt.sort(sortNumber),0.5)
 
+      var body=d3.select("#student")
 
+      // Final grade graph
+          var screen={height:500,width:1400}
+          var margin= {top: 50, right: 100, bottom: 50, left: 100}
+          var w= screen.width - margin.left - margin.right
+          var h=screen.height - margin.top-margin.bottom;
 
+          body.append("svg")
+          .attr('id', 'finalgraph')
+          .attr('height', screen.height)
+          .attr('width', screen.width)
 
+          var graph=body.select("#finalgraph")
 
+          // graph title
+          graph.append("text")
+          .attr('x', 10)
+          .attr('y', 30)
+          .text('Class Final Grade Graph')
+          .style('font-size', 25)
+
+          // scale
+          var yScale=d3.scaleLinear()
+              .domain([0, 100])
+              .range([h+margin.top,margin.top])
+          var xScale=d3.scaleBand()
+              .domain(d3.range(23))
+              .rangeRound([margin.left,margin.left+w])
+              .paddingInner(0.03);
+
+          // axis
+          var finalaxis=d3.axisLeft(yScale).tickSize(0)
+          graph.append("g")
+          .call(finalaxis)
+          .attr('transform', 'translate(' + (margin.left-10) + ',' + 0+ ')')
+
+          // Graph
+              graph.selectAll("rect")
+                  .data(array)
+                  .enter()
+                  .append('rect')
+                  .attr('x',function(d,i){return xScale(i)})
+                  .attr('y', function(d){return yScale(d)})
+                  .attr('width', xScale.bandwidth())
+                  .attr('height', function(d){
+                    return h+margin.top-yScale(d)})
+                  .attr('id', function(d,i){return 'finalrects'+i})
+                  .style('fill', '#54576E');
+
+              graph.select("#finalrects"+i).style('fill', '#95B8D1')
+
+              // average lines
+              graph.append("line")
+                  .attr('x1',margin.left-10 )
+                  .attr('y1', yScale(average))
+                  .attr('x2',margin.left+w+14)
+                  .attr('y2', yScale(average))
+                  .attr('stroke-width', 3)
+                  .style('stroke', '#EFA00B')
+                  .attr('id', 'finalAveline');
+
+              graph.append("line")
+                  .attr('x1',margin.left-10 )
+                  .attr('y1', yScale(midian))
+                  .attr('x2',margin.left+w+14)
+                  .attr('y2', yScale(midian))
+                  .attr('stroke-width', 3)
+                  .style('stroke', '#83B692')
+                  .attr('id', 'finalMline');
+
+              // profile
+              for (i=0;i<23;i++){
+                graph.append("svg:image")
+                .attr('xlink:href', function(){return "/penguins/"+d[i].picture})
+                .attr('x', xScale(i)+10)
+                .attr('y', screen.height-margin.bottom+10)
+                .attr('width',xScale.bandwidth()-20)
+                .attr('height', xScale.bandwidth()-20)
+                .attr('class', 'image')}}
+    var test1Graph=function(d,i){
+      // class points
+      var data=getTest1Array(d)
+      var average=d3.mean(data[0]).toFixed(2)
+      var median=d3.quantile(data[1],0.5)
+
+      var body=d3.select("#student")
+
+      // Final grade graph
+          var screen={height:400,width:700}
+          var margin= {top: 50, right: 50, bottom: 50, left: 50}
+          var w= screen.width - margin.left - margin.right
+          var h=screen.height - margin.top-margin.bottom;
+
+          body.append("svg")
+          .attr('id', 'test1graph')
+          .attr('height', screen.height)
+          .attr('width', screen.width)
+
+          var graph=body.select("#test1graph")
+
+          // graph title
+          graph.append("text")
+          .attr('x', 10)
+          .attr('y', 30)
+          .text('Class Test 1 Grade Graph')
+          .style('font-size', 20)
+
+          // scale
+          var yScale=d3.scaleLinear()
+              .domain([0, 100])
+              .range([h+margin.top,margin.top])
+          var xScale=d3.scaleBand()
+              .domain(d3.range(23))
+              .rangeRound([margin.left,margin.left+w])
+              .paddingInner(0.03);
+
+          // axis
+          var axis=d3.axisLeft(yScale).tickSize(0)
+          graph.append("g")
+          .call(axis)
+          .attr('transform', 'translate(' + (margin.left-10) + ',' + 0+ ')')
+
+          // Graph
+              graph.selectAll("rect")
+                  .data(data[0])
+                  .enter()
+                  .append('rect')
+                  .attr('x',function(d,i){return xScale(i)})
+                  .attr('y', function(d){return yScale(d)})
+                  .attr('width', xScale.bandwidth())
+                  .attr('height', function(d){
+                    return h+margin.top-yScale(d)})
+                  .attr('id', function(d,i){return 'test1rects'+i})
+                  .style('fill', '#54576E');
+
+              graph.select("#test1rects"+i).style('fill', '#95B8D1')
+
+              // average lines
+              graph.append("line")
+                  .attr('x1',margin.left-10 )
+                  .attr('y1', yScale(average))
+                  .attr('x2',margin.left+w+14)
+                  .attr('y2', yScale(average))
+                  .attr('stroke-width', 3)
+                  .style('stroke', '#EFA00B')
+
+              graph.append("line")
+                  .attr('x1',margin.left-10 )
+                  .attr('y1', yScale(median))
+                  .attr('x2',margin.left+w+14)
+                  .attr('y2', yScale(median))
+                  .attr('stroke-width', 3)
+                  .style('stroke', '#83B692')
+}
+    var test2Graph=function(d,i){
+      // class points
+      var data=getTest2Array(d)
+      var average=d3.mean(data[0]).toFixed(2)
+      var median=d3.quantile(data[1],0.5)
+
+      var body=d3.select("#student")
+
+      // Final grade graph
+          var screen={height:400,width:700}
+          var margin= {top: 50, right: 50, bottom: 50, left: 50}
+          var w= screen.width - margin.left - margin.right
+          var h=screen.height - margin.top-margin.bottom;
+
+          body.append("svg")
+          .attr('id', 'test2graph')
+          .attr('height', screen.height)
+          .attr('width', screen.width)
+
+          var graph=body.select("#test2graph")
+
+          // graph title
+          graph.append("text")
+          .attr('x', 10)
+          .attr('y', 30)
+          .text('Class Test 2 Grade Graph')
+          .style('font-size', 20)
+
+          // scale
+          var yScale=d3.scaleLinear()
+              .domain([0, 100])
+              .range([h+margin.top,margin.top])
+          var xScale=d3.scaleBand()
+              .domain(d3.range(23))
+              .rangeRound([margin.left,margin.left+w])
+              .paddingInner(0.03);
+
+          // axis
+          var axis=d3.axisLeft(yScale).tickSize(0)
+          graph.append("g")
+          .call(axis)
+          .attr('transform', 'translate(' + (margin.left-10) + ',' + 0+ ')')
+
+          // Graph
+              graph.selectAll("rect")
+                  .data(data[0])
+                  .enter()
+                  .append('rect')
+                  .attr('x',function(d,i){return xScale(i)})
+                  .attr('y', function(d){return yScale(d)})
+                  .attr('width', xScale.bandwidth())
+                  .attr('height', function(d){
+                    return h+margin.top-yScale(d)})
+                  .attr('id', function(d,i){return 'test2rects'+i})
+                  .style('fill', '#54576E');
+
+              graph.select("#test2rects"+i).style('fill', '#95B8D1')
+
+              // average lines
+              graph.append("line")
+                  .attr('x1',margin.left-10 )
+                  .attr('y1', yScale(average))
+                  .attr('x2',margin.left+w+14)
+                  .attr('y2', yScale(average))
+                  .attr('stroke-width', 3)
+                  .style('stroke', '#EFA00B')
+
+              graph.append("line")
+                  .attr('x1',margin.left-10 )
+                  .attr('y1', yScale(median))
+                  .attr('x2',margin.left+w+14)
+                  .attr('y2', yScale(median))
+                  .attr('stroke-width', 3)
+                  .style('stroke', '#83B692')
+
+    }
+    var quizeGraph=function(d,i){
+      var body=d3.select("#student")
+
+      var screen={height:400,width:700}
+      var margin= {top: 50, right: 50, bottom: 50, left: 50}
+      var w= screen.width - margin.left - margin.right
+      var h=screen.height - margin.top-margin.bottom;
+
+        // scale
+        var yScale=d3.scaleLinear()
+            .domain([0, 10])
+            .range([h+margin.top,margin.top])
+        var xScale=d3.scaleLinear()
+            .domain([1,40])
+            .range([margin.left,margin.left+w])
+
+      // data
+      var data=[]
+      var dataset=d[i].quizes
+      for (i=0;i<dataset.length;i++){
+        var day=dataset[i].day
+        var grade=dataset[i].grade
+        var point={"x":xScale(day),"y":yScale(grade)}
+        data.push(point)
+      }
+
+      var drawPath=d3.line()
+        .x(function(d) { return d.x; })
+        .y(function(d) { return d.y; })
+        .curve(d3.curveCardinal)
+
+          body.append("svg")
+          .attr('id', 'quizegraph')
+          .attr('height', screen.height)
+          .attr('width', screen.width)
+
+          var graph=body.select("#quizegraph")
+
+          // graph title
+          graph.append("text")
+          .attr('x', 10)
+          .attr('y', 30)
+          .text('Class Test 2 Grade Graph')
+          .style('font-size', 20)
+
+          // axis
+          var axis=d3.axisLeft(yScale).tickSize(0)
+          graph.append("g")
+          .call(axis)
+          .attr('transform', 'translate(' + (margin.left-10) + ',' + 0+ ')')
+
+          // Graph
+              graph.selectAll("circle")
+                  .data(data)
+                  .enter()
+                  .append('circle')
+                  .attr('cx',xScale(d.x))
+                  .attr('cy',yScale(d.y))
+                  .attr('r',3)
+                  .style('fill', '#54576E');
+
+              // paths
+              graph.append("path")
+                .attr('d', drawPath(data))
+                .style('stroke', '#54576E')
+                .attr('stroke-width', 1.5)
+                .attr('class', 'path')
 
 
     }
 
+    dataset.then(function(d){
 
+      // index page
+      drawFixedPart()
+      drawMainChart(d)
+      drawChangingPart(d)
+      studentFirstpart(d,0)
 
-  dataset.then(function(d){
-
-    // index page
-    drawFixedPart()
-    drawMainChart(d)
-    drawChangingPart(d)
-    draw(d,0)
-
-  })
+    })

@@ -17,7 +17,7 @@ display: block;
   text-decoration: underline;
 }
 
-#previousbutton{
+#previous{
   height: 40px;
 border-bottom-left-radius: 30px;
 width: 130;
@@ -29,7 +29,7 @@ top: 335px;
 left: 445px;
 }
 
-#nextbutton{
+#next{
   height: 40px;
 border-bottom-right-radius: 30px;
 width: 130;
@@ -41,8 +41,39 @@ top: 335px;
 left: 820px;
 }
 
+#end{
+  height: 30px;
+border-radius: 30px;
+width: 130;
+background: #E6E8E6;
+cursor:pointer;
+position: absolute;
+top: 560px;
+left: 620px;
+}
+#mid{
+  height: 30px;
+border-radius: 30px;
+width: 130;
+background: #E6E8E6;
+cursor:pointer;
+position: absolute;
+top: 560px;
+left: 440px;
+}
+#reset{
+  height: 30px;
+border-radius: 30px;
+width: 130;
+background: #E6E8E6;
+cursor:pointer;
+position: absolute;
+top: 560px;
+left: 800px;
+}
 
-#nextbutton:hover,#previousbutton:hover{
+
+#next:hover,#previous:hover,#mid:hover,#end:hover,#reset:hover{
   background-color: #B9BAB8;
 }
 
@@ -52,10 +83,12 @@ left: 820px;
   border-top-width: 2px;
   border-bottom: solid;
   border-bottom-width: 2px;
+  position: absolute;
+  top: 600px;
 }
 #dataNote{
   position: absolute;
-  top: 430px;
+  top: 420px;
   left: 450px;
   font-size: 20px;
 }
@@ -63,7 +96,7 @@ left: 820px;
 #colorlegend{
   display: block;
     position: absolute;
-    top: 420px;
+    top: 430px;
     left: 1050px;
   background-color: #56554C;
 }
@@ -96,14 +129,26 @@ left: 820px;
 }
 
 #finaltext{
-  font-size: 25px;
-}
-#colorlegend2{
-  border:solid;
-  border-color: black;
-}
+  font-size: 25px;}
 
+#colorlegend2{
+  position: relative;
+left: 400;
+border-top: solid;
+border-bottom:solid;
+border-color: black;
+border-width: 2px;
+}
 #finalgraph{
-  border:solid;
-  border-color: black;
+  position: relative;
+top: 20px;
+text-decoration: underline;
+}
+#test1graph{
+  position: relative;
+top: 50px;
+}
+#test2graph{
+  position: relative;
+top: 50px;
 }
