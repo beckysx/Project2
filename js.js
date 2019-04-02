@@ -513,10 +513,6 @@ var getQuizeArray=function(d){
               .attr('id', function(){
                 return "pstudent"+index
               })
-              .on('click',function(){
-                var studentindex=parseInt(d3.select(this).attr("id").replace(/[^0-9]/ig,""))})
-
-
             }
             //group2
             for(i=0;i<4;i++){
@@ -1702,7 +1698,9 @@ var getQuizeArray=function(d){
 
 // student Page
 
-    var studentFirstpart=function(d,i){
+    var studentpage=function(d){
+      i=1
+
       var body=d3.select("#student")
 
       // get student name
@@ -1743,11 +1741,11 @@ var getQuizeArray=function(d){
           profile.append("svg:image")
               .attr('xlink:href', function(){return "/penguins/"+picture})
               .attr('x', 20)
-              .attr('y', 100)
+              .attr('y', 0)
               .attr('width', 120)
           profile.append("text")
               .attr('x', 170)
-              .attr('y', 220)
+              .attr('y', 120)
               .text(name)
               .attr('class', 'nametext')
 
@@ -1937,7 +1935,6 @@ var getQuizeArray=function(d){
           .attr('y', 30)
           .text('Class Final Grade Graph')
           .style('font-size', 25)
-          .attr('id', 'finalgraphtitle')
 
           graph.append("text")
           .attr('x', 350)
@@ -1992,9 +1989,9 @@ var getQuizeArray=function(d){
 
               graph.append("line")
                   .attr('x1',margin.left-10 )
-                  .attr('y1', yScale(midian))
+                  .attr('y1', yScale(median))
                   .attr('x2',margin.left+w+14)
-                  .attr('y2', yScale(midian))
+                  .attr('y2', yScale(median))
                   .attr('stroke-width', 3)
                   .style('stroke', '#83B692')
                   .attr('id', 'finalMline');
@@ -2006,8 +2003,7 @@ var getQuizeArray=function(d){
                 .attr('x', xScale(i)+10)
                 .attr('y', screen.height-margin.bottom+10)
                 .attr('width',xScale.bandwidth()-20)
-                .attr('height', xScale.bandwidth()-20)
-                .attr('class', 'image')}}
+                .attr('height', xScale.bandwidth()-20)}}
     var test1Graph=function(d,i){
       // class points
       var data=getTest1Array(d)
@@ -2035,6 +2031,16 @@ var getQuizeArray=function(d){
           .attr('y', 30)
           .text('Class Test 1 Grade Graph')
           .style('font-size', 20)
+
+          graph.append("text")
+          .attr('x', 300)
+          .attr('y', 30)
+          .text('Average: '+ average)
+
+          graph.append("text")
+          .attr('x', 450)
+          .attr('y', 30)
+          .text('Median: '+ median)
 
           // scale
           var yScale=d3.scaleLinear()
@@ -2110,6 +2116,16 @@ var getQuizeArray=function(d){
           .attr('y', 30)
           .text('Class Test 2 Grade Graph')
           .style('font-size', 20)
+
+          graph.append("text")
+          .attr('x', 300)
+          .attr('y', 30)
+          .text('Average: '+ average)
+
+          graph.append("text")
+          .attr('x', 450)
+          .attr('y', 30)
+          .text('Median: '+ median)
 
           // scale
           var yScale=d3.scaleLinear()
@@ -2188,6 +2204,7 @@ var getQuizeArray=function(d){
       var drawPath=d3.line()
         .x(function(d) { return d.x; })
         .y(function(d) { return d.y; })
+        .curve(d3.curveCardinal)
 
           body.append("svg")
           .attr('id', 'quizegraph')
@@ -2202,6 +2219,7 @@ var getQuizeArray=function(d){
           .attr('y', 30)
           .text('Quize Grade Graph')
           .style('font-size', 20)
+
 
           // axis
           var axis=d3.axisLeft(yScale).tickSize(0)
@@ -2259,6 +2277,7 @@ var getQuizeArray=function(d){
       var drawPath=d3.line()
         .x(function(d) { return d.x; })
         .y(function(d) { return d.y; })
+        .curve(d3.curveCardinal)
 
           body.append("svg")
           .attr('id', 'homeworkgraph')
@@ -2305,6 +2324,6 @@ var getQuizeArray=function(d){
       drawFixedPart()
       drawMainChart(d)
       drawChangingPart(d)
-      studentFirstpart(d,0)
+      studentpage(d)
 
     })

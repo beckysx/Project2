@@ -143,18 +143,22 @@ text-decoration: underline;
 #test1graph{
   position: relative;
 top: 50px;
+text-decoration: underline;
 }
 #test2graph{
   position: relative;
 top: 50px;
+text-decoration: underline;
 }
 
 #homeworkgraph{
   position: relative;
 top: 50px;
+text-decoration: underline;
 }
 
 #quizegraph{
   position: relative;
 top: 50px;
+text-decoration: underline;
 }
