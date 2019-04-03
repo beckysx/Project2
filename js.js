@@ -1692,13 +1692,6 @@ var getQuizeArray=function(d){
                         a.select('#hSP')
                             .attr('fill-opacity', 0)
 }})
-
-            d3.select("#index").append("button")
-            .attr('id', 'goStudentpage')
-            .text("Go to Student Page")
-            .on("click",function(){
-              window.open("student.html")
-            })
               }
 
 
@@ -1708,7 +1701,7 @@ var getQuizeArray=function(d){
     var studentpage=function(d){
       i=0
 
-      var body=d3.select("#student")
+      var body=d3.select("#index")
 
       // get student name
       var picture=d[i].picture
@@ -1913,7 +1906,7 @@ var getQuizeArray=function(d){
       var average=d3.mean(array).toFixed(2)
       var median=d3.quantile(alt.sort(sortNumber),0.5)
 
-      var body=d3.select("#student")
+      var body=d3.select("#index")
 
       // Final grade graph
           var screen={height:500,width:1400}
@@ -2009,7 +2002,7 @@ var getQuizeArray=function(d){
       var average=d3.mean(data[0]).toFixed(2)
       var median=d3.quantile(data[1],0.5)
 
-      var body=d3.select("#student")
+      var body=d3.select("#index")
 
       // Final grade graph
           var screen={height:400,width:700}
@@ -2094,7 +2087,7 @@ var getQuizeArray=function(d){
       var average=d3.mean(data[0]).toFixed(2)
       var median=d3.quantile(data[1],0.5)
 
-      var body=d3.select("#student")
+      var body=d3.select("#index")
 
       // Final grade graph
           var screen={height:400,width:700}
@@ -2175,7 +2168,7 @@ var getQuizeArray=function(d){
 
     }
     var quizeGraph=function(d,i){
-      var body=d3.select("#student")
+      var body=d3.select("#index")
 
       var screen={height:400,width:700}
       var margin= {top: 50, right: 50, bottom: 50, left: 50}
@@ -2248,7 +2241,7 @@ var getQuizeArray=function(d){
 
     }
     var homeworkGraph=function(d,i){
-      var body=d3.select("#student")
+      var body=d3.select("#index")
 
       var screen={height:400,width:700}
       var margin= {top: 50, right: 50, bottom: 50, left: 50}

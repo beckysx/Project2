@@ -71,21 +71,10 @@ position: absolute;
 top: 560px;
 left: 800px;
 }
-#goStudentpage{
-  height: 40px;
-  width: 150px;
-border-radius: 30px;
-length:150px;
-background: #E6E8E6;
-cursor:pointer;
-position: absolute;
-top: 335px;
-left: 1100px;
-
-}
 
 
-#next:hover,#previous:hover,#mid:hover,#end:hover,#reset:hover,#ggoStudentpage{
+
+#next:hover,#previous:hover,#mid:hover,#end:hover,#reset:hover{
   background-color: #B9BAB8;
 }
 
@@ -131,6 +120,35 @@ left: 1100px;
 
 /*student page*/
 
+#profile{
+  display: block;
+position: absolute;
+top: 1500px;
+}
+
+#ginfo{
+  display: block;
+position: absolute;
+top: 1500px;
+left: 600px;
+}
+
+#colorlegend2{
+  display: block;
+position: absolute;
+top: 1800px;
+left: 400px;
+border-top: dotted;
+border-bottom: dotted;
+}
+
+#finalgraph{
+  text-decoration: underline;
+  position: absolute;
+display: block;
+top: 1900px;
+}
+
 .nametext{
   font-size: 35px;
   text-decoration: underline;
@@ -138,39 +156,32 @@ left: 1100px;
 
 #finaltext{
   font-size: 25px;}
-
-#colorlegend2{
-  position: relative;
-left: 400;
-border-top: solid;
-border-bottom:solid;
-border-color: black;
-border-width: 2px;
-}
-#finalgraph{
-  position: relative;
-top: 20px;
-text-decoration: underline;
-}
 #test1graph{
-  position: relative;
-top: 50px;
+  display: block;
+position: absolute;
+top: 2450px;
 text-decoration: underline;
 }
 #test2graph{
-  position: relative;
-top: 50px;
+  display: block;
+position: absolute;
+top: 2450px;
+left: 700px;
 text-decoration: underline;
 }
 
 #homeworkgraph{
-  position: relative;
-top: 50px;
+  position: absolute;
+display: block;
+top: 2850px;
+left: 700px;
 text-decoration: underline;
 }
 
 #quizegraph{
-  position: relative;
-top: 50px;
+  position: absolute;
+display: block;
+top: 2850px;
+
 text-decoration: underline;
 }
