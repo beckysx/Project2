@@ -390,6 +390,7 @@ var getQuizeArray=function(d){
 
   // main chart fixed part
     var drawMainChart=function(d){
+
           // Student situation
           var screen={width:1400/4,height:100};
           var margin = {top: 4, right: 10, bottom: 10, left: 100};
@@ -503,7 +504,7 @@ var getQuizeArray=function(d){
 
               // student picture
               var index=i
-              svg.append("a").attr('href', '#goto').attr('id', 'top')
+              svg.append("a").attr('href', '#goto')
               .append("svg:image")
               .attr('xlink:href', function(){return "/penguins/"+d[index].picture})
               .attr('x', 10)
@@ -594,7 +595,7 @@ var getQuizeArray=function(d){
 
               // student picture
               var index=i+4
-              svg.append("a").attr('href', '#goto').attr('id', 'top')
+              svg.append("a").attr('href', '#goto')
               .append("svg:image")
               .attr('xlink:href', function(){return "/penguins/"+d[index].picture})
               .attr('x', 10)
@@ -686,7 +687,7 @@ var getQuizeArray=function(d){
 
               // student picture
               var index=i+8
-              svg.append("a").attr('href', '#goto').attr('id', 'top')
+              svg.append("a").attr('href', '#goto')
               .append("svg:image")
               .attr('xlink:href', function(){return "/penguins/"+d[index].picture})
               .attr('x', 10)
@@ -777,7 +778,8 @@ var getQuizeArray=function(d){
 
               // student picture
               var index=i+12
-              svg.append("a").attr('href', '#goto').attr('id', 'top').append("svg:image")
+              svg.append("a").attr('href', '#goto')
+              .append("svg:image")
               .attr('xlink:href', function(){return "/penguins/"+d[index].picture})
               .attr('x', 10)
               .attr('y', 0)
@@ -869,7 +871,8 @@ var getQuizeArray=function(d){
 
               // student picture
               var index=i+16
-              svg.append("a").attr('href', '#goto').attr('id', 'top').append("svg:image")
+              svg.append("a").attr('href', '#goto')
+              .append("svg:image")
               .attr('xlink:href', function(){return "/penguins/"+d[index].picture})
               .attr('x', 10)
               .attr('y', 0)
@@ -959,7 +962,8 @@ var getQuizeArray=function(d){
 
               // student picture
               var index=i+20
-              svg.append("a").attr('href', '#goto').attr('id', 'top').append("svg:image")
+              svg.append("a").attr('href', '#goto')
+              .append("svg:image")
               .attr('xlink:href', function(){return "/penguins/"+d[index].picture})
               .attr('x', 10)
               .attr('y', 0)
@@ -999,7 +1003,7 @@ var getQuizeArray=function(d){
           .attr('width', 400)
           .attr('height', 300)
 
-          datesvg.append("text")
+          datesvg.append("a").attr('id', 'top').append("text")
           .attr('x', '200')
           .attr('y', '200')
           .attr('text-anchor', 'middle')
@@ -1772,11 +1776,40 @@ var getQuizeArray=function(d){
               .attr('x', 20)
               .attr('y', 0)
               .attr('width', 120)
+              .attr('id', 'profilepicture'+i)
           profile.append("text")
               .attr('x', 170)
               .attr('y', 120)
               .text(name)
               .attr('class', 'nametext')
+
+          body.append("a").attr('href', '#top')
+          .append("button")
+          .attr('id', 'backTop')
+          .text('Back to Top')
+
+          d3.select("#index").append("button")
+          .attr('id', 'nextStudent')
+          .text('Next Student')
+          .on('click',function(){
+            var currentID=parseInt(d3.select("#index").select("#profile").select("image").attr("id").replace(/[^0-9]/ig,""))
+            var nextID=currentID+1
+            studentpagechange(d,nextID)
+          })
+
+          body.append("button")
+          .attr('id', 'nextStudent2')
+          .text('Next Student')
+          .on('click',function(){
+            var currentID=parseInt(d3.select("#index").select("#profile").select("image").attr("id").replace(/[^0-9]/ig,""))
+            var nextID=currentID+1
+            studentpagechange(d,nextID)
+          })
+
+          body.append("a").attr('href', '#top')
+          .append("button")
+          .attr('id', 'backTop2')
+          .text('Back to Top')
 
         // gradeinformation
         body.append("svg")
@@ -2214,12 +2247,15 @@ var getQuizeArray=function(d){
 
       // data
       var data=[]
+      var data2=[]
       var dataset=d[i].quizes
       for (i=0;i<dataset.length;i++){
         var day=dataset[i].day
         var grade=dataset[i].grade
         var point={"x":xScale(day),"y":yScale(grade)}
+        var point2={"x":day,"y":grade}
         data.push(point)
+        data2.push(point2)
       }
 
       var drawPath=d3.line()
@@ -2256,8 +2292,32 @@ var getQuizeArray=function(d){
                   .attr('cx',function(d,i){
                     return d.x})
                   .attr('cy',function(d){return d.y})
-                  .attr('r',3)
-                  .style('fill', '#54576E');
+                  .attr('r',5)
+                  .style('fill', '#54576E')
+                  .on('click',function(d,i){
+                    d3.select(this)
+                    .transition()
+                    .attr('r', 10)
+                    .style('fill', 'orange')
+
+                    d3.select("#tooltip1").select("#date1")
+                    .text(function(){
+                      return data2[i].x
+                    })
+                    d3.select("#tooltip1").select("#score1")
+                    .text(function(){
+                      return data2[i].y
+                    })
+
+                  })
+                  .on("mouseout",function(){
+                    d3.select(this)
+                    .transition()
+                    .duration(300)
+                    .attr('r', 5)
+                    .style('fill', '#54576E')
+
+                  });
 
               // paths
               graph.append("path")
@@ -2287,12 +2347,15 @@ var getQuizeArray=function(d){
 
       // data
       var data=[]
+      var data2=[]
       var dataset=d[i].homework
       for (i=0;i<dataset.length;i++){
         var day=dataset[i].day
         var grade=dataset[i].grade
         var point={"x":xScale(day),"y":yScale(grade)}
+        var point2={"x":day,"y":grade}
         data.push(point)
+        data2.push(point2)
       }
 
       var drawPath=d3.line()
@@ -2328,8 +2391,31 @@ var getQuizeArray=function(d){
                   .attr('cx',function(d,i){
                     return d.x})
                   .attr('cy',function(d){return d.y})
-                  .attr('r',3)
+                  .attr('r',5)
                   .style('fill', '#54576E')
+                  .on('click',function(d,i){
+                    d3.select(this)
+                    .transition()
+                    .attr('r', 10)
+                    .style('fill', 'orange')
+
+                    d3.select("#tooltip2").select("#date2")
+                    .text(function(){
+                      return data2[i].x
+                    })
+                    d3.select("#tooltip2").select("#score2")
+                    .text(function(){
+                      return data2[i].y
+                    })
+
+                  })
+                  .on("mouseout",function(){
+                    d3.select(this)
+                    .transition()
+                    .duration(300)
+                    .attr('r', 5)
+                    .style('fill', '#54576E')
+                  })
 
               // paths
               graph.append("path")
@@ -2377,7 +2463,7 @@ var getQuizeArray=function(d){
               graph.selectAll("circle")
                   .data(data)
                   .transition()
-                  .duration(300)
+                  .duration(1300)
                   .attr('cx',function(d){
                     return d.x})
                   .attr('cy',function(d){return d.y})
@@ -2386,7 +2472,7 @@ var getQuizeArray=function(d){
               // paths
               graph.select("#homeworkpath")
               .transition()
-              .duration(300)
+              .duration(1300)
               .attr('d', drawPath(data))
 
     }
@@ -2427,7 +2513,7 @@ var getQuizeArray=function(d){
               graph.selectAll("circle")
                   .data(data)
                   .transition()
-                  .duration(300)
+                  .duration(1300)
                   .attr('cx',function(d){
                     return d.x})
                   .attr('cy',function(d){return d.y})
@@ -2435,7 +2521,7 @@ var getQuizeArray=function(d){
               // paths
               graph.select("#quizepath")
               .transition()
-              .duration(300)
+              .duration(1300)
               .attr('d', drawPath(data))
 
     }
@@ -2475,20 +2561,48 @@ var getQuizeArray=function(d){
         var profile=body.select("#profile")
 
          profile.select("image")
-             .attr('xlink:href', function(){return "/penguins/"+picture})
+         .transition()
+         .duration(300)
+         .attr('xlink:href', function(){return "/penguins/"+picture})
+         .attr('id', 'profilepicture'+i)
 
          profile.select("text")
-             .text(name)
+         .transition()
+         .duration(300)
+         .text(name)
 
        // gradeinformation
            var ginfo=body.select("#ginfo")
 
-           ginfo.select("#finaltext").text("Final Grade: "+final)
-           ginfo.select("#fa").text("Final Exam Grade: "+fa)
-           ginfo.select("#t1a").text("Test 1 Grade: "+t1a)
-           ginfo.select("#t2a").text("Test 2 Grade: "+t2a)
-           ginfo.select("#qave").text("Quizes Average: "+qave)
-           ginfo.select("#have").text("Homework Average: "+have)
+           ginfo.select("#finaltext")
+           .transition()
+           .duration(300)
+           .text("Final Grade: "+final)
+
+           ginfo.select("#fa")
+           .transition()
+           .duration(300)
+           .text("Final Exam Grade: "+fa)
+
+           ginfo.select("#t1a")
+           .transition()
+           .duration(300)
+           .text("Test 1 Grade: "+t1a)
+
+           ginfo.select("#t2a")
+           .transition()
+           .duration(300)
+           .text("Test 2 Grade: "+t2a)
+
+           ginfo.select("#qave")
+           .transition()
+           .duration(300)
+           .text("Quizes Average: "+qave)
+
+           ginfo.select("#have")
+           .transition()
+           .duration(300)
+           .text("Homework Average: "+have)
 
 
         // final graph change
@@ -2499,10 +2613,15 @@ var getQuizeArray=function(d){
               if (compare=="rgb(149, 184, 209)") {
                 d3.select("#finalgraph")
                 .select("#finalrects"+a)
+                .transition()
+                .duration(300)
                 .style('fill',"#54576E")
               }}
             body.select("#finalgraph")
-            .select("#finalrects"+i).style('fill', '#95B8D1')
+            .select("#finalrects"+i)
+            .transition()
+            .duration(300)
+            .style('fill', '#95B8D1')
         // test1 graph change
             for(a=0;a<23;a++){
               var compare=body.select("#test1graph")
@@ -2510,10 +2629,15 @@ var getQuizeArray=function(d){
               if (compare=="rgb(149, 184, 209)") {
                 body.select("#test1graph")
                 .select("#test1rects"+a)
+                .transition()
+                .duration(300)
                 .style('fill',"#54576E")
               }}
             body.select("#test1graph")
-            .select("#test1rects"+i).style('fill', '#95B8D1')
+            .select("#test1rects"+i)
+            .transition()
+            .duration(300)
+            .style('fill', '#95B8D1')
         // test2 graph change
             for(a=0;a<23;a++){
               var compare=body.select("#test2graph")
@@ -2521,13 +2645,18 @@ var getQuizeArray=function(d){
               if (compare=="rgb(149, 184, 209)") {
                 body.select("#test2graph")
                 .select("#test2rects"+a)
+                .transition()
+                .duration(300)
                 .style('fill',"#54576E")
               }}
             body.select("#test2graph")
-            .select("#test2rects"+i).style('fill', '#95B8D1')
+            .select("#test2rects"+i)
+            .transition()
+            .duration(300)
+            .style('fill', '#95B8D1')
+
         // quize graph change
             quizeGraphChange(d,i)
-
         // homework graph change
             homeworkGraphChange(d,i)
     }

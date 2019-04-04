@@ -72,9 +72,51 @@ top: 560px;
 left: 800px;
 }
 
+#backTop{
+  height: 30px;
+border-radius: 30px;
+width: 130;
+background: #E6E8E6;
+cursor:pointer;
+position: absolute;
+top: 1650px;
+left: 70px;
+}
+
+#nextStudent{
+  height: 30px;
+border-radius: 30px;
+width: 130;
+background: #E6E8E6;
+cursor:pointer;
+position: absolute;
+top: 1650px;
+left: 240px;
+}
+#nextStudent2{
+  height: 30px;
+border-radius: 30px;
+width: 130;
+background: #E6E8E6;
+cursor:pointer;
+position: absolute;
+top: 3200px;
+left: 530px;
+}
+
+#backTop2{
+  height: 30px;
+border-radius: 30px;
+width: 130;
+background: #E6E8E6;
+cursor:pointer;
+position: absolute;
+top: 3200px;
+left: 770px;}
 
 
-#next:hover,#previous:hover,#mid:hover,#end:hover,#reset:hover{
+
+#next:hover,#previous:hover,#mid:hover,#end:hover,#reset:hover,#backTop:hover,#nextStudent:hover,#nextStudent2:hover,#backTop2:hover{
   background-color: #B9BAB8;
 }
 
@@ -123,20 +165,20 @@ left: 800px;
 #profile{
   display: block;
 position: absolute;
-top: 1500px;
+top: 1450px;
 }
 
 #ginfo{
   display: block;
 position: absolute;
-top: 1500px;
+top: 1450px;
 left: 600px;
 }
 
 #colorlegend2{
   display: block;
 position: absolute;
-top: 1800px;
+top: 1750px;
 left: 400px;
 border-top: dotted;
 border-bottom: dotted;
@@ -146,7 +188,7 @@ border-bottom: dotted;
   text-decoration: underline;
   position: absolute;
 display: block;
-top: 1900px;
+top: 1850px;
 }
 
 .nametext{
@@ -159,13 +201,13 @@ top: 1900px;
 #test1graph{
   display: block;
 position: absolute;
-top: 2450px;
+top: 2400px;
 text-decoration: underline;
 }
 #test2graph{
   display: block;
 position: absolute;
-top: 2450px;
+top: 2400px;
 left: 700px;
 text-decoration: underline;
 }
@@ -173,7 +215,7 @@ text-decoration: underline;
 #homeworkgraph{
   position: absolute;
 display: block;
-top: 2850px;
+top: 2800px;
 left: 700px;
 text-decoration: underline;
 }
@@ -181,7 +223,45 @@ text-decoration: underline;
 #quizegraph{
   position: absolute;
 display: block;
-top: 2850px;
+top: 2800px;
 
 text-decoration: underline;
 }
+
+#tooltip1,#tooltip2 {
+      position: absolute;
+      width: 70px;
+      height:50px;
+      padding: 10px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+      font-size: 15px;
+      line-height: 10px;
+    }
+
+#explain{
+        position: absolute;
+        padding: 5px;
+        width: 300px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        font-size: 10px;
+        line-height: 10px;
+        line-height: 20px;
+        top: 280px;
+        left: 1000px;
+      }
+#tooltip1{
+  top: 2770px;
+left: 250px;
+}
+#tooltip2{
+  top: 2770px;
+left: 1000px;
+}
+
+    #tooltip1.hidden,#tooltip2.hidden{
+      display: none;
+    }
