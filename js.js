@@ -2285,6 +2285,15 @@ var getQuizeArray=function(d){
           .attr('transform', 'translate(' + (margin.left-10) + ',' + 0+ ')')
 
           // Graph
+
+          // paths
+          graph.append("path")
+            .attr('d', drawPath(data))
+            .style('stroke', '#54576E')
+            .attr('stroke-width', 1.5)
+            .attr('id', 'quizepath')
+            .attr('class', 'path')
+
               graph.selectAll("circle")
                   .data(data)
                   .enter()
@@ -2294,7 +2303,7 @@ var getQuizeArray=function(d){
                   .attr('cy',function(d){return d.y})
                   .attr('r',5)
                   .style('fill', '#54576E')
-                  .on('click',function(d,i){
+                  .on('mouseover',function(d,i){
                     d3.select(this)
                     .transition()
                     .attr('r', 10)
@@ -2319,13 +2328,7 @@ var getQuizeArray=function(d){
 
                   });
 
-              // paths
-              graph.append("path")
-                .attr('d', drawPath(data))
-                .style('stroke', '#54576E')
-                .attr('stroke-width', 1.5)
-                .attr('id', 'quizepath')
-                .attr('class', 'path')
+
 
 
     }
@@ -2384,6 +2387,15 @@ var getQuizeArray=function(d){
           .attr('transform', 'translate(' + (margin.left-10) + ',' + 0+ ')')
 
           // Graph
+
+          // paths
+          graph.append("path")
+            .attr('d', drawPath(data))
+            .attr('id', 'homeworkpath')
+            .style('stroke', '#54576E')
+            .attr('stroke-width', 1.5)
+            .attr('class', 'path')
+
               graph.selectAll("circle")
                   .data(data)
                   .enter()
@@ -2393,7 +2405,7 @@ var getQuizeArray=function(d){
                   .attr('cy',function(d){return d.y})
                   .attr('r',5)
                   .style('fill', '#54576E')
-                  .on('click',function(d,i){
+                  .on('mouseover',function(d,i){
                     d3.select(this)
                     .transition()
                     .attr('r', 10)
@@ -2417,13 +2429,7 @@ var getQuizeArray=function(d){
                     .style('fill', '#54576E')
                   })
 
-              // paths
-              graph.append("path")
-                .attr('d', drawPath(data))
-                .attr('id', 'homeworkpath')
-                .style('stroke', '#54576E')
-                .attr('stroke-width', 1.5)
-                .attr('class', 'path')
+
     }
 
     var homeworkGraphChange=function(d,i){
