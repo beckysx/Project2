@@ -2334,6 +2334,7 @@ var getQuizeArray=function(d){
               // paths
               graph.append("path")
                 .attr('d', drawPath(data))
+                .attr('id', 'homeworkpath')
                 .style('stroke', '#54576E')
                 .attr('stroke-width', 1.5)
                 .attr('class', 'path')
@@ -2383,7 +2384,7 @@ var getQuizeArray=function(d){
 
 
               // paths
-              graph.select("path")
+              graph.select("#homeworkpath")
               .transition()
               .duration(300)
               .attr('d', drawPath(data))
@@ -2432,7 +2433,7 @@ var getQuizeArray=function(d){
                   .attr('cy',function(d){return d.y})
 
               // paths
-              graph.select("quizepath")
+              graph.select("#quizepath")
               .transition()
               .duration(300)
               .attr('d', drawPath(data))
@@ -2482,18 +2483,12 @@ var getQuizeArray=function(d){
        // gradeinformation
            var ginfo=body.select("#ginfo")
 
-           ginfo.select("finaltext")
-               .text("Final Grade: "+final)
-           ginfo.select("fa")
-               .text("Final Exam Grade: "+fa)
-           ginfo.select("t1a")
-               .text("Test 1 Grade: "+t1a)
-           ginfo.select("t2a")
-               .text("Test 2 Grade: "+t2a)
-           ginfo.select("qave")
-               .text("Quizes Average: "+qave)
-           ginfo.select("have")
-               .text("Homework Average: "+have)
+           ginfo.select("#finaltext").text("Final Grade: "+final)
+           ginfo.select("#fa").text("Final Exam Grade: "+fa)
+           ginfo.select("#t1a").text("Test 1 Grade: "+t1a)
+           ginfo.select("#t2a").text("Test 2 Grade: "+t2a)
+           ginfo.select("#qave").text("Quizes Average: "+qave)
+           ginfo.select("#have").text("Homework Average: "+have)
 
 
         // final graph change
