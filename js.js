@@ -1009,6 +1009,7 @@ var getQuizeArray=function(d){
           .attr('text-anchor', 'middle')
           .text(function(){return "Day"+" "+date})
           .attr('id', 'datetext')
+          .attr('class', 'title')
 
           // scale
           var qyScale=d3.scaleLinear()
@@ -1129,6 +1130,7 @@ var getQuizeArray=function(d){
             d3.select("#index").append("button")
             .attr('id', 'next')
             .text("Next Day")
+            .attr('class', 'buttontext')
             .on('click', function(){
               if (date==41){date=date}
               else{
@@ -1317,6 +1319,7 @@ var getQuizeArray=function(d){
             d3.select("#index").append("button")
             .attr('id', 'previous')
             .text("Previous Day")
+            .attr('class', 'buttontext')
             .on('click',function(){
               if (date==1){date=date}
               else{
@@ -1509,6 +1512,7 @@ var getQuizeArray=function(d){
             d3.select("#index").append("button")
             .attr('id', 'mid')
             .text("Day 20")
+            .attr('class', 'buttontext')
             .on("click",function(){
               date=20
               // Date indication
@@ -1587,6 +1591,7 @@ var getQuizeArray=function(d){
             d3.select("#index").append("button")
             .attr('id', 'end')
             .text("Day 40")
+            .attr('class', 'buttontext')
             .on("click",function(){
               date=40
               // Date indication
@@ -1667,6 +1672,7 @@ var getQuizeArray=function(d){
             d3.select("#index").append("button")
             .attr('id', 'reset')
             .text("Reset")
+            .attr('class', 'buttontext')
             .on("click",function(){
               date=1
               // Date indication
@@ -1781,16 +1787,20 @@ var getQuizeArray=function(d){
               .attr('x', 170)
               .attr('y', 120)
               .text(name)
-              .attr('class', 'nametext')
+              .style('font-size', 35)
+              .style('text-decoration', 'underline')
+              .attr('class', 'title')
 
           body.append("a").attr('href', '#top')
           .append("button")
           .attr('id', 'backTop')
           .text('Back to Top')
+          .attr('class', 'buttontext')
 
           d3.select("#index").append("button")
           .attr('id', 'nextStudent')
           .text('Next Student')
+          .attr('class', 'buttontext')
           .on('click',function(){
             var currentID=parseInt(d3.select("#index").select("#profile").select("image").attr("id").replace(/[^0-9]/ig,""))
             var nextID=currentID+1
@@ -1800,6 +1810,7 @@ var getQuizeArray=function(d){
           body.append("button")
           .attr('id', 'nextStudent2')
           .text('Next Student')
+          .attr('class', 'buttontext')
           .on('click',function(){
             var currentID=parseInt(d3.select("#index").select("#profile").select("image").attr("id").replace(/[^0-9]/ig,""))
             var nextID=currentID+1
@@ -1810,6 +1821,7 @@ var getQuizeArray=function(d){
           .append("button")
           .attr('id', 'backTop2')
           .text('Back to Top')
+          .attr('class', 'buttontext')
 
         // gradeinformation
         body.append("svg")
@@ -1820,41 +1832,44 @@ var getQuizeArray=function(d){
         var ginfo=body.select("#ginfo")
 
         ginfo.append("text")
-            .attr('x', 0)
+            .attr('x', 70)
             .attr('y', 60)
             .text("Grade Information")
-            .attr('class', 'nametext')
+            .style('font-size', 35)
+            .style('text-decoration', 'underline')
+            .attr('class', 'title')
+
         ginfo.append("text")
-            .attr('x', 0)
+            .attr('x', 70)
             .attr('y', 120)
             .text("Final Grade: "+final)
             .attr('id', 'finaltext')
         ginfo.append("text")
-            .attr('x', 0)
+            .attr('x', 70)
             .attr('y', 170)
             .text("Final Exam Grade: "+fa)
             .attr('id', 'fa')
             .attr('class', 'otherGrade')
         ginfo.append("text")
-            .attr('x', 300)
+            .attr('x', 370)
             .attr('y', 170)
             .text("Test 1 Grade: "+t1a)
             .attr('id', 't1a')
             .attr('class', 'otherGrade')
         ginfo.append("text")
-            .attr('x', 600)
+            .attr('x', 670)
             .attr('y', 170)
             .text("Test 2 Grade: "+t2a)
             .attr('id', 't2a')
             .attr('class', 'otherGrade')
         ginfo.append("text")
-            .attr('x', 0)
+            .attr('x', 70)
             .attr('y', 220)
             .text("Quizes Average: "+qave)
             .attr('id', 'qave')
             .attr('class', 'otherGrade')
         ginfo.append("text")
-            .attr('x', 300)
+            .attr('x', 370)
             .attr('y', 220)
             .text("Homework Average: "+have)
             .attr('id', 'have')
@@ -1989,6 +2004,8 @@ var getQuizeArray=function(d){
           .attr('y', 30)
           .text('Class Final Grade Graph')
           .style('font-size', 25)
+          .style('text-decoration', 'underline')
+          .attr('class', 'title')
 
           graph.append("text")
           .attr('x', 350)
@@ -2085,6 +2102,8 @@ var getQuizeArray=function(d){
           .attr('y', 30)
           .text('Class Test 1 Grade Graph')
           .style('font-size', 20)
+          .style('text-decoration', 'underline')
+          .attr('class', 'title')
 
           graph.append("text")
           .attr('x', 300)
@@ -2170,6 +2189,8 @@ var getQuizeArray=function(d){
           .attr('y', 30)
           .text('Class Test 2 Grade Graph')
           .style('font-size', 20)
+          .style('text-decoration', 'underline')
+          .attr('class', 'title')
 
           graph.append("text")
           .attr('x', 300)
@@ -2276,6 +2297,8 @@ var getQuizeArray=function(d){
           .attr('y', 30)
           .text('Quize Grade Graph')
           .style('font-size', 20)
+          .style('text-decoration', 'underline')
+          .attr('class', 'title')
 
 
           // axis
@@ -2379,6 +2402,8 @@ var getQuizeArray=function(d){
           .attr('y', 30)
           .text('Homework Grade Graph')
           .style('font-size', 20)
+          .style('text-decoration', 'underline')
+          .attr('class', 'title')
 
           // axis
           var axis=d3.axisLeft(yScale).tickSize(0)
