@@ -1844,6 +1844,7 @@ var getQuizeArray=function(d){
             .attr('y', 120)
             .text("Final Grade: "+final)
             .attr('id', 'finaltext')
+            .style('text-decoration', 'underline')
         ginfo.append("text")
             .attr('x', 70)
             .attr('y', 170)
@@ -2609,6 +2610,7 @@ var getQuizeArray=function(d){
            .transition()
            .duration(300)
            .text("Final Grade: "+final)
+           .style('text-decoration', 'underline')
 
            ginfo.select("#fa")
            .transition()

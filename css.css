@@ -271,9 +271,6 @@ left: 250px;
 left: 1000px;
 }
 
-    #tooltip1.hidden,#tooltip2.hidden{
-      display: none;
-    }
 .title{
   font-family: 'Permanent Marker', cursive;
 }
