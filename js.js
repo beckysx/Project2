@@ -506,7 +506,7 @@ var getQuizeArray=function(d){
               var index=i
               svg.append("a").attr('href', '#goto')
               .append("svg:image")
-              .attr('xlink:href', function(){return "/penguins/"+d[index].picture})
+              .attr('xlink:href', function(){return "https://beckysx.github.io/Project2/penguins/"+d[index].picture})
               .attr('x', 10)
               .attr('y', 0)
               .attr('width', 60)
@@ -597,7 +597,7 @@ var getQuizeArray=function(d){
               var index=i+4
               svg.append("a").attr('href', '#goto')
               .append("svg:image")
-              .attr('xlink:href', function(){return "/penguins/"+d[index].picture})
+              .attr('xlink:href', function(){return "https://beckysx.github.io/Project2/penguins/"+d[index].picture})
               .attr('x', 10)
               .attr('y', 0)
               .attr('width', 60)
@@ -689,7 +689,7 @@ var getQuizeArray=function(d){
               var index=i+8
               svg.append("a").attr('href', '#goto')
               .append("svg:image")
-              .attr('xlink:href', function(){return "/penguins/"+d[index].picture})
+              .attr('xlink:href', function(){return "https://beckysx.github.io/Project2/penguins/"+d[index].picture})
               .attr('x', 10)
               .attr('y', 0)
               .attr('width', 60)
@@ -780,7 +780,7 @@ var getQuizeArray=function(d){
               var index=i+12
               svg.append("a").attr('href', '#goto')
               .append("svg:image")
-              .attr('xlink:href', function(){return "/penguins/"+d[index].picture})
+              .attr('xlink:href', function(){return "https://beckysx.github.io/Project2/penguins/"+d[index].picture})
               .attr('x', 10)
               .attr('y', 0)
               .attr('width', 60)
@@ -873,7 +873,7 @@ var getQuizeArray=function(d){
               var index=i+16
               svg.append("a").attr('href', '#goto')
               .append("svg:image")
-              .attr('xlink:href', function(){return "/penguins/"+d[index].picture})
+              .attr('xlink:href', function(){return "https://beckysx.github.io/Project2/penguins/"+d[index].picture})
               .attr('x', 10)
               .attr('y', 0)
               .attr('width', 60)
@@ -964,7 +964,7 @@ var getQuizeArray=function(d){
               var index=i+20
               svg.append("a").attr('href', '#goto')
               .append("svg:image")
-              .attr('xlink:href', function(){return "/penguins/"+d[index].picture})
+              .attr('xlink:href', function(){return "https://beckysx.github.io/Project2/penguins/"+d[index].picture})
               .attr('x', 10)
               .attr('y', 0)
               .attr('width', 60)
@@ -1772,7 +1772,7 @@ var getQuizeArray=function(d){
           var profile=body.select("#profile")
 
           profile.append("svg:image")
-              .attr('xlink:href', function(){return "/penguins/"+picture})
+              .attr('xlink:href', function(){return "https://beckysx.github.io/Project2/penguins/"+picture})
               .attr('x', 20)
               .attr('y', 0)
               .attr('width', 120)
@@ -2053,7 +2053,7 @@ var getQuizeArray=function(d){
               // profile
               for (i=0;i<23;i++){
                 graph.append("svg:image")
-                .attr('xlink:href', function(){return "/penguins/"+d[i].picture})
+                .attr('xlink:href', function(){return "https://beckysx.github.io/Project2/penguins/"+d[i].picture})
                 .attr('x', xScale(i)+10)
                 .attr('y', screen.height-margin.bottom+10)
                 .attr('width',xScale.bandwidth()-20)
@@ -2615,7 +2615,6 @@ var getQuizeArray=function(d){
             for(a=0;a<23;a++){
               var compare=body.select("#finalgraph")
               .select("#finalrects"+a).style('fill')
-              console.log(compare)
               if (compare=="rgb(149, 184, 209)") {
                 d3.select("#finalgraph")
                 .select("#finalrects"+a)
