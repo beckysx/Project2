@@ -316,13 +316,13 @@ var getQuizeArray=function(d){
 
         chart.append("svg:image")
         .attr('xlink:href', function(){return "piechart.png"})
-        .attr('x', 0)
+        .attr('x', -20)
         .attr('y', 0)
         .attr('width', 400)
         .attr('class', 'piechartImage')
 
         chart.append("text")
-        .attr('x', 145)
+        .attr('x', 125)
         .attr('y', 135)
         .attr('text-anchor', 'middle')
         .text('Final Grade')

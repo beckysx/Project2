@@ -16,7 +16,11 @@ font-family: 'VT323', monospace;
 #piechart{
   position: relative;
 left: 20px;
+height:250px;
+width: 360px;
 display: block;
+border-radius: 10px;
+box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 #datesvg{
@@ -260,7 +264,7 @@ text-decoration: underline;
         font-size: 13px;
         line-height: 20px;
         top: 280px;
-        left: 1000px;
+        left: 1020px;
       }
 #tooltip1{
   top: 2770px;
