@@ -2595,7 +2595,7 @@ var getQuizeArray=function(d){
          profile.select("image")
          .transition()
          .duration(300)
-         .attr('xlink:href', function(){return "/penguins/"+picture})
+         .attr('xlink:href', function(){return "https://beckysx.github.io/Project2/penguins/"+picture})
          .attr('id', 'profilepicture'+i)
 
          profile.select("text")
